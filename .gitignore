@@ -24,7 +24,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Jet Brain
-.idea/
+/.idea/
 
 # Visual Studio cache directory
 .vs/
@@ -73,3 +73,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/.idea
+/.idea/.idea.Eternally-Spiritbound-RE/.idea/copilot/chatSessions
+.idea/.idea.Eternally-Spiritbound-RE/.idea/copilot/chatSessions/00000000000.xd
+.idea/.idea.Eternally-Spiritbound-RE/.idea/copilot/chatSessions/xd.lck
+.idea/.idea.Eternally-Spiritbound-RE/.idea/copilot/chatSessions/xd.lck
+.idea/.idea.Eternally-Spiritbound-RE/.idea/copilot/chatSessions/00000000000.xd

@@ -24,7 +24,7 @@ namespace _Root.Scripts.Controllers
 
         private void Update()
         {
-            direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            CurrentMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
         protected void FixedUpdate()
@@ -43,7 +43,7 @@ namespace _Root.Scripts.Controllers
             }
             
             // if we have a low friction (ice, marbles...) we lerp the speed accordingly
-            if (Friction > 0 && Friction < 1)
+            if (Friction is > 0 and < 1)
             {
                 CurrentMovement = Vector3.Lerp(Speed, CurrentMovement, Time.deltaTime * Friction);
             }
