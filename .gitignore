@@ -72,18 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
-# Ignore the .idea directory
-.idea/
-
-# Ignore all files and directories named .idea recursively
-**/.idea/
-
 # Ignore the chat sessions directory
 .idea/copilot/chatSessions/
-
-# Ignore all files and directories named chatSessions recursively
-**/chatSessions/
-
-# Ignore specific files
-.idea/copilot/chatSessions/00000000000.xd
-.idea/copilot/chatSessions/xd.lck
