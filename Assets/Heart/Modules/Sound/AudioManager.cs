@@ -1,3 +1,4 @@
+using Pancake.Linq;
 using Pancake.Scriptable;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace Pancake.Sound
         private void Awake()
         {
             _sfx = new SoundEmitterVault();
-            prefab.Populate(prewarmSize);
+            prefab.Populate(prewarmSize, true);
             sfxVolume.OnValueChanged += OnSfxVolumeChanged;
             musicVolume.OnValueChanged += OnMusicVolumeChanged;
         }
@@ -89,7 +90,7 @@ namespace Pancake.Sound
         /// </summary>
         private AudioHandle PlaySfx(Audio audio)
         {
-            var clipsToPlay = audio.GetClips();
+            var clipsToPlay = audio.GetClips().Filter(s => s != null);
             var soundEmitters = new SoundEmitter[clipsToPlay.Length];
 
             int nOfClips = clipsToPlay.Length;

@@ -10,9 +10,6 @@ namespace Pancake.ScriptableEditor
     [CustomPropertyDrawer(typeof(ScriptableObject), true)]
     public class ScriptableBasePropertyDrawer : PropertyDrawer
     {
-        private UnityEditor.Editor _editor;
-        protected virtual float PropertyWidthRatio { get; } = 0.82f;
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -36,9 +33,16 @@ namespace Pancake.ScriptableEditor
 
         protected void DrawIfNull(Rect position, SerializedProperty property, GUIContent label)
         {
+            if (fieldInfo.FieldType.IsAbstract)
+            {
+                EditorGUI.PropertyField(position, property, label);
+                return;
+            }
+
             //Draw property and a create button
             var rect = DrawPropertyField(position, property, label);
             var guiContent = new GUIContent("Create", "Creates the SO at default storage generate path");
+
             if (GUI.Button(rect, guiContent))
             {
                 string newName = GetFieldName().ToSnakeCase();
@@ -60,7 +64,7 @@ namespace Pancake.ScriptableEditor
         protected Rect DrawPropertyField(Rect position, SerializedProperty property, GUIContent label)
         {
             var rectPosition = position;
-            float propertyWidthRatio = PropertyWidthRatio;
+            const float propertyWidthRatio = 0.82f;
             rectPosition.width = position.width * propertyWidthRatio;
             EditorGUI.PropertyField(rectPosition, property, label);
 
@@ -83,15 +87,15 @@ namespace Pancake.ScriptableEditor
                 //Draw an embedded inspector 
                 rect.width = position.width;
                 EditorGUI.PropertyField(rect, property, label);
-                EditorGUI.indentLevel++;
                 var cacheBgColor = GUI.backgroundColor;
                 GUI.backgroundColor = Uniform.FieryRose;
                 GUILayout.BeginVertical(GUI.skin.box);
-                if (_editor == null) UnityEditor.Editor.CreateCachedEditor(targetObject, null, ref _editor);
-                _editor.OnInspectorGUI();
+                var editor = UnityEditor.Editor.CreateEditor(targetObject);
+                EditorGUI.BeginChangeCheck();
+                editor.OnInspectorGUI();
+                if (EditorGUI.EndChangeCheck()) property.serializedObject.ApplyModifiedProperties();
                 GUI.backgroundColor = cacheBgColor;
                 GUILayout.EndVertical();
-                EditorGUI.indentLevel--;
             }
             else DrawUnExpanded(position, property, label, targetObject);
         }
@@ -100,7 +104,49 @@ namespace Pancake.ScriptableEditor
 
         protected virtual void DrawUnExpanded(Rect position, SerializedProperty property, GUIContent label, Object targetObject)
         {
-            EditorGUI.PropertyField(position, property, label);
+            if (property.serializedObject.isEditingMultipleObjects || property.objectReferenceValue == null)
+            {
+                base.OnGUI(position, property, label);
+                return;
+            }
+
+            label = EditorGUI.BeginProperty(position, label, property);
+            position = EditorGUI.PrefixLabel(position, label);
+            var inner = new SerializedObject(property.objectReferenceValue);
+            var valueProp = inner.FindProperty("value");
+            if (valueProp != null)
+            {
+                var previewRect = new Rect(position) {width = GetPreviewSpace(valueProp?.type)};
+                int indent = EditorGUI.indentLevel;
+                EditorGUI.indentLevel = 0;
+                position.xMin = previewRect.xMax;
+                EditorGUI.PropertyField(previewRect, valueProp, GUIContent.none, false);
+
+                position.x = position.x + 6f;
+                position.width = position.width - 6f;
+                EditorGUI.PropertyField(position, property, GUIContent.none);
+
+                EditorGUI.indentLevel = indent;
+            }
+            else
+            {
+                EditorGUI.PropertyField(position, property, GUIContent.none);
+            }
+
+            inner.ApplyModifiedProperties();
+            EditorGUI.EndProperty();
+        }
+
+        private float GetPreviewSpace(string type)
+        {
+            switch (type)
+            {
+                case "Vector2":
+                case "Vector3":
+                    return 128;
+                default:
+                    return 58;
+            }
         }
     }
 }

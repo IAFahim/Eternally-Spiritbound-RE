@@ -16,7 +16,7 @@ namespace Pancake
     {
         Update = 0,
         FixedUpdate = 1,
-        LateUpdate = 2
+        LateUpdate = 2,
     }
 
     public enum ResetType
@@ -56,5 +56,14 @@ namespace Pancake
     {
         Auto,
         Manual
+    }
+
+    [System.Flags]
+    public enum GameLoopType
+    {
+        None = 0,
+        Update = 1 << 0,
+        FixedUpdate = 1 << 1,
+        LateUpdate = 1 << 2,
     }
 }

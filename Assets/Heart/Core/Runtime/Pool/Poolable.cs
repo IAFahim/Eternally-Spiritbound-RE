@@ -8,26 +8,30 @@ namespace Pancake
     internal sealed class Poolable : MonoBehaviour
     {
         private IPoolable[] _poolables = Array.Empty<IPoolable>();
-        private bool _isInitialized;
+        
+        public Transform Transform => transform;
 
-        private void Awake()
+        private IPoolable[] Poolables
         {
-            _poolables = GetComponentsInChildren<IPoolable>(true);
-            _isInitialized = true;
+            get
+            {
+                if (_poolables.IsNullOrEmpty()) _poolables = GetComponentsInChildren<IPoolable>(true);
+                return _poolables;
+            }
         }
 
-        private void OnDestroy() { Pool.Remove(gameObject); }
+        private void OnDestroy() { Pool.Remove(this); }
 
         public void OnRequest()
         {
-            if (!_isInitialized) return;
-
-            for (var i = 0; i < _poolables.Length; i++) _poolables[i].OnRequest();
+            float length = Poolables.Length;
+            for (var i = 0; i < length; i++) Poolables[i].OnRequest();
         }
 
         public void OnReturn()
         {
-            for (var i = 0; i < _poolables.Length; i++) _poolables[i].OnReturn();
+            float length = Poolables.Length;
+            for (var i = 0; i < length; i++) Poolables[i].OnReturn();
         }
     }
 }

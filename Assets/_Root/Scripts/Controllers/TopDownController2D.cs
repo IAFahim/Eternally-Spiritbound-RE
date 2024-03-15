@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Controllers
 {
@@ -24,7 +22,7 @@ namespace _Root.Scripts.Controllers
 
         private void Update()
         {
-            CurrentMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            // CurrentMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
         protected void FixedUpdate()
