@@ -1,9 +1,19 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "NPM",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.fluid"
+      ]
+    }
+  ],
+  
   "dependencies": {
+    "com.fluid.behavior-tree": "2.2.3",
     "com.annulusgames.ugui-progress-bar": "https://github.com/AnnulusGames/UnityProgressBar.git?path=Assets/UnityProgressBar",
     "com.chenpipi.project-pin-board": "https://github.com/ichenpipi/unity-project-pin-board.git",
     "com.handzlikchris.fastscriptreload": "https://github.com/handzlikchris/FastScriptReload.git?path=Assets",
-    "com.inspiaaa.unityhfsm": "https://github.com/Inspiaaa/UnityHFSM.git#upm",
     "com.quickeye.utility": "https://github.com/ErnSur/QuickEye-Utility.git",
     "com.sag.main-scene-auto-loading": "https://github.com/STARasGAMES/unity-main-scene-auto-loading.git#upm",
     "com.tayx.graphy": "https://github.com/pancake-llc/graphy.git#3.0.6",
