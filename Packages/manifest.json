@@ -8,11 +8,10 @@
       ]
     }
   ],
-  
   "dependencies": {
-    "com.fluid.behavior-tree": "2.2.3",
     "com.annulusgames.ugui-progress-bar": "https://github.com/AnnulusGames/UnityProgressBar.git?path=Assets/UnityProgressBar",
     "com.chenpipi.project-pin-board": "https://github.com/ichenpipi/unity-project-pin-board.git",
+    "com.fluid.behavior-tree": "2.2.3",
     "com.handzlikchris.fastscriptreload": "https://github.com/handzlikchris/FastScriptReload.git?path=Assets",
     "com.quickeye.utility": "https://github.com/ErnSur/QuickEye-Utility.git",
     "com.sag.main-scene-auto-loading": "https://github.com/STARasGAMES/unity-main-scene-auto-loading.git#upm",
@@ -22,6 +21,7 @@
     "com.unity.burst": "1.8.13",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.collections": "2.1.4",
+    "com.unity.entities": "1.0.16",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.28",
     "com.unity.inputsystem": "1.7.0",

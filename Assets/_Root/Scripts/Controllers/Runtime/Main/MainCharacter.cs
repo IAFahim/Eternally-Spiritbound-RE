@@ -1,5 +1,6 @@
-﻿using _Root.Scripts.Controllers.Runtime.TopDowns;
-using _Root.Scripts.Datas.Events;
+﻿using _Root.Scripts.Controllers.Runtime.Characters.Base;
+using _Root.Scripts.Controllers.Runtime.Events;
+using _Root.Scripts.Controllers.Runtime.Movements;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Main

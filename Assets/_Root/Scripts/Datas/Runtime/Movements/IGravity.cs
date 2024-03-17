@@ -1,4 +1,4 @@
-﻿namespace _Root.Scripts.Datas
+﻿namespace _Root.Scripts.Datas.Runtime.Movements
 {
     public interface IGravity
     {

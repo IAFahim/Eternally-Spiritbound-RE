@@ -1,24 +1,14 @@
-﻿using _Root.Scripts.Datas;
+﻿using _Root.Scripts.Controllers.Runtime.Characters.Base;
+using _Root.Scripts.Datas.Runtime.Movements;
 using Pancake;
 using UnityEngine;
 
-namespace _Root.Scripts.Controllers.Runtime.TopDowns
+namespace _Root.Scripts.Controllers.Runtime.Movements
 {
-    public class Movement2D : GameComponent, IGravity
+    public class Movement2D : MovementData2D
     {
         public Character character;
-        
-        [field: SerializeReference] public bool GravityActive { get; set; } = true;
-        [field: SerializeReference] public float Gravity { get; set; } = 40f;
-
-        [field: SerializeReference] public bool Free { get; set; } = true;
-        [field: SerializeReference] public float Friction { get; set; } = 1f;
-        [field: SerializeReference] public Vector2 Current { get; set; }
-        [field: SerializeReference] public Vector2 Speed { get; set; }
-        
-        private Vector2 _impact;
         private MovingPlatform2D _movingPlatform;
-        public Vector2 AddedForce;
         public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
@@ -61,12 +51,12 @@ namespace _Root.Scripts.Controllers.Runtime.TopDowns
         /// </summary>
         private void ApplyImpact()
         {
-            if (_impact.magnitude > 0.2f)
+            if (impact.magnitude > 0.2f)
             {
-                character.rigidBody.AddForce(_impact);
+                character.rigidBody.AddForce(impact);
             }
 
-            _impact = Vector2.Lerp(_impact, Vector2.zero, 5f * Time.deltaTime);
+            impact = Vector2.Lerp(impact, Vector2.zero, 5f * Time.deltaTime);
         }
     }
 }
