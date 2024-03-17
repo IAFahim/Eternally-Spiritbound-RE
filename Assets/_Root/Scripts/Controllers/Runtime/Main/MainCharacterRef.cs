@@ -1,17 +1,19 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Characters.Base;
 using _Root.Scripts.Controllers.Runtime.Events;
 using _Root.Scripts.Controllers.Runtime.Movements;
+using _Root.Scripts.Datas.Runtime.Statistics;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Main
 {
-    public class MainCharacter: MonoBehaviour
+    public class MainCharacterRef: MonoBehaviour
     {
         public SwapCharacterEvent swapCharacterEvent;
         public Character character;
         public InputProvider inputProvider;
 
         public Movement2D Movement2D=> character.movement2D;
+        public Health Health => character.health;
         private void OnValidate()
         {
             inputProvider ??= GetComponent<InputProvider>();
@@ -31,6 +33,5 @@ namespace _Root.Scripts.Controllers.Runtime.Main
         {
             character = obj;
         }
-
     }
 }

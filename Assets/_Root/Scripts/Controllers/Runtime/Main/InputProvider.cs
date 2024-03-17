@@ -1,12 +1,13 @@
 using Game.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Controllers.Runtime.Main
 {
     public class InputProvider : MonoBehaviour
     {
-        public MainCharacter mainCharacter;
+        [FormerlySerializedAs("mainCharacter")] public MainCharacterRef mainCharacterRef;
         public bool provideInput;
         public Vector2 move;
 
@@ -15,7 +16,7 @@ namespace _Root.Scripts.Controllers.Runtime.Main
 
         private void OnValidate()
         {
-            mainCharacter ??= GetComponent<MainCharacter>();
+            mainCharacterRef ??= GetComponent<MainCharacterRef>();
         }
 
         private void Awake()
@@ -34,7 +35,7 @@ namespace _Root.Scripts.Controllers.Runtime.Main
         private void OnMove(InputAction.CallbackContext obj)
         {
             move = obj.ReadValue<Vector2>();
-            if (provideInput) mainCharacter.Movement2D.Current = new Vector3(move.x, move.y);
+            if (provideInput) mainCharacterRef.Movement2D.Current = new Vector3(move.x, move.y);
         }
 
         private void OnDisable()

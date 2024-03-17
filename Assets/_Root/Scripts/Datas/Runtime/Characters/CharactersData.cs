@@ -9,6 +9,7 @@ namespace _Root.Scripts.Datas.Runtime.Characters
     {
         public BehaviorTree behaviorTree;
         public Health health;
+        public GameObject model;
         public Rigidbody2D rigidBody;
         public Stats stats;
     }

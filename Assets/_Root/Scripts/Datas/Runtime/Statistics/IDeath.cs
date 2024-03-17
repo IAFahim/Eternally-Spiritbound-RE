@@ -1,8 +1,13 @@
-﻿namespace _Root.Scripts.Datas.Runtime.Statistics
+﻿using System;
+
+namespace _Root.Scripts.Datas.Runtime.Statistics
 {
     public interface IDeath
     {
-        public bool IsDead { get; set; }
-        public bool DisableOnModeDeath { get; set; }
+        public bool IsDead { get; }
+        public event Action OnDeath;
+        public event Action OnRevive;
+        public void Die();
+        public void Revive(float health = 1);
     }
 }
