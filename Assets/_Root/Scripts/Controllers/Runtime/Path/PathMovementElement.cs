@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Root.Scripts.Controllers.Runtime
+namespace _Root.Scripts.Controllers.Runtime.Path
 {
     ///<summary>
     ///This class describes a node on an MMPath

@@ -3,7 +3,7 @@ using _Root.Scripts.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Root.Scripts.Controllers.Runtime
+namespace _Root.Scripts.Controllers.Runtime.Path
 {
 	/// <summary>
 	/// Add this component to an object and it'll be able to move along a path defined from its inspector.
