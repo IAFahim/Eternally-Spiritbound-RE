@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Pancake.Apex;
-using Pancake.ExLibEditor;
+﻿using Pancake.ExLibEditor;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -10,6 +8,8 @@ namespace Pancake.ScriptableEditor
     [CustomPropertyDrawer(typeof(ScriptableObject), true)]
     public class ScriptableBasePropertyDrawer : PropertyDrawer
     {
+        private Editor _editor;
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -21,12 +21,12 @@ namespace Pancake.ScriptableEditor
                 return;
             }
 
-            bool isNeedIndent = fieldInfo.FieldType.IsCollectionType() && fieldInfo.GetCustomAttribute<ArrayAttribute>(false) != null;
+            bool isInCollection = fieldInfo.FieldType.IsCollectionType();
             DrawIfNotNull(position,
                 property,
                 label,
                 targetObject,
-                isNeedIndent);
+                isInCollection);
 
             EditorGUI.EndProperty();
         }
@@ -73,29 +73,35 @@ namespace Pancake.ScriptableEditor
             return rectPosition;
         }
 
-        protected void DrawIfNotNull(Rect position, SerializedProperty property, GUIContent label, Object targetObject, bool isNeedIndent)
+        protected void DrawIfNotNull(Rect position, SerializedProperty property, GUIContent label, Object targetObject, bool isInCollection)
         {
             var rect = position;
             var labelRect = position;
             labelRect.width = position.width * 0.4f; //only expands on the first half on the window when clicked
 
-            if (isNeedIndent) labelRect.position += new Vector2(10, 0);
-            if (isNeedIndent) label.text = $"   {label.text.Trim()}";
-            property.isExpanded = EditorGUI.Foldout(labelRect, property.isExpanded, new GUIContent(""), true);
-            if (property.isExpanded)
+            if (!isInCollection)
             {
-                //Draw an embedded inspector 
-                rect.width = position.width;
-                EditorGUI.PropertyField(rect, property, label);
-                var cacheBgColor = GUI.backgroundColor;
-                GUI.backgroundColor = Uniform.FieryRose;
-                GUILayout.BeginVertical(GUI.skin.box);
-                var editor = UnityEditor.Editor.CreateEditor(targetObject);
-                EditorGUI.BeginChangeCheck();
-                editor.OnInspectorGUI();
-                if (EditorGUI.EndChangeCheck()) property.serializedObject.ApplyModifiedProperties();
-                GUI.backgroundColor = cacheBgColor;
-                GUILayout.EndVertical();
+                property.isExpanded = EditorGUI.Foldout(labelRect, property.isExpanded, new GUIContent(""), true);
+                int indent = EditorGUI.indentLevel;
+                if (property.isExpanded)
+                {
+                    //Draw an embedded inspector
+                    rect.width = position.width;
+                    EditorGUI.PropertyField(rect, property, label);
+                    var cacheBgColor = GUI.backgroundColor;
+                    GUI.backgroundColor = Uniform.FieryRose;
+                    GUILayout.BeginVertical(GUI.skin.box);
+                    if (_editor == null) Editor.CreateCachedEditor(targetObject, null, ref _editor);
+                    _editor.OnInspectorGUI();
+                    GUI.backgroundColor = cacheBgColor;
+                    GUILayout.EndVertical();
+                    EditorGUI.indentLevel = indent;
+                }
+                else
+                {
+                    _editor = null;
+                    DrawUnExpanded(position, property, label, targetObject);
+                }
             }
             else DrawUnExpanded(position, property, label, targetObject);
         }
@@ -110,28 +116,30 @@ namespace Pancake.ScriptableEditor
                 return;
             }
 
-            label = EditorGUI.BeginProperty(position, label, property);
-            position = EditorGUI.PrefixLabel(position, label);
             var inner = new SerializedObject(property.objectReferenceValue);
             var valueProp = inner.FindProperty("value");
-            if (valueProp != null)
-            {
-                var previewRect = new Rect(position) {width = GetPreviewSpace(valueProp?.type)};
-                int indent = EditorGUI.indentLevel;
-                EditorGUI.indentLevel = 0;
-                position.xMin = previewRect.xMax;
-                EditorGUI.PropertyField(previewRect, valueProp, GUIContent.none, false);
 
-                position.x = position.x + 6f;
-                position.width = position.width - 6f;
-                EditorGUI.PropertyField(position, property, GUIContent.none);
-
-                EditorGUI.indentLevel = indent;
-            }
-            else
+            if (valueProp == null || valueProp.propertyType == SerializedPropertyType.Generic)
             {
-                EditorGUI.PropertyField(position, property, GUIContent.none);
+                EditorGUI.PropertyField(position, property, label);
+                inner.ApplyModifiedProperties();
+                return;
             }
+
+            label = EditorGUI.BeginProperty(position, label, property);
+            position = EditorGUI.PrefixLabel(position, label);
+
+            var previewRect = new Rect(position) {width = GetPreviewSpace(valueProp.type)};
+            int indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+            position.xMin = previewRect.xMax;
+            EditorGUI.PropertyField(previewRect, valueProp, GUIContent.none, false);
+
+            position.x += 6f;
+            position.width -= 6f;
+            EditorGUI.PropertyField(position, property, GUIContent.none);
+
+            EditorGUI.indentLevel = indent;
 
             inner.ApplyModifiedProperties();
             EditorGUI.EndProperty();
@@ -142,6 +150,7 @@ namespace Pancake.ScriptableEditor
             switch (type)
             {
                 case "Vector2":
+                case "Vector2Int":
                 case "Vector3":
                     return 128;
                 default:
