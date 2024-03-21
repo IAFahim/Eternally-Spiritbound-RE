@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1391598860}
-  model: {fileID: 0}
+  model: {fileID: 1358659266}
   rigidBody: {fileID: 1391598854}
   stats: {fileID: 1391598859}
   swapCharacterEvent: {fileID: 11400000, guid: 9af6faae538d5074797fd8265015f8a2, type: 2}
@@ -2804,11 +2804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <DamageAble>k__BackingField: 0
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
   increaseHealthWithMaxHealth: 1
-  <Invulnerable>k__BackingField: 0
   <IsDead>k__BackingField: 0
+  damageResistance: {fileID: 0}
 --- !u!1 &1409643993
 GameObject:
   m_ObjectHideFlags: 0
