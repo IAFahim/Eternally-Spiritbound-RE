@@ -1,19 +1,18 @@
 ﻿using System;
+using System.Collections;
 using Pancake;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics
 {
     [Serializable]
-    public class Health : GameComponent, IHealth, IInvulnerable, IDeath
+    public class Health : GameComponent, IHealth, IDamage, IDeath
     {
         public const float DefaultStaring = 100;
 
-#if UNITY_EDITOR
-        private float _previousMaxHealth;
-#endif
-
-        #region IHealth
+        [Tooltip("If this is true, this object can't take damage at this time")]
+        [field: SerializeReference]
+        public bool DamageAble { get; private set; }
 
         [Tooltip("the current health of the character")]
         [field: SerializeReference]
@@ -23,10 +22,27 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         [field: SerializeReference]
         public float MaxHealth { get; private set; } = 100;
 
-        public event Action OnHealthChanged;
-        public event Action OnMaxHealthChanged;
 
         public bool increaseHealthWithMaxHealth = true;
+
+
+        [Tooltip("if this is true, the character is dead")]
+        [field: SerializeReference]
+        public bool IsDead { get; private set; }
+
+        [SerializeField] private DamageResistanceBase damageResistance;
+        public event Action OnHealthChanged;
+        public event Action OnMaxHealthChanged;
+        public event Action OnDeath;
+        public event Action OnRevive;
+
+        public event Action<GameObject, Vector3, float> OnDamage;
+
+
+#if UNITY_EDITOR
+        private float _previousMaxHealth;
+#endif
+
 
         public float SetHealth(float value)
         {
@@ -34,8 +50,10 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
 #if !UNITY_EDITOR
             if (Mathf.Approximately(newHealth, CurrentHealth)) return CurrentHealth;
 #endif
+            CurrentHealth = newHealth;
             OnHealthChanged?.Invoke();
-            return CurrentHealth = newHealth;
+            if (Mathf.Approximately(newHealth, 0)) Die();
+            return newHealth;
         }
 
         public float SetMaxHealth(float value)
@@ -47,7 +65,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             MaxHealth = newMax;
 #if !UNITY_EDITOR
             if (increaseHealthWithMaxHealth) SetHealth(CurrentHealth + newMax - MaxHealth);
-#else 
+#else
             if (increaseHealthWithMaxHealth) SetHealth(CurrentHealth + newMax - _previousMaxHealth);
             _previousMaxHealth = MaxHealth;
 #endif
@@ -55,21 +73,47 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             return MaxHealth;
         }
 
-        #endregion
+        public virtual void ReceiveHealth(float health)
+        {
+            SetHealth(CurrentHealth + health);
+        }
 
-        #region IDeath
+        public virtual void RestoreHealthToMax()
+        {
+            SetHealth(MaxHealth);
+        }
 
-        [Tooltip("If this is true, this object can't take damage at this time")]
-        [field: SerializeReference]
-        public bool Invulnerable { get; set; }
+        public bool CanTakeDamageThisFrame()
+        {
+            if (DamageAble) return true;
+            if (IsDead) return false;
+            return false;
+        }
+
+        public float Damage(float damage, GameObject instigator, Vector3 damageDirection,
+            float afterInvincibilityDuration, DamageType damageType)
+        {
+            if (!CanTakeDamageThisFrame()) return 0;
+            if (damageResistance != null)
+                damage = damageResistance.CalculateDamage(this, damage, damageType, damageDirection);
+            SetHealth(CurrentHealth - damage);
+            OnDamage?.Invoke(instigator, damageDirection, damage);
+            StartCoroutine(DamageEnable(afterInvincibilityDuration));
+            return damage;
+        }
 
 
-        [Tooltip("if this is true, the character is dead")]
-        [field: SerializeReference]
-        public bool IsDead { get; private set; }
+        public void SetDamageAble(bool value)
+        {
+            DamageAble = value;
+        }
 
-        public event Action OnDeath;
-        public event Action OnRevive;
+        public virtual IEnumerator DamageEnable(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            SetDamageAble(false);
+        }
+
 
         public void Die()
         {
@@ -83,16 +127,6 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             SetHealth(health);
             OnRevive?.Invoke();
         }
-
-        public void TakeDamage(float damage)
-        {
-            if (Invulnerable) return;
-            SetHealth(CurrentHealth - damage);
-            if (CurrentHealth <= 0) Die();
-        }
-
-        #endregion
-
 
 #if UNITY_EDITOR
         private void OnValidate()
