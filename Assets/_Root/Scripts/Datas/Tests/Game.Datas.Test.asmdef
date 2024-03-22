@@ -1,0 +1,21 @@
+{
+    "name": "Game.Datas.Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d14c1c91b1e4b9d4caccef611ac95c43",
+        "GUID:adac8d59ad7e8504f82d387cded797a7",
+        "GUID:341d04dbc3e6ced4f903de04a0918a48",
+        "GUID:a1d2aafb63704447b379c9daae015645",
+        "GUID:d2341e02d52bb402d90923b33ac09dbc",
+        "GUID:b0a110e2f808b4d4d82f5694f91b251a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

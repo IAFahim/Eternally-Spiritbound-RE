@@ -1,6 +1,7 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Main;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
+using Pancake.Scriptable;
 using UnityEngine;
 using UnityProgressBar;
 
@@ -17,30 +18,32 @@ namespace _Root.Scripts.Controllers.Runtime.UI
 
         private void OnEnable()
         {
-            mainCharacterRef.Health.OnHealthChanged += UpdateHealthBar;
+            FloatVariable current = mainCharacterRef.Health.Current;
+            current.OnValueChanged += UpdateHealthBar;
+            UpdateHealthBar(current);
+            
             mainCharacterRef.Health.OnMaxHealthChanged += UpdateHealthBarWidth;
             _healthBarRect = healthBar.GetComponent<RectTransform>();
-            UpdateHealthBar();
-            UpdateHealthBarWidth();
+            UpdateHealthBarWidth(current.Max);
         }
 
-        private void UpdateHealthBarWidth()
+        private void UpdateHealthBarWidth(float maxHealth)
         {
             var size = _healthBarRect.sizeDelta;
-            var maxHealth = mainCharacterRef.Health.MaxHealth;
             var barSize = healthBarRange.y - healthBarRange.x;
             var newSize = healthBarRange.x + Mathf.Log(maxHealth + 1, healthBarRange.x) * barSize - barSize;
             _healthBarRect.sizeDelta = new Vector2(newSize, size.y);
         }
 
-        private void OnDisable()
+        private void UpdateHealthBar(float obj)
         {
-            mainCharacterRef.Health.OnHealthChanged -= UpdateHealthBar;
+            healthBar.Value = obj / mainCharacterRef.Health.MaxHealth;
         }
 
-        private void UpdateHealthBar()
+        private void OnDisable()
         {
-            healthBar.Value = mainCharacterRef.Health.CurrentHealth / mainCharacterRef.Health.MaxHealth;
+            mainCharacterRef.Health.Current.OnValueChanged -= UpdateHealthBar;
+            mainCharacterRef.Health.OnMaxHealthChanged -= UpdateHealthBarWidth;
         }
     }
 }
