@@ -26,4 +26,17 @@ namespace _Root.Scripts.Datas.Runtime
         DarkFlame = Dark | Fire,
         Acid = Water | Poison,
     }
+
+    [Flags]
+    public enum CharacterType
+    {
+        Enemy = 0,
+        Player = 1,
+        Ally = 2,
+        Boss = 4,
+        Summon = 8,
+        Partner = 16,
+        Pet = 32,
+    }
+
 }

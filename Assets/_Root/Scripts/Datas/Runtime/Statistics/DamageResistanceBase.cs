@@ -13,7 +13,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         [field: SerializeReference] public virtual float AirResistance { get; set; }
         [field: SerializeReference] public virtual float DarkResistance { get; set; }
         
-        public virtual float CalculateDamage(Health health, float damage, DamageType damageType, Vector3 damageDirection)
+        public virtual float CalculateDamage(HealthBase healthBase, float damage, DamageType damageType, Vector3 damageDirection)
         {
             return damage;
         }

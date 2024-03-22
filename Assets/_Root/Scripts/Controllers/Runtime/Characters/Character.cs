@@ -7,27 +7,26 @@ using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using UnityEngine;
 
-namespace _Root.Scripts.Controllers.Runtime.Characters.Base
+namespace _Root.Scripts.Controllers.Runtime.Characters
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(Movement2D), typeof(Stats))]
+    [RequireComponent(typeof(Movement2D))]
     public class Character : CharactersData
     {
-        public SwapCharacterEvent swapCharacterEvent;
+        public HealthBase healthBase;
         public Movement2D movement2D;
+        public SwapCharacterEvent swapCharacterEvent;
 
         private void OnValidate()
         {
-            rigidBody ??= GetComponent<Rigidbody2D>();
+            healthBase ??= GetComponent<HealthBase>();
             movement2D ??= GetComponent<Movement2D>();
-            stats ??= GetComponent<Stats>();
-            health ??= GetComponent<Health>();
         }
 
         private void Awake()
         {
             behaviorTree = new BehaviorTreeBuilder(gameObject)
                 .Sequence()
-                .Condition("IsDead", () => health.IsDead)
+                .Condition("IsDead", () => healthBase.IsDead)
                 .Do("Death", () =>
                 {
                     Debug.Log("Death");
@@ -35,7 +34,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters.Base
                 })
                 .End()
                 .Build();
-            
+
             App.AddListener(UpdateMode.Update, () => behaviorTree.Tick());
         }
 

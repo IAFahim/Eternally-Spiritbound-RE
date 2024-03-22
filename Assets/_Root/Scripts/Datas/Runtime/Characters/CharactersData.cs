@@ -8,11 +8,13 @@ namespace _Root.Scripts.Datas.Runtime.Characters
 {
     public class CharactersData: GameComponent
     {
+        public string characterName;
+        public CharacterType characterType;
         public FloatVariable wellBeing;
-        public Health health;
-        public Stats stats;
+        public StatsBase stats;
+        public Vector2Variable spawnPoint;
+        
         public BehaviorTree behaviorTree;
         public GameObject model;
-        public Rigidbody2D rigidBody;
     }
 }

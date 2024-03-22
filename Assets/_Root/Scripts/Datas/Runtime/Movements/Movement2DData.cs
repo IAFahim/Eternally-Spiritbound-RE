@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Movements
 {
-    public class MovementData2D : GameComponent, IGravity
+    public class Movement2DData : GameComponent, IGravity
     {
         [field: SerializeReference] public bool GravityActive { get; set; } = true;
         [field: SerializeReference] public float Gravity { get; set; } = 40f;

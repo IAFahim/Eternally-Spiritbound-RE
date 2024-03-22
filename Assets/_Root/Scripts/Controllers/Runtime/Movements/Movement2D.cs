@@ -1,19 +1,18 @@
-﻿using _Root.Scripts.Controllers.Runtime.Characters.Base;
-using _Root.Scripts.Datas.Runtime.Movements;
-using Pancake;
+﻿using _Root.Scripts.Datas.Runtime.Movements;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Movements
 {
-    public class Movement2D : MovementData2D
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Movement2D : Movement2DData
     {
-        public Character character;
+        public Rigidbody2D rigidBody;
         private MovingPlatform2D _movingPlatform;
         public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
         {
-            character ??= GetComponent<Character>();
+            rigidBody ??= GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
@@ -36,14 +35,14 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
                 Current = Vector3.Lerp(Speed, Current, Time.deltaTime * Friction);
             }
 
-            Vector2 newMovement = character.rigidBody.position + (Current + AddedForce) * Time.fixedDeltaTime;
+            Vector2 newMovement = rigidBody.position + (Current + AddedForce) * Time.fixedDeltaTime;
 
             if (OnAMovingPlatform)
             {
                 newMovement += (Vector2)(_movingPlatform.CurrentSpeed * Time.fixedDeltaTime);
             }
 
-            character.rigidBody.MovePosition(newMovement);
+            rigidBody.MovePosition(newMovement);
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         {
             if (impact.magnitude > 0.2f)
             {
-                character.rigidBody.AddForce(impact);
+                rigidBody.AddForce(impact);
             }
 
             impact = Vector2.Lerp(impact, Vector2.zero, 5f * Time.deltaTime);
