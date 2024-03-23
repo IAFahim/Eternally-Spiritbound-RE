@@ -1,19 +1,35 @@
-﻿using _Root.Scripts.Datas.Runtime.Movements;
+﻿using _Root.Scripts.Datas.Runtime.Characters;
+using _Root.Scripts.Datas.Runtime.Movements;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Movements
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Movement2D : Movement2DData
+    public sealed class Movement2D : Movement2DData
     {
         [SerializeField] private Rigidbody2D rigidBody;
+        [SerializeField] private Transform modelTransform;
+       
+        private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
+        private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
         private MovingPlatform2D _movingPlatform;
-        public Rigidbody2D RigidBody => rigidBody;
+        
         public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
         {
+            AttachComponent();
+        }
+
+        private void OnEnable()
+        {
+            AttachComponent();
+        }
+        
+        public void AttachComponent()
+        {
             rigidBody ??= GetComponent<Rigidbody2D>();
+            modelTransform ??= GetComponent<CharacterData>().model.transform;
         }
 
         private void FixedUpdate()
@@ -24,6 +40,8 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             {
                 return;
             }
+
+            if(IsMoving) FlipModel(Direction);
 
             if (Friction > 1)
             {
@@ -43,6 +61,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
                 newMovement += (Vector2)(_movingPlatform.CurrentSpeed * Time.fixedDeltaTime);
             }
 
+
             rigidBody.MovePosition(newMovement);
         }
 
@@ -57,6 +76,15 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             }
 
             impact = Vector2.Lerp(impact, Vector2.zero, 5f * Time.deltaTime);
+        }
+
+        /// <summary>
+        /// Flips the model only, no impact on weapons or attachments
+        /// </summary>
+        public void FlipModel(Vector3 direction)
+        {
+            bool isRight = !(direction.x < 0);
+            modelTransform.localScale = isRight ? (FlipScaleRight) : FlipScaleLeft;
         }
     }
 }

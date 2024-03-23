@@ -6,7 +6,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
 {
     public class MainCharacterSpawner : GameComponent
     {
-        [FormerlySerializedAs("selectedMainCharacter")] public MainCharacterSelectEvent mainCharacterSelectEvent;
+        public MainCharacterSelectEvent mainCharacterSelectEvent;
 
         private void OnEnable()
         {

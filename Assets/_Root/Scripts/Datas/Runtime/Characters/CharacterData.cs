@@ -14,8 +14,9 @@ namespace _Root.Scripts.Datas.Runtime.Characters
         public FloatVariable loveHate;
         public Stats stats;
         public Vector2Variable spawnPoint;
-        
+        public FacingDirections facingDirection;
         public Movement2DData movement2D;
+        
         
         public BehaviorTree behaviorTree;
         public GameObject model;

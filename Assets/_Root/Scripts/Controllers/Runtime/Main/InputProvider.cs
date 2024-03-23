@@ -1,4 +1,5 @@
 using _Root.Scripts.Datas.Runtime.Characters;
+using _Root.Scripts.Datas.Runtime.Movements;
 using Game.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,7 +14,7 @@ namespace _Root.Scripts.Controllers.Runtime.Main
 
         private InputActionCollection _inputActionCollection;
         private InputAction _moveAction;
-        private CharacterData mainCharacter;
+        [SerializeField] private Movement2DData movement2DData;
 
         private void Awake()
         {
@@ -37,25 +38,34 @@ namespace _Root.Scripts.Controllers.Runtime.Main
         {
             _moveAction.Enable();
             _moveAction.performed += OnMove;
-            _moveAction.canceled += OnMove;
+            _moveAction.canceled += OnMoveStop;
         }
 
         private void DisableMove()
         {
             _moveAction.Disable();
             _moveAction.performed -= OnMove;
-            _moveAction.canceled -= OnMove;
+            _moveAction.canceled -= OnMoveStop;
         }
 
         private void OnMove(InputAction.CallbackContext input)
         {
             move = input.ReadValue<Vector2>();
-            if (provideInput) mainCharacter.movement2D.Direction = new Vector3(move.x, move.y);
+            if (!provideInput) return;
+            movement2DData.Direction = new Vector3(move.x, move.y);
+            movement2DData.IsMoving = true;
+        }
+
+        private void OnMoveStop(InputAction.CallbackContext input)
+        {
+            if (!provideInput) return;
+            movement2DData.Direction = Vector3.zero;
+            movement2DData.IsMoving = false;
         }
 
         private void SetCharacterSelectEvent(CharacterData character)
         {
-            mainCharacter = character;
+            movement2DData = character.movement2D;
             provideInput = true;
         }
     }

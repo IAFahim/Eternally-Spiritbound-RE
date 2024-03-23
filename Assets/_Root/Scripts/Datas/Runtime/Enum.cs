@@ -39,4 +39,11 @@ namespace _Root.Scripts.Datas.Runtime
         Pet = 32,
     }
 
+    public enum FacingDirections
+    {
+        West = 0,
+        East = 1,
+        North = 2,
+        South = 4
+    }
 }
