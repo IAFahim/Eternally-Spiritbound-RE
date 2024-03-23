@@ -321,8 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRef: {fileID: 264642612}
-  provideInput: 1
+  mainCharacterSelectEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
+  provideInput: 0
   move: {x: 0, y: 0}
 --- !u!114 &264642612
 MonoBehaviour:
@@ -333,17 +333,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 264642608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6457b74d7a7247de8039bb4f7a5d6d7d, type: 3}
+  m_Script: {fileID: 11500000, guid: bd806528434f4a1fa000a0feccef489a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCharacterReferenceGameObject:
-    m_AssetGUID: 9dfbd7fdc2c29284a92b2bea722dde39
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  main: {fileID: 0}
-  onCharacterUpdateEvent: {fileID: 11400000, guid: 9af6faae538d5074797fd8265015f8a2, type: 2}
-  inputProvider: {fileID: 264642611}
+  mainCharacterSelectEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!1 &321510326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2611,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1409643994}
-  - component: {fileID: 1409643995}
   m_Layer: 0
   m_Name: --- UI Controller ---
   m_TagString: Untagged
@@ -2641,23 +2633,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1409643995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409643993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4779345e9a5131419902757ca2a6913, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRef: {fileID: 264642612}
-  healthBar: {fileID: 1186755406}
-  healthBarRange: {x: 100, y: 400}
-  manaBar: {fileID: 1861036233}
-  healthBarRect: {fileID: 1186755405}
 --- !u!1 &1505948203
 GameObject:
   m_ObjectHideFlags: 0

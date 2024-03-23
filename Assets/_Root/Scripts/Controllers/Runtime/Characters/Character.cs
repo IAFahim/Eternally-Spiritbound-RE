@@ -1,6 +1,5 @@
-﻿using _Root.Scripts.Controllers.Runtime.Events;
-using _Root.Scripts.Controllers.Runtime.Movements;
-using _Root.Scripts.Datas.Runtime.Characters;
+﻿using _Root.Scripts.Datas.Runtime.Characters;
+using _Root.Scripts.Datas.Runtime.Movements;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
@@ -9,24 +8,30 @@ using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Characters
 {
-    [RequireComponent(typeof(Movement2D))]
-    public class Character : CharactersData
+    [RequireComponent(typeof(Movement2DData))]
+    public class Character : CharacterData
     {
-        public HealthBase healthBase;
-        public Movement2D movement2D;
-        public SwapCharacterEvent swapCharacterEvent;
+        public Health health;
+        public MainCharacterSelectEvent swapCharacterSelectEventEvent;
 
         private void OnValidate()
         {
-            healthBase ??= GetComponent<HealthBase>();
-            movement2D ??= GetComponent<Movement2D>();
+            health ??= GetComponent<Health>();
+            movement2D ??= GetComponent<Movement2DData>();
+        }
+
+        public void ApplyData()
+        {
+            health.data = stats.health;
         }
 
         private void Awake()
         {
+            ApplyData();
+            
             behaviorTree = new BehaviorTreeBuilder(gameObject)
                 .Sequence()
-                .Condition("IsDead", () => healthBase.IsDead)
+                .Condition("IsDead", () => health.IsDead)
                 .Do("Death", () =>
                 {
                     Debug.Log("Death");
@@ -36,11 +41,6 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
                 .Build();
 
             App.AddListener(UpdateMode.Update, () => behaviorTree.Tick());
-        }
-
-        public void SwapCharacter(Character character)
-        {
-            swapCharacterEvent.Raise(character);
         }
     }
 }

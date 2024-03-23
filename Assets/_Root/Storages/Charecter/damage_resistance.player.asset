@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 32
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4d5d3ff3704f7a8df1778f9675f4d5, type: 3}
+  m_Name: damage_resistance.player
+  m_EditorClassIdentifier: 
+  categoryIndex: 0
+  description: 
+  value: 0
+  debugLogEnabled: 0
+  saved: 0
+  defaultValue: 0
+  guidCreateMode: 0
+  guid: bf729c089bc8e2b4da4828c54b33e977
+  resetOn: 1
+  isClamped: 0
+  minMax: {x: 0, y: 100}
+  <PhysicalResistance>k__BackingField: 0
+  <FireResistance>k__BackingField: 0
+  <WaterResistance>k__BackingField: 0
+  <EarthResistance>k__BackingField: 0
+  <AirResistance>k__BackingField: 0
+  <DarkResistance>k__BackingField: 0

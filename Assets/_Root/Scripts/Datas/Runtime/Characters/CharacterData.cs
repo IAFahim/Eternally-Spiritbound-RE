@@ -1,4 +1,5 @@
-﻿using _Root.Scripts.Datas.Runtime.Statistics;
+﻿using _Root.Scripts.Datas.Runtime.Movements;
+using _Root.Scripts.Datas.Runtime.Statistics;
 using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using Pancake.Scriptable;
@@ -6,15 +7,18 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Characters
 {
-    public class CharactersData: GameComponent
+    public class CharacterData: GameComponent
     {
         public string characterName;
         public CharacterType characterType;
-        public FloatVariable wellBeing;
-        public StatsBase stats;
+        public FloatVariable loveHate;
+        public Stats stats;
         public Vector2Variable spawnPoint;
+        
+        public Movement2DData movement2D;
         
         public BehaviorTree behaviorTree;
         public GameObject model;
+
     }
 }

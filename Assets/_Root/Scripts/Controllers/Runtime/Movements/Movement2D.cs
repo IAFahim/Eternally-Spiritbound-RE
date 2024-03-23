@@ -6,8 +6,9 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
     [RequireComponent(typeof(Rigidbody2D))]
     public class Movement2D : Movement2DData
     {
-        public Rigidbody2D rigidBody;
+        [SerializeField] private Rigidbody2D rigidBody;
         private MovingPlatform2D _movingPlatform;
+        public Rigidbody2D RigidBody => rigidBody;
         public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
@@ -26,16 +27,16 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
 
             if (Friction > 1)
             {
-                Current = Current / Friction;
+                Direction = Direction / Friction;
             }
 
             // if we have a low friction (ice, marbles...) we lerp the speed accordingly
             if (Friction is > 0 and < 1)
             {
-                Current = Vector3.Lerp(Speed, Current, Time.deltaTime * Friction);
+                Direction = Vector3.Lerp(Speed, Direction, Time.deltaTime * Friction);
             }
 
-            Vector2 newMovement = rigidBody.position + (Current + AddedForce) * Time.fixedDeltaTime;
+            Vector2 newMovement = rigidBody.position + (Direction + AddedForce) * Time.fixedDeltaTime;
 
             if (OnAMovingPlatform)
             {

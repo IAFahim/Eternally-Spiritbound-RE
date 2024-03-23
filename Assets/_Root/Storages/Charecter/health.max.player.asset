@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33653d5fffc16644bb2d768701efbabf, type: 3}
-  m_Name: spawn_point
+  m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
+  m_Name: health.max.player
   m_EditorClassIdentifier: 
   categoryIndex: 0
   description: 
-  value: {x: 0, y: 0}
+  value: 100
   debugLogEnabled: 0
-  saved: 0
-  defaultValue: {x: 0, y: 0}
+  saved: 1
+  defaultValue: 100
   guidCreateMode: 0
-  guid: d9f1f75539684854685b1cbd5d32afa4
+  guid: bd3347ae71d06894da3f909dec025f4e
   resetOn: 0
+  isClamped: 0
+  minMax: {x: 0, y: 100}

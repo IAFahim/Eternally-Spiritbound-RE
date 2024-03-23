@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ae988617474ae68254efe66db8980d, type: 3}
-  m_Name: swap_character_event
+  m_Script: {fileID: 11500000, guid: 8501d037947b48e28aae5018df6a68db, type: 3}
+  m_Name: variable_link
   m_EditorClassIdentifier: 
-  categoryIndex: 0
-  description: 
-  debugLogEnabled: 0
-  debugValue: {fileID: 0}
+  floatLinks: []

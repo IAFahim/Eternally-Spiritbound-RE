@@ -49,7 +49,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             set => darkResistance.Value = value;
         }
 
-        public override float CalculateDamage(HealthBase healthBase, float damage, DamageType damageType,
+        public override float CalculateDamage(Health health, float damage, DamageType damageType,
             Vector3 damageDirection)
         {
             return damage;

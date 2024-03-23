@@ -135,14 +135,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  wellBeing: {fileID: 11400000, guid: 69c4a01bdf2d39844a33299ee72dcaa7, type: 2}
+  characterName: Player
+  characterType: 1
+  loveHate: {fileID: 11400000, guid: 60ca09322dd91aa409ff02126a9cb732, type: 2}
   stats: {fileID: 11400000, guid: ef13d0e158443534799cc1e35e21c9a3, type: 2}
   spawnPoint: {fileID: 11400000, guid: d9f1f75539684854685b1cbd5d32afa4, type: 2}
-  model: {fileID: 7939312870078384321}
-  healthBase: {fileID: 7985375189899838305}
   movement2D: {fileID: 6624701252800217014}
-  swapCharacterEvent: {fileID: 11400000, guid: 9af6faae538d5074797fd8265015f8a2, type: 2}
+  model: {fileID: 7939312870078384321}
+  health: {fileID: 7985375189899838305}
+  swapCharacterSelectEventEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!114 &6624701252800217014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ MonoBehaviour:
   <Gravity>k__BackingField: 40
   <Free>k__BackingField: 1
   <Friction>k__BackingField: 1
-  <Current>k__BackingField: {x: 0, y: 0}
+  <Direction>k__BackingField: {x: 0, y: 0}
   <Speed>k__BackingField: {x: 0, y: 0}
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111863468305}
@@ -175,10 +176,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Current>k__BackingField: 100
-  <Max>k__BackingField: 100
-  <DamageAble>k__BackingField: 0
+  data:
+    current:
+      useLocal: 0
+      localValue: 0
+      variable: {fileID: 0}
+    max:
+      useLocal: 0
+      localValue: 0
+      variable: {fileID: 0}
   increaseHealthWithMaxHealth: 1
+  <DamageAble>k__BackingField: 1
   <IsDead>k__BackingField: 0
   damageResistance: {fileID: 11400000, guid: bf729c089bc8e2b4da4828c54b33e977, type: 2}
 --- !u!1 &7221504906358285585

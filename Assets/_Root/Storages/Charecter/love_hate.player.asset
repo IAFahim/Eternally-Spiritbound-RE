@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a4d5d3ff3704f7a8df1778f9675f4d5, type: 3}
-  m_Name: damage_resistance
+  m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
+  m_Name: love_hate.player
   m_EditorClassIdentifier: 
   categoryIndex: 0
   description: 
@@ -19,13 +19,7 @@ MonoBehaviour:
   saved: 0
   defaultValue: 0
   guidCreateMode: 0
-  guid: bf729c089bc8e2b4da4828c54b33e977
-  resetOn: 1
+  guid: 
+  resetOn: 0
   isClamped: 0
   minMax: {x: 0, y: 100}
-  <PhysicalResistance>k__BackingField: 0
-  <FireResistance>k__BackingField: 0
-  <WaterResistance>k__BackingField: 0
-  <EarthResistance>k__BackingField: 0
-  <AirResistance>k__BackingField: 0
-  <DarkResistance>k__BackingField: 0
