@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 32
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1796df519d48a9a34dbd3b7dde7eaf, type: 3}
+  m_Name: resistance_variable
+  m_EditorClassIdentifier: 
+  categoryIndex: 0
+  description: 
+  value:
+    physicalResistance: 0
+    fireResistance: 0
+    waterResistance: 0
+    earthResistance: 0
+    airResistance: 0
+    darkResistance: 0
+  debugLogEnabled: 0
+  saved: 0
+  defaultValue:
+    physicalResistance: 0
+    fireResistance: 0
+    waterResistance: 0
+    earthResistance: 0
+    airResistance: 0
+    darkResistance: 0
+  guidCreateMode: 0
+  guid: 
+  resetOn: 0

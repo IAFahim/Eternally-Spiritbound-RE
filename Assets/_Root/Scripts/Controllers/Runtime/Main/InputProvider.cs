@@ -10,11 +10,22 @@ namespace _Root.Scripts.Controllers.Runtime.Main
     {
         public MainCharacterSelectEvent mainCharacterSelectEvent;
         public bool provideInput = true;
-        public Vector2 move;
+        [SerializeField] private Vector2 move;
 
         private InputActionCollection _inputActionCollection;
         private InputAction _moveAction;
         [SerializeField] private Movement2DData movement2DData;
+
+        public Vector2 Move
+        {
+            get => move;
+            set
+            {
+                move = value;
+                if (!provideInput) return;
+                movement2DData.Direction = value;
+            }
+        }
 
         private void Awake()
         {
@@ -50,16 +61,13 @@ namespace _Root.Scripts.Controllers.Runtime.Main
 
         private void OnMove(InputAction.CallbackContext input)
         {
-            move = input.ReadValue<Vector2>();
-            if (!provideInput) return;
-            movement2DData.Direction = new Vector3(move.x, move.y);
+            Move = input.ReadValue<Vector2>();
             movement2DData.IsMoving = true;
         }
 
         private void OnMoveStop(InputAction.CallbackContext input)
         {
-            if (!provideInput) return;
-            movement2DData.Direction = Vector3.zero;
+            Move = Vector2.zero;
             movement2DData.IsMoving = false;
         }
 

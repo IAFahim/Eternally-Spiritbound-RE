@@ -2,16 +2,16 @@
 using System.Collections;
 using _Root.Scripts.Datas.Runtime.Variables;
 using Pancake;
-using Pancake.Apex;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics
 {
     [Serializable]
     public class Health : GameComponent
     {
-        public const float DefaultStaring = 100;
-        public FloatLimit data;
+        public FloatReferenceReactive current;
+        public FloatReferenceReactive max;
 
         public bool increaseHealthWithMaxHealth = true;
 
@@ -23,31 +23,49 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         [field: SerializeReference]
         public bool IsDead { get; private set; }
 
-        [SerializeField] private DamageResistanceBase damageResistance;
+        [FormerlySerializedAs("damageResistance")] [SerializeField]
+        private ResistanceVariable resistanceVariable;
 
-        public event Action<GameObject, Vector3, float> OnDamage;
-        public event Action<GameObject, Vector3, float> OnHealReceived;
+        public Vector3 lastDamageDirection;
+        public DamageType lastDamageType;
+
+
+        public event Action OnDamage;
+        public event Action OnHealReceived;
         public event Action OnDeath;
         public event Action OnRevive;
 
 
-        public float Current
+        public void SetHealth(FloatReferenceReactive currentValue, FloatReferenceReactive maxValue)
         {
-            get => data.Value;
-            set => data.Value = value;
+            current = currentValue;
+            max = maxValue;
         }
 
-        public float Max
+        public void SetHealth(float currentValue, float maxValue)
         {
-            get => data.Max;
-            set => data.Max = value;
+            current.Value = currentValue;
+            max.Value = maxValue;
         }
 
-        public float CanAdd(float value) => data.CanAdd(value);
+        public void SetHealth(float currentValue)
+        {
+            current.Value = currentValue;
+            if (increaseHealthWithMaxHealth)
+            {
+                max.Value = currentValue;
+            }
+        }
+
+        public void IncreaseMax(float health)
+        {
+            if (increaseHealthWithMaxHealth) current.Value += health;
+            max.Value += health;
+        }
 
         public virtual void RestoreHealthToMax()
         {
-            Current = Max;
+            current.Value = max.Value;
         }
 
         public bool CanTakeDamageThisFrame()
@@ -57,36 +75,47 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             return false;
         }
 
-        public float Damage(float damage, GameObject instigator, Vector3 damageDirection,
-            float afterInvincibilityDuration, DamageType damageType)
+        public float WillDamage(float damage, Vector3 damageDirection, DamageType damageType)
         {
             if (!CanTakeDamageThisFrame()) return 0;
-            if (damageResistance) damage = damageResistance.CalculateDamage(this, damage, damageType, damageDirection);
-            data.Add(-damage, out float damageDealt);
-            OnDamage?.Invoke(instigator, damageDirection, damage);
-            StartCoroutine(DamageEnable(afterInvincibilityDuration));
+            damage = resistanceVariable.CalculateDamage(this, damage, damageDirection, damageType);
+            var damageDealt = Mathf.Min(current.Value, damage);
             return damageDealt;
         }
 
-        public float Heal(float heal, GameObject instigator, Vector3 damageDirection,
-            float afterInvincibilityDuration)
+        public float Damage(float damage, Vector3 damageDirection, float invincibilityDuration, DamageType damageType)
         {
-            data.Add(heal, out float healReceived);
+            var damageDealt = WillDamage(damage, damageDirection, damageType);
+            current.Value -= damageDealt;
+            OnDamage?.Invoke();
+            if (invincibilityDuration > 0)
+            {
+                DamageAble = false;
+                StartCoroutine(EnableDamageAfter(invincibilityDuration));
+            }
+
+            return damageDealt;
+        }
+
+        public float WillHeal(float heal)
+        {
+            if (IsDead) return 0;
+            return Mathf.Clamp(max.Value - current.Value, 0, heal);
+        }
+
+        public float Heal(float heal, Vector3 damageDirection, float afterInvincibilityDuration)
+        {
+            var healReceived = WillHeal(heal);
+            current.Value += healReceived;
+            OnHealReceived?.Invoke();
             return healReceived;
         }
 
-
-        public void SetDamageAble(bool value)
-        {
-            DamageAble = value;
-        }
-
-        public virtual IEnumerator DamageEnable(float delay)
+        public virtual IEnumerator EnableDamageAfter(float delay)
         {
             yield return new WaitForSeconds(delay);
-            SetDamageAble(false);
+            DamageAble = true;
         }
-
 
         public void Die()
         {
@@ -97,7 +126,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         public void Revive(float health = 1)
         {
             IsDead = false;
-            Current = health;
+            current.Value = health;
             OnRevive?.Invoke();
         }
     }

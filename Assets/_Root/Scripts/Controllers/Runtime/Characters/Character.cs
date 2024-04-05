@@ -11,7 +11,6 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
     [RequireComponent(typeof(Movement2DData))]
     public class Character : CharacterData
     {
-        public Health health;
         public MainCharacterSelectEvent swapCharacterSelectEventEvent;
 
         private void OnValidate()
@@ -22,13 +21,13 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
 
         public void ApplyData()
         {
-            health.data = stats.health;
+            stats.OverrideHealth(out health.current, out health.max);
         }
 
         private void Awake()
         {
             ApplyData();
-            
+
             behaviorTree = new BehaviorTreeBuilder(gameObject)
                 .Sequence()
                 .Condition("IsDead", () => health.IsDead)

@@ -4,7 +4,6 @@ using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
 using Pancake.Apex;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Tests.Healths
 {
@@ -17,23 +16,32 @@ namespace _Root.Scripts.Datas.Tests.Healths
         [Range(-100, 100)] [SerializeField] private float invincibilityDuration;
         [SerializeReference] private DamageType damageType;
 
-
-        private void OnValidate()
+        public void OnEnable()
         {
-            health ??= GetComponent<Health>();
+            health.current.OnValueChanged += OnHealthChanged;
+        }
+        
+        public void OnDisable()
+        {
+            health.current.OnValueChanged -= OnHealthChanged;
+        }
+
+        private void OnHealthChanged(float obj)
+        {
+            Debug.Log($"Health changed: {obj}");
         }
 
         [Button]
         public void Heal()
         {
-            var healed = health.Heal(heal, gameObject, Transform.position, invincibilityDuration);
+            var healed = health.Heal(heal, Transform.position, invincibilityDuration);
             Debug.Log($"Healed: {healed}");
         }
 
         [Button]
         public void Damage()
         {
-            var damaged = health.Damage(damage, gameObject, Transform.position, invincibilityDuration, damageType);
+            var damaged = health.Damage(damage, Transform.position, invincibilityDuration, damageType);
             Debug.Log($"Damaged: {damaged}");
         }
     }

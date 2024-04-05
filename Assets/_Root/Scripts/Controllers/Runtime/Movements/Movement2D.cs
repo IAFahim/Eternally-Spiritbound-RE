@@ -9,11 +9,11 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
     {
         [SerializeField] private Rigidbody2D rigidBody;
         [SerializeField] private Transform modelTransform;
-       
+
         private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
         private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
         private MovingPlatform2D _movingPlatform;
-        
+
         public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
@@ -25,7 +25,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         {
             AttachComponent();
         }
-        
+
         public void AttachComponent()
         {
             rigidBody ??= GetComponent<Rigidbody2D>();
@@ -41,7 +41,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
                 return;
             }
 
-            if(IsMoving) FlipModel(Direction);
+            if (IsMoving) FlipModel(Direction);
 
             if (Friction > 1)
             {
@@ -83,6 +83,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         /// </summary>
         public void FlipModel(Vector3 direction)
         {
+            if (direction.x == 0) return;
             bool isRight = !(direction.x < 0);
             modelTransform.localScale = isRight ? (FlipScaleRight) : FlipScaleLeft;
         }
