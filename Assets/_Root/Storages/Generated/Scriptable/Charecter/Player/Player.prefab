@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 151818100915308440}
   - component: {fileID: 2131175358175753096}
   - component: {fileID: 4182726141986956125}
+  - component: {fileID: 4797956028637957862}
   - component: {fileID: 6624701252800217014}
-  - component: {fileID: 7985375189899838305}
+  - component: {fileID: 5755289734652576849}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -135,15 +136,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Player
+  characterName:
+    useLocal: 1
+    localValue: Character
+    variable: {fileID: 0}
   characterType: 1
-  loveHate: {fileID: 11400000, guid: 60ca09322dd91aa409ff02126a9cb732, type: 2}
-  stats: {fileID: 11400000, guid: ef13d0e158443534799cc1e35e21c9a3, type: 2}
+  stats: {fileID: 4797956028637957862}
   spawnPoint: {fileID: 11400000, guid: d9f1f75539684854685b1cbd5d32afa4, type: 2}
   movement2D: {fileID: 6624701252800217014}
+  healthAuthoring: {fileID: 5755289734652576849}
   model: {fileID: 7939312870078384321}
-  health: {fileID: 7985375189899838305}
   swapCharacterSelectEventEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
+--- !u!114 &4797956028637957862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649428338614568235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e29d08720941bdbf397036c633961b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loveHate:
+    useLocal: 1
+    localValue: 0.5
+    variable: {fileID: 0}
+  health:
+    useLocal: 1
+    localValue: {x: 1, y: 1}
+    variable: {fileID: 0}
+  resistanceVariable: {fileID: 11400000, guid: e2b925a8b80be1e4780b0ae748ea8e77, type: 2}
+  mana:
+    useLocal: 0
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: dad0ac866944c6d4c9099f4cff5bf651, type: 2}
+  speed:
+    useLocal: 1
+    localValue: 1
+    variable: {fileID: 0}
+  level:
+    useLocal: 1
+    localValue: 1
+    variable: {fileID: 0}
 --- !u!114 &6624701252800217014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +198,11 @@ MonoBehaviour:
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
   <Speed>k__BackingField: {x: 0, y: 0}
+  <IsMoving>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111863468305}
---- !u!114 &7985375189899838305
+  modelTransform: {fileID: 6163146070541094120}
+--- !u!114 &5755289734652576849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,19 +214,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    current:
-      useLocal: 0
-      localValue: 0
-      variable: {fileID: 0}
-    max:
-      useLocal: 0
-      localValue: 0
-      variable: {fileID: 0}
-  increaseHealthWithMaxHealth: 1
+  health:
+    useLocal: 1
+    localValue: {x: 1, y: 1}
+    variable: {fileID: 0}
   <DamageAble>k__BackingField: 1
   <IsDead>k__BackingField: 0
-  damageResistance: {fileID: 11400000, guid: bf729c089bc8e2b4da4828c54b33e977, type: 2}
+  resistanceVariable: {fileID: 11400000, guid: e2b925a8b80be1e4780b0ae748ea8e77, type: 2}
 --- !u!1 &7221504906358285585
 GameObject:
   m_ObjectHideFlags: 0

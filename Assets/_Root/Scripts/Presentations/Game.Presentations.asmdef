@@ -1,17 +1,19 @@
 {
-    "name": "Game.Datas.Test",
+    "name": "Game.Presentations",
     "rootNamespace": "",
     "references": [
         "GUID:d14c1c91b1e4b9d4caccef611ac95c43",
+        "GUID:d3d4dd13608d5a34a88e8d825b5ee116",
+        "GUID:799f478cd6b89c541b5bc4e699c3c00d",
         "GUID:adac8d59ad7e8504f82d387cded797a7",
         "GUID:341d04dbc3e6ced4f903de04a0918a48",
         "GUID:a1d2aafb63704447b379c9daae015645",
         "GUID:d2341e02d52bb402d90923b33ac09dbc",
         "GUID:b0a110e2f808b4d4d82f5694f91b251a",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:84651a3751eca9349aac36a66bba901b",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:663c42ebcf40ab347b24d56f39e89dc6",
-        "GUID:07ccd62b4443d194480040cde09607cc",
-        "GUID:799f478cd6b89c541b5bc4e699c3c00d"
+        "GUID:07ccd62b4443d194480040cde09607cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

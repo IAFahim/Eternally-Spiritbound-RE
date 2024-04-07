@@ -4,41 +4,29 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics
 {
-    [CreateAssetMenu(menuName = "Stats", fileName = "ScriptAbles/Stats", order = 0)]
-    public class Stats : ScriptableObject
+    public class Stats : MonoBehaviour
     {
-        public FloatReferenceReactive currentHealth = new()
+        public FloatReferenceR loveHate = new()
         {
             useLocal = true,
-            localValue = 1,
+            localValue = 0.5f,
         };
-
-        public FloatReferenceReactive maxHealth = new()
+        
+        public Vector2ReferenceR health = new()
         {
             useLocal = true,
-            localValue = 1,
+            localValue = new Vector2(1, 1),
         };
 
-        public void OverrideHealth(out FloatReferenceReactive current, out FloatReferenceReactive max)
-        {
-            current = currentHealth;
-            max = maxHealth;
-        }
-
-        public FloatReferenceReactive currentMana = new()
+        public ResistanceVariable resistanceVariable;
+        
+        public Vector2ReferenceR mana = new()
         {
             useLocal = true,
-            localValue = 1,
+            localValue = new Vector2(1, 1),
         };
-
-        public FloatReferenceReactive maxMana = new()
-        {
-            useLocal = true,
-            localValue = 1,
-        };
-
-
-        public FloatReferenceReactive speed = new()
+        
+        public FloatReferenceR speed = new()
         {
             useLocal = true,
             localValue = 1,

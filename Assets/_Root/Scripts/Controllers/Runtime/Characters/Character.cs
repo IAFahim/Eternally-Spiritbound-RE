@@ -15,22 +15,16 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
 
         private void OnValidate()
         {
-            health ??= GetComponent<Health>();
+            stats ??= GetComponent<Stats>();
+            healthAuthoring ??= GetComponent<HealthAuthoring>();
             movement2D ??= GetComponent<Movement2DData>();
-        }
-
-        public void ApplyData()
-        {
-            stats.OverrideHealth(out health.current, out health.max);
         }
 
         private void Awake()
         {
-            ApplyData();
-
             behaviorTree = new BehaviorTreeBuilder(gameObject)
                 .Sequence()
-                .Condition("IsDead", () => health.IsDead)
+                .Condition("IsDead", () => healthAuthoring.IsDead)
                 .Do("Death", () =>
                 {
                     Debug.Log("Death");

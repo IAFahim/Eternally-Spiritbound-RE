@@ -4,7 +4,7 @@ using Pancake.Scriptable;
 namespace _Root.Scripts.Datas.Runtime.Variables
 {
     [Serializable]
-    public class FloatReferenceReactive : FloatReference
+    public class FloatReferenceR : FloatReference
     {
         public event Action<float> OnValueChanged;
 

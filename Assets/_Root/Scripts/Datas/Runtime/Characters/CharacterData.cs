@@ -5,6 +5,7 @@ using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using Pancake.Scriptable;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Characters
 {
@@ -17,17 +18,10 @@ namespace _Root.Scripts.Datas.Runtime.Characters
         };
 
         public CharacterType characterType;
-
-        public FloatReferenceReactive loveHate = new()
-        {
-            useLocal = true,
-            localValue = 0.5f,
-        };
-
         public Stats stats;
         public Vector2Variable spawnPoint;
         public Movement2DData movement2D;
-        public Health health;
+        [FormerlySerializedAs("healthControl")] [FormerlySerializedAs("healthController")] [FormerlySerializedAs("health")] public HealthAuthoring healthAuthoring;
 
         public BehaviorTree behaviorTree;
         public GameObject model;
