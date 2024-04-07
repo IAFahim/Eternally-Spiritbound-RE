@@ -1,6 +1,5 @@
 ﻿using _Root.Scripts.Datas.Runtime.Movements;
 using _Root.Scripts.Datas.Runtime.Statistics;
-using _Root.Scripts.Datas.Runtime.Variables;
 using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using Pancake.Scriptable;
