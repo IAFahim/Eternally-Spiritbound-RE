@@ -15,24 +15,22 @@ namespace Pancake.Scriptable
     public abstract class ScriptableVariable<T> : ScriptableBase, ISave, IReset, IResetOn, IDrawObjectsInInspector, IGuid
     {
 #if UNITY_EDITOR
-        protected virtual bool EditorDisableValue => false;
+        protected virtual bool IgnoreDraw => false;
 #endif
+
+        [SerializeField, DisableInPlayMode, HideIf("IgnoreDraw")] protected T initialValue;
+
         [Tooltip("The value of the variable. This will be reset on play mode exit to the value it had before entering play mode.")]
-        [SerializeField, DisableIf("EditorDisableValue")]
-        [IgnoreTypeMismatch]
+        [SerializeField, HideInEditorMode, IgnoreTypeMismatch]
         protected T value;
 
         [Tooltip("Log in the console whenever this variable is changed, loaded or saved.")] [SerializeField]
         private bool debugLogEnabled;
 
-        [Tooltip("If true, saves the value to Player Prefs and loads it onEnable.")] [SerializeField, HideIf("EditorDisableValue")]
+        [Tooltip("If true, saves the value to Player Prefs and loads it onEnable.")] [SerializeField, HideIf("IgnoreDraw")]
         private bool saved;
 
-        [Tooltip("The default value of this variable. When loading from Data the first time, it will be set to this value.")]
-        [SerializeField, ShowIf(nameof(saved)), Indent]
-        private T defaultValue;
-
-        [SerializeField, ShowIf(nameof(saved)), HorizontalGroup("guid"), Indent]
+        [SerializeField, ShowIf(nameof(saved)), Label("GUID"), HorizontalGroup("guid"), Indent]
         private ECreationMode guidCreateMode;
 
         [SerializeField, ShowIf(nameof(saved)), DisableIf(nameof(guidCreateMode), ECreationMode.Auto), HorizontalGroup("guid"), HideLabel, Indent]
@@ -47,9 +45,6 @@ namespace Pancake.Scriptable
 
         /// <summary> Event raised when the variable value changes. </summary>
         private Action<T> _onValueChanged;
-
-        /// <summary> This caches the value when play mode starts. </summary>
-        private T _initialValue;
 
         /// <summary>
         /// Event raised when the variable value changes.
@@ -77,15 +72,11 @@ namespace Pancake.Scriptable
         /// </summary>
         public T PreviousValue { get; private set; }
 
-        /// <summary>
-        /// The default value this variable is reset to. 
-        /// </summary>
-        public T DefaultValue { get => defaultValue; private set => defaultValue = value; }
-
         public string Guid { get => guid; set => guid = value; }
         public ECreationMode GuidCreateMode { get => guidCreateMode; set => guidCreateMode = value; }
 
         public override Type GetGenericType => typeof(T);
+        public virtual T InitialValue => initialValue;
 
         /// <summary>
         /// Modify this to change the value of the variable.
@@ -97,6 +88,7 @@ namespace Pancake.Scriptable
             set
             {
                 if (Equals(this.value, value)) return;
+                PreviousValue = this.value;
                 this.value = value;
                 ValueChanged();
             }
@@ -114,8 +106,6 @@ namespace Pancake.Scriptable
             }
 
             if (saved) Save();
-
-            PreviousValue = value;
 #if UNITY_EDITOR
             SetDirtyAndRepaint();
 #endif
@@ -164,10 +154,7 @@ namespace Pancake.Scriptable
         public void OnPlayModeStateChanged(PlayModeStateChange playModeStateChange)
         {
             if (playModeStateChange == PlayModeStateChange.ExitingEditMode) Init();
-            else if (playModeStateChange == PlayModeStateChange.EnteredEditMode)
-            {
-                if (!saved) ResetToInitialValue();
-            }
+            else if (playModeStateChange == PlayModeStateChange.EnteredEditMode) ResetToInitialValueWithout();
         }
 
         protected virtual void OnValidate()
@@ -183,7 +170,7 @@ namespace Pancake.Scriptable
         {
             _listenersObjects.Clear();
             Value = default;
-            _initialValue = default;
+            initialValue = default;
             PreviousValue = default;
             saved = false;
             resetOn = ResetType.SceneLoaded;
@@ -192,7 +179,7 @@ namespace Pancake.Scriptable
 
         private void Init()
         {
-            _initialValue = value;
+            value = InitialValue;
             PreviousValue = value;
             if (saved) Load();
             _listenersObjects.Clear();
@@ -202,8 +189,20 @@ namespace Pancake.Scriptable
         [Button]
         public void ResetToInitialValue()
         {
-            Value = _initialValue;
-            PreviousValue = _initialValue;
+            Value = InitialValue;
+            PreviousValue = InitialValue;
+#if UNITY_EDITOR
+            SetDirtyAndRepaint();
+#endif
+        }
+
+        private void ResetToInitialValueWithout()
+        {
+            value = InitialValue; // with out trigger value changed
+            PreviousValue = InitialValue;
+#if UNITY_EDITOR
+            SetDirtyAndRepaint();
+#endif
         }
 
         public virtual void Save()

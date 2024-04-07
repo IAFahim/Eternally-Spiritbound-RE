@@ -30,12 +30,9 @@ namespace _Root.Scripts.Controllers.Runtime
             anyCollider2D ??= GetComponent<Collider2D>();
             cross ??= GetComponentInChildren<SpriteRenderer>();
             windUpDuration = tweenSettingsWindUp.settings.duration * tweenSettingsWindUp.settings.cycles;
-            activeDuration = tweenSettingsPositionActive.settings.duration *
-                             tweenSettingsPositionActive.settings.cycles;
+            activeDuration = tweenSettingsPositionActive.settings.duration * tweenSettingsPositionActive.settings.cycles;
             cooldownDuration = tweenSettingsCooldown.settings.duration * tweenSettingsCooldown.settings.cycles;
         }
-        
-        
 
         private void OnEnable()
         {
