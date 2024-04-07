@@ -47,7 +47,7 @@ namespace _Root.Scripts.Datas.Tests.Healths
         [Button]
         public void Damage()
         {
-            var damaged = healthAuthoring.Damage(damage, Transform.position, invincibilityDuration, damageType);
+            var damaged = healthAuthoring.Damage(damage, Transform.position, damageType, invincibilityDuration);
             Debug.Log($"Damaged: {damaged}");
         }
     }

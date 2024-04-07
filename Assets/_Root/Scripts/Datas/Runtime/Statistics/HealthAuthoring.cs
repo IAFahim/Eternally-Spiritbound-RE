@@ -31,7 +31,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         public event Action OnHealReceived;
         public event Action OnDeath;
         public event Action OnRevive;
-        
+
 
         private void OnEnable()
         {
@@ -82,7 +82,8 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             return damageDealt;
         }
 
-        public float Damage(float damage, Vector3 damageDirection, float invincibilityDuration, DamageType damageType)
+        public float Damage(float damage, Vector3 damageDirection, DamageType damageType,
+            float invincibilityDuration = .1f)
         {
             var damageDealt = WillDamage(damage, damageDirection, damageType);
             Health.Value -= new Vector2(damageDealt, 0);
