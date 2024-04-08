@@ -44,8 +44,9 @@ namespace _Root.Scripts.Controllers.Runtime
                     {
                         anyCollider2D.enabled = true;
                         cross.color = Color.red;
+                        var _ = Tween.LocalPosition(cross.transform, tweenSettingsPositionActive);
                     })
-                    .Chain(Tween.LocalPosition(cross.transform, tweenSettingsPositionActive))
+                    .ChainDelay(tweenSettingsPositionActive.settings.duration * tweenSettingsPositionActive.settings.cycles)
                     .ChainCallback(() => { anyCollider2D.enabled = false; })
                     .Chain(Tween.Color(cross, tweenSettingsCooldown))
                 ;

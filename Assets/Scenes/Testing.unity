@@ -984,9 +984,9 @@ MonoBehaviour:
   damage: 0.1
   damageType: 0
   invincibilityDuration: 0.1
-  windUpDuration: 1
+  windUpDuration: 3
   activeDuration: 2
-  cooldownDuration: 1
+  cooldownDuration: 4
   cycles: 10
   anyCollider2D: {fileID: 1166001059}
   tweenSettingsWindUp:
@@ -1002,7 +1002,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      cycles: 2
+      cycles: 6
       cycleMode: 3
       startDelay: 0
       endDelay: 0
@@ -1032,7 +1032,7 @@ MonoBehaviour:
     startValue: {r: 0.14098358, g: 1, b: 0, a: 1}
     endValue: {r: 0.4347644, g: 1, b: 0, a: 0.38431373}
     settings:
-      duration: 0.5
+      duration: 1
       ease: 0
       customEase:
         serializedVersion: 2
@@ -1040,7 +1040,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      cycles: 2
+      cycles: 4
       cycleMode: 3
       startDelay: 0
       endDelay: 0
@@ -1148,6 +1148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7960999378269390706, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1248,6 +1252,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1725367852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725367853}
+  - component: {fileID: 1725367854}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1725367853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725367852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725367854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725367852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc22c06071d4136acc27b9abcb06d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resistanceVariable: {fileID: 11400000, guid: e2b925a8b80be1e4780b0ae748ea8e77, type: 2}
+  value: 0.5
 --- !u!1 &1865989072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,3 +1424,4 @@ SceneRoots:
   - {fileID: 124889416}
   - {fileID: 249988360}
   - {fileID: 1166001056}
+  - {fileID: 1725367853}
