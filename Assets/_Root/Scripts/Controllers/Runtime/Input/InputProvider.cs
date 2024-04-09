@@ -4,28 +4,17 @@ using Game.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Root.Scripts.Controllers.Runtime.Main
+namespace _Root.Scripts.Controllers.Runtime.Input
 {
     public class InputProvider : MonoBehaviour
     {
-        public MainCharacterSelectEvent mainCharacterSelectEvent;
+        public MainCharacterAuthoring mainCharacterAuthoring;
         public bool provideInput = true;
         [SerializeField] private Vector2 move;
 
         private InputActionCollection _inputActionCollection;
         private InputAction _moveAction;
         [SerializeField] private Movement2DData movement2DData;
-
-        public Vector2 Move
-        {
-            get => move;
-            set
-            {
-                move = value;
-                if (!provideInput) return;
-                movement2DData.Direction = value;
-            }
-        }
 
         private void Awake()
         {
@@ -35,14 +24,31 @@ namespace _Root.Scripts.Controllers.Runtime.Main
 
         private void OnEnable()
         {
-            mainCharacterSelectEvent.OnRaised += SetCharacterSelectEvent;
+            mainCharacterAuthoring.OnRaised += SetCharacter;
             EnableMove();
         }
 
         private void OnDisable()
         {
-            mainCharacterSelectEvent.OnRaised -= SetCharacterSelectEvent;
+            mainCharacterAuthoring.OnRaised -= SetCharacter;
             DisableMove();
+        }
+        
+        private void SetCharacter(Character character)
+        {
+            movement2DData = character.movement2D;
+            provideInput = true;
+        }
+        
+        public Vector2 Move
+        {
+            get => move;
+            set
+            {
+                move = value;
+                if (!provideInput) return;
+                movement2DData.Direction = value;
+            }
         }
 
         private void EnableMove()
@@ -69,12 +75,6 @@ namespace _Root.Scripts.Controllers.Runtime.Main
         {
             Move = Vector2.zero;
             movement2DData.IsMoving = false;
-        }
-
-        private void SetCharacterSelectEvent(CharacterData character)
-        {
-            movement2DData = character.movement2D;
-            provideInput = true;
         }
     }
 }

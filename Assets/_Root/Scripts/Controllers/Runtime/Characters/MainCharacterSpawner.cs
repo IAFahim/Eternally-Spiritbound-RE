@@ -6,11 +6,11 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
 {
     public class MainCharacterSpawner : GameComponent
     {
-        public MainCharacterSelectEvent mainCharacterSelectEvent;
+        public MainCharacterAuthoring mainCharacterAuthoring;
 
         private void OnEnable()
         {
-            mainCharacterSelectEvent.Spawn();
+            mainCharacterAuthoring.Spawn();
         }
     }
 }

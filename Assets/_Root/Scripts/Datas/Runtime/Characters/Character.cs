@@ -1,6 +1,5 @@
 ﻿using _Root.Scripts.Datas.Runtime.Movements;
 using _Root.Scripts.Datas.Runtime.Statistics;
-using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using Pancake.Scriptable;
 using UnityEngine;
@@ -8,8 +7,10 @@ using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Characters
 {
-    public class CharacterData : GameComponent
+    [RequireComponent(typeof(Movement2DData))]
+    public class Character : GameComponent
     {
+        public int id;
         public StringReference characterName = new()
         {
             useLocal = true,
@@ -20,9 +21,16 @@ namespace _Root.Scripts.Datas.Runtime.Characters
         public Stats stats;
         public Vector2Variable spawnPoint;
         public Movement2DData movement2D;
-        [FormerlySerializedAs("healthControl")] [FormerlySerializedAs("healthController")] [FormerlySerializedAs("health")] public HealthAuthoring healthAuthoring;
-
-        public BehaviorTree behaviorTree;
+        public HealthAuthoring healthAuthoring;
+        
         public GameObject model;
+        public MainCharacterAuthoring mainCharacterAuthoring;
+
+        private void OnValidate()
+        {
+            stats ??= GetComponent<Stats>();
+            healthAuthoring ??= GetComponent<HealthAuthoring>();
+            movement2D ??= GetComponent<Movement2DData>();
+        }
     }
 }

@@ -18,18 +18,18 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
 
         private void OnValidate()
         {
-            AttachComponent();
+            GetComponentReference();
         }
 
         private void OnEnable()
         {
-            AttachComponent();
+            GetComponentReference();
         }
 
-        public void AttachComponent()
+        public void GetComponentReference()
         {
             rigidBody ??= GetComponent<Rigidbody2D>();
-            modelTransform ??= GetComponent<CharacterData>().model.transform;
+            modelTransform ??= GetComponent<Character>().model.transform;
         }
 
         private void FixedUpdate()
