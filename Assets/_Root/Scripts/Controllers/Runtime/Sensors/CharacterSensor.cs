@@ -42,26 +42,5 @@ namespace _Root.Scripts.Controllers.Runtime.Sensors
                 farthestCharacter = null;
             }
         }
-        
-        // void OnTriggerEnter2D(Collider2D other) {
-        //     int currCount;
-        //     if (!colliderCount.TryGetValue(other, out currCount)) {
-        //         AddCollider(other, true);
-        //         currCount = 0;
-        //     }
-        //     colliderCount[other] = currCount + 1;
-        // }
-        //
-        // void OnTriggerExit2D(Collider2D other) {
-        //     int currCount;
-        //     if (colliderCount.TryGetValue(other, out currCount)) {
-        //         if (currCount == 1) {
-        //             colliderCount.Remove(other);
-        //             RemoveCollider(other, true);
-        //         } else {
-        //             colliderCount[other] = currCount - 1;
-        //         }
-        //     }
-        // }
     }
 }

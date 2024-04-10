@@ -572,7 +572,7 @@ MonoBehaviour:
   collMask:
     serializedVersion: 2
     m_Bits: 256
-  <ropePositions>k__BackingField: []
+  <RopePositions>k__BackingField: []
 --- !u!120 &452957941
 LineRenderer:
   serializedVersion: 2
@@ -1368,6 +1368,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1611691773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4182726141986956125, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 1436150571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1630231316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,6 +1879,7 @@ GameObject:
   - component: {fileID: 6624701252611969533}
   - component: {fileID: 5755289734432893466}
   - component: {fileID: 5889664035919530910}
+  - component: {fileID: 6624701252611969534}
   m_Layer: 10
   m_Name: Player.1
   m_TagString: Player
@@ -2000,7 +2012,7 @@ Transform:
   m_GameObject: {fileID: 3649428338699004768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.02, y: 1.15, z: 0}
+  m_LocalPosition: {x: 1.9791602, y: 0.32422107, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2044,6 +2056,21 @@ MonoBehaviour:
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
   modelTransform: {fileID: 6163146070723011235}
+--- !u!114 &6624701252611969534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649428338699004768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12e1cd955094df1a4a2df2ae53961db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1611691773}
+  range: 3
+  movement2D: {fileID: 6624701252611969533}
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0
