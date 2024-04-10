@@ -1314,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1366,17 +1366,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1611691773 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182726141986956125, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-  m_PrefabInstance: {fileID: 1436150571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1630231316
@@ -2068,9 +2057,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12e1cd955094df1a4a2df2ae53961db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1611691773}
+  <DebugEnabled>k__BackingField: 1
+  target: {fileID: 0}
   range: 3
-  movement2D: {fileID: 6624701252611969533}
+  direction: {x: 0, y: 0}
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,4 +46,7 @@ namespace _Root.Scripts.Datas.Runtime
         North = 2,
         South = 4
     }
+    
+    
+    public enum ActivityState { Queued, Active, Canceling, Done }
 }

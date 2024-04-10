@@ -1,9 +1,10 @@
-﻿using Pancake;
+﻿using _Root.Scripts.Datas.Runtime.Interfaces;
+using Pancake;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Movements
 {
-    public class Movement2DData : GameComponent, IGravity
+    public class Movement2DData : GameComponent, IGravity, IDirection
     {
         [field: SerializeReference] public bool GravityActive { get; set; } = true;
         [field: SerializeReference] public float Gravity { get; set; } = 40f;
