@@ -3,10 +3,10 @@ using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
 using Pancake.Scriptable;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Characters
 {
+    [SelectionBase]
     [RequireComponent(typeof(Movement2DData))]
     public class Character : GameComponent
     {
