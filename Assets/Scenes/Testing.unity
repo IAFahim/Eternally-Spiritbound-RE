@@ -1357,6 +1357,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+--- !u!114 &1436150572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4182726141986956125, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 1436150571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1611691768 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5755289734652576849, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
@@ -1868,7 +1879,7 @@ GameObject:
   - component: {fileID: 6624701252611969533}
   - component: {fileID: 5755289734432893466}
   - component: {fileID: 5889664035919530910}
-  - component: {fileID: 6624701252611969534}
+  - component: {fileID: 6624701252611969535}
   m_Layer: 10
   m_Name: Player.1
   m_TagString: Player
@@ -2045,7 +2056,7 @@ MonoBehaviour:
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
   modelTransform: {fileID: 6163146070723011235}
---- !u!114 &6624701252611969534
+--- !u!114 &6624701252611969535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2054,13 +2065,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3649428338699004768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12e1cd955094df1a4a2df2ae53961db, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0ae5ad9ac142f490ea6ff87e5cc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <DebugEnabled>k__BackingField: 1
-  target: {fileID: 0}
-  range: 3
+  target: {fileID: 1436150572}
   direction: {x: 0, y: 0}
+  range: 3
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0

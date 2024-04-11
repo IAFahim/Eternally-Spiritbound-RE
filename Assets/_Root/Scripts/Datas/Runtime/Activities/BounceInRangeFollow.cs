@@ -2,9 +2,8 @@
 
 namespace _Root.Scripts.Datas.Runtime.Activities
 {
-    public class FollowBouncingAroundCircle : FollowComponent
+    public class BounceInRangeFollow : RangeFollowComponent
     {
-        public float range;
 
         public override void OnEnable()
         {
