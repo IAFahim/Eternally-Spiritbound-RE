@@ -51,7 +51,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             // if we have a low friction (ice, marbles...) we lerp the speed accordingly
             if (Friction is > 0 and < 1)
             {
-                Direction = Vector3.Lerp(Speed, Direction, Time.deltaTime * Friction);
+                Direction = Vector3.Lerp(SpeedV2, Direction, Time.deltaTime * Friction);
             }
 
             Vector2 newMovement = rigidBody.position + (Direction + AddedForce) * Time.fixedDeltaTime;
@@ -60,7 +60,6 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             {
                 newMovement += (Vector2)(_movingPlatform.CurrentSpeed * Time.fixedDeltaTime);
             }
-
 
             rigidBody.MovePosition(newMovement);
         }

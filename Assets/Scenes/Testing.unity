@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &23202166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 23202168}
+  - component: {fileID: 23202167}
+  m_Layer: 0
+  m_Name: EffectCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &23202167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23202166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28587118d6744cb397af0053bb575bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4182726141500919062}
+  frictionEffect:
+    power: 0.1
+    duration: 0.5
+    isStackable: 1
+--- !u!4 &23202168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23202166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &124889412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,6 +1929,7 @@ GameObject:
   - component: {fileID: 5755289734432893466}
   - component: {fileID: 5889664035919530910}
   - component: {fileID: 6624701252611969535}
+  - component: {fileID: 6624701252611969536}
   m_Layer: 10
   m_Name: Player.1
   m_TagString: Player
@@ -2051,7 +2101,8 @@ MonoBehaviour:
   <Free>k__BackingField: 1
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 0, y: 0}
+  <Speed>k__BackingField: 0
+  <SpeedV2>k__BackingField: {x: 0, y: 0}
   <IsMoving>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
@@ -2072,6 +2123,23 @@ MonoBehaviour:
   target: {fileID: 1436150572}
   direction: {x: 0, y: 0}
   range: 3
+--- !u!114 &6624701252611969536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649428338699004768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a64b91ff3b487a83cb8697f477b387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list: []
+  multiplier: 1
+  spriteRenderer: {fileID: 1663331059003509025}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  onFrictionColor: {r: 0.9019475, g: 1, b: 0, a: 1}
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,3 +2173,4 @@ SceneRoots:
   - {fileID: 5936005402933668542}
   - {fileID: 452957939}
   - {fileID: 1825022905}
+  - {fileID: 23202168}
