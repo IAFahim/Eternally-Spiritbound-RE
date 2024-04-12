@@ -1,27 +1,15 @@
-﻿using System;
-using _Root.Scripts.Datas.Runtime.SideEffects;
+﻿using System.Collections.Generic;
 using Pancake;
-using UnityEngine;
+using Pancake.Apex;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
-    [Serializable]
-    public class Effect
+    public class Effect : GameComponent
     {
-        [Range(0, 1)] public float power = 0.1f;
-        [Range(0, 60 * 2)] public float duration = .5f;
-        public bool isStackable;
         
-        public bool Apply<T>(GameComponent component) where T : SideEffect
+        public static bool Friction(GameComponent target, float friction, EffectSettings effectSettings)
         {
-            var sideEffect = component.GetComponent<T>();
-            if (sideEffect)
-            {
-                sideEffect.OnApply(this);
-                return true;
-            }
-
-            return false;
+            return target.TryGetComponent<FrictionEffect>(out var frictionEffect) && frictionEffect.Apply(new FrictionSettings(friction, effectSettings));
         }
     }
 }
