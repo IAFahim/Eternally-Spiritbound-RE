@@ -10,12 +10,13 @@ namespace _Root.Scripts.Datas.Tests.Effects
         public GameComponent target;
         public float friction;
         public EffectSettings effectSettings;
-        
+
         [Button]
         public void Apply()
         {
-            var isSuccess = Effect.Friction(target, friction, effectSettings);
-            Debug.Log(isSuccess);
+            var effect = target.GetComponent<FrictionEffect>();
+            var allowed = effect.Friction(friction, effectSettings);
+            Debug.Log($"Friction effect enabled: {allowed}");
         }
     }
 }

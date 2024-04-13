@@ -2139,6 +2139,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1663331059003509025}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   onFrictionColor: {r: 0.9019475, g: 1, b: 0, a: 1}
+  frictionSideEffect: {fileID: 11400000, guid: a67e7bad9192c9043becab7b5e3693ea, type: 2}
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0
