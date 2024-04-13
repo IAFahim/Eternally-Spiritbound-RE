@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4182726141500919062}
-  frictionSettings:
-    <Friction>k__BackingField: 5
   effectSettings:
     <Duration>k__BackingField: 5
+    remainingDuration: 0
+    <Friction>k__BackingField: 5
 --- !u!4 &23202168
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,16 +2135,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c912f16b8b8249a8a02cd5ebf2422578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frictionSideEffect:
+  frictionEffectRunner:
     enabled: 1
     value: {fileID: 11400000, guid: a67e7bad9192c9043becab7b5e3693ea, type: 2}
   frictionEffectData:
-    frictionComponents:
-      <SpriteRenderer>k__BackingField: {fileID: 1663331059003509025}
-    frictionSettings:
-      <Friction>k__BackingField: 0
-    effectSettings:
+    persistent:
+      stackCount: 0
+      SpriteRenderer: {fileID: 1663331059003509025}
+    settings:
       <Duration>k__BackingField: 0
+      remainingDuration: 0
+      <Friction>k__BackingField: 0
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0

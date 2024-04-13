@@ -1,33 +1,31 @@
-﻿using _Root.Scripts.Datas.Runtime.Movements;
-using Pancake;
+﻿using Pancake;
 using Pancake.Apex;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
     public class Effect : GameComponent
     {
-        public Optional<FrictionEffectRunner> frictionSideEffect;
+        public Optional<EffectRunner<FrictionEffectData>> frictionEffectRunner;
         public FrictionEffectData frictionEffectData;
 
         private void OnEnable()
         {
-            CheckCompatibility();
+            SetEffectRunners();
         }
 
         [Button]
-        private void CheckCompatibility()
+        private void SetEffectRunners()
         {
-            var componentInterface = GetComponent<IFriction>();
-            frictionEffectData.ComponentInterface = componentInterface;
-            frictionSideEffect = new Optional<FrictionEffectRunner>(componentInterface != null, frictionSideEffect);
+            frictionEffectRunner = new Optional<EffectRunner<FrictionEffectData>>
+                (frictionEffectData.SetComponents(GameObject), frictionEffectRunner);
         }
 
-        public bool Friction(FrictionSettings frictionSettings, EffectSettings effectSettings)
+        public bool Friction(FrictionSettings frictionSettings)
         {
-            if (frictionSideEffect.Enabled)
+            if (frictionEffectRunner.Enabled)
             {
-                frictionEffectData.Set(frictionSettings, effectSettings);
-                AddFriction();
+                frictionEffectData.settings = new FrictionSettings(frictionSettings);
+                ApplyFriction();
                 return true;
             }
 
@@ -35,6 +33,6 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         }
 
         [Button]
-        private void AddFriction() => frictionSideEffect.Value.Add(frictionEffectData);
+        private void ApplyFriction() => frictionEffectRunner.Value.Add(frictionEffectData);
     }
 }

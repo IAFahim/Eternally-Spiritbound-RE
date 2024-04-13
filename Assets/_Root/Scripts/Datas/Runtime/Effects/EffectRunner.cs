@@ -1,14 +1,28 @@
 ﻿using Pancake;
 using Pancake.Scriptable;
+using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
-    public abstract class EffectRunner<T> : ScriptableList<T>
+    public abstract class EffectRunner<T> : ScriptableList<T> where T : ITick
     {
         public bool updateEnabled;
 
         protected abstract void OnApply(T data);
-        protected abstract void Update();
+
+        protected virtual void Update()
+        {
+            if (updateEnabled == false) return;
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                T frictionEffectData = list[i];
+                if (!frictionEffectData.Tick(Time.deltaTime))
+                {
+                    Remove(frictionEffectData);
+                }
+            }
+        }
+
         protected abstract void OnRemove(T data);
 
         public new virtual void Clear()
