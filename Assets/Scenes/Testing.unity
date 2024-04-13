@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4182726141500919062}
-  friction: 5
+  frictionSettings:
+    <Friction>k__BackingField: 5
   effectSettings:
-    duration: 5
-    remainingDuration: 0
+    <Duration>k__BackingField: 5
 --- !u!4 &23202168
 Transform:
   m_ObjectHideFlags: 0
@@ -2132,16 +2132,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3649428338699004768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a64b91ff3b487a83cb8697f477b387, type: 3}
+  m_Script: {fileID: 11500000, guid: c912f16b8b8249a8a02cd5ebf2422578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   frictionSideEffect:
-    enabled: 0
-    value: {fileID: 0}
-  activeEffects: []
-  spriteRenderer: {fileID: 1663331059003509025}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  onFrictionColor: {r: 0.9019475, g: 1, b: 0, a: 1}
+    enabled: 1
+    value: {fileID: 11400000, guid: a67e7bad9192c9043becab7b5e3693ea, type: 2}
+  frictionEffectData:
+    frictionComponents:
+      <SpriteRenderer>k__BackingField: {fileID: 1663331059003509025}
+    frictionSettings:
+      <Friction>k__BackingField: 0
+    effectSettings:
+      <Duration>k__BackingField: 0
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,14 +8,14 @@ namespace _Root.Scripts.Datas.Tests.Effects
     public class FrictionEffectApply : MonoBehaviour
     {
         public GameComponent target;
-        public float friction;
+        public FrictionSettings frictionSettings;
         public EffectSettings effectSettings;
 
         [Button]
         public void Apply()
         {
-            var effect = target.GetComponent<FrictionEffect>();
-            var allowed = effect.Friction(friction, effectSettings);
+            var effect = target.GetComponent<Effect>();
+            var allowed = effect.Friction(frictionSettings, effectSettings);
             Debug.Log($"Friction effect enabled: {allowed}");
         }
     }

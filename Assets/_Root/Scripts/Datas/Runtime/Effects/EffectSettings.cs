@@ -6,15 +6,15 @@ namespace _Root.Scripts.Datas.Runtime.Effects
     [Serializable]
     public class EffectSettings
     {
-        [Range(0, 60 * 2)] public float duration;
+        [field: SerializeReference] public float Duration { get; private set; }
         public float remainingDuration;
 
-        protected EffectSettings(EffectSettings effectSettings)
+        public void Reuse()
         {
-            duration = effectSettings.duration;
-            remainingDuration = duration;
+            remainingDuration = Duration;
         }
 
         public bool Tick(float deltaTime) => (remainingDuration -= deltaTime) > 0f;
+        public float Progress => 1f - remainingDuration / Duration;
     }
 }
