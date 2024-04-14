@@ -5,8 +5,8 @@ namespace _Root.Scripts.Datas.Runtime.Effects
 {
     public class Effect : GameComponent
     {
-        public Optional<EffectRunner<FrictionEffectData>> frictionEffectRunner;
-        public FrictionEffectData frictionEffectData;
+        public Optional<EffectRunner<FrictionEffectReference>> frictionEffectRunner;
+        public FrictionEffectReference frictionEffectReference;
 
         private void OnEnable()
         {
@@ -16,15 +16,15 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         [Button]
         private void SetEffectRunners()
         {
-            frictionEffectRunner = new Optional<EffectRunner<FrictionEffectData>>
-                (frictionEffectData.SetComponents(GameObject), frictionEffectRunner);
+            frictionEffectRunner = new Optional<EffectRunner<FrictionEffectReference>>
+                (frictionEffectReference.SetComponents(GameObject), frictionEffectRunner);
         }
 
-        public bool Friction(FrictionSettings frictionSettings)
+        public bool Friction(EffectSettings effectSettings)
         {
             if (frictionEffectRunner.Enabled)
             {
-                frictionEffectData.settings = new FrictionSettings(frictionSettings);
+                frictionEffectReference.settings = new EffectSettings(effectSettings);
                 ApplyFriction();
                 return true;
             }
@@ -33,6 +33,6 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         }
 
         [Button]
-        private void ApplyFriction() => frictionEffectRunner.Value.Add(frictionEffectData);
+        private void ApplyFriction() => frictionEffectRunner.Value.Add(frictionEffectReference);
     }
 }

@@ -8,7 +8,7 @@ namespace _Root.Scripts.Datas.Tests.Effects
     public class FrictionEffectApply : MonoBehaviour
     {
         public GameComponent target;
-        public FrictionSettings effectSettings;
+        public EffectSettings effectSettings;
 
         [Button]
         public void Apply()

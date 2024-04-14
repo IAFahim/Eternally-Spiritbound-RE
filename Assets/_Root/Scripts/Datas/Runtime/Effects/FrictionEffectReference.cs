@@ -5,11 +5,10 @@ using UnityEngine;
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
     [Serializable]
-    public struct FrictionEffectData : ITick
+    public struct FrictionEffectReference : IEffectSettings, IEffectReference
     {
-        [SerializeField] public FrictionPersistent persistent;
-        [SerializeField] public FrictionSettings settings;
-        public bool Tick(float deltaTime) => settings.Tick(deltaTime);
+        [SerializeField] public FrictionReference persistent;
+        [SerializeField] public EffectSettings settings;
 
         public bool SetComponents(GameObject target)
         {
@@ -17,23 +16,25 @@ namespace _Root.Scripts.Datas.Runtime.Effects
             persistent.Set(componentInterface);
             return componentInterface != null;
         }
-        
-    }
 
-    [Serializable]
-    public class FrictionSettings : EffectData
-    {
-        [field:SerializeReference] public float Friction { get; private set; }
-        
-        public FrictionSettings(FrictionSettings settings) : base(settings.Duration)
+        public EffectSettings Settings
         {
-            Friction = settings.Friction;
+            get => settings;
+            set => settings = value;
+        }
+
+        public EffectReference Reference
+        {
+            get => persistent;
+            set => persistent = (FrictionReference)value;
         }
     }
 
+
     [Serializable]
-    public class FrictionPersistent : PersistentEffectData
+    public class FrictionReference : EffectReference
     {
+        [field: SerializeReference] public float Friction { get; private set; }
         public IFriction frictionInterface;
         public SpriteRenderer SpriteRenderer;
 

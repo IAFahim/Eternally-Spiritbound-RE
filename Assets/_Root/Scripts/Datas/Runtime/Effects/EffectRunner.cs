@@ -4,22 +4,21 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
-    public abstract class EffectRunner<T> : ScriptableList<T> where T : ITick
+    public abstract class EffectRunner<T> : ScriptableList<T>
+        where T : IEffectReference, IEffectSettings
     {
         public bool updateEnabled;
-
-        protected abstract void OnApply(T data);
+        protected abstract void OnStart(T frictionEffectRef);
+        protected abstract void OnApply(T frictionEffectRef);
 
         protected virtual void Update()
         {
             if (updateEnabled == false) return;
             for (int i = list.Count - 1; i >= 0; i--)
             {
-                T frictionEffectData = list[i];
-                if (!frictionEffectData.Tick(Time.deltaTime))
-                {
-                    Remove(frictionEffectData);
-                }
+                T data = list[i];
+                if (!data.Settings.EffectStarted && data.Settings.TickBeforeStart(Time.deltaTime)) OnApply(data);
+                if (data.Settings.EffectStarted && !data.Settings.TickOnUpdate(Time.deltaTime)) Remove(data);
             }
         }
 
@@ -34,7 +33,8 @@ namespace _Root.Scripts.Datas.Runtime.Effects
 
         public new void Add(T data)
         {
-            OnApply(data);
+            if (data.Reference.AllowMultiple(data.Settings.Stackable) == false) return;
+            OnStart(data);
             if (Count == 0)
             {
                 App.AddListener(UpdateMode.Update, Update);
