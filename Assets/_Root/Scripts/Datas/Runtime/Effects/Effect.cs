@@ -1,12 +1,13 @@
-﻿using Pancake;
+﻿using _Root.Scripts.Datas.Runtime.Effects.Frictions;
+using Pancake;
 using Pancake.Apex;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
     public class Effect : GameComponent
     {
-        public Optional<EffectRunner<FrictionEffectReference>> frictionEffectRunner;
-        public FrictionEffectReference frictionEffectReference;
+        public Optional<EffectRunner<FrictionEffect>> frictionEffectRunner;
+        public FrictionEffect frictionEffect;
 
         private void OnEnable()
         {
@@ -16,23 +17,16 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         [Button]
         private void SetEffectRunners()
         {
-            frictionEffectRunner = new Optional<EffectRunner<FrictionEffectReference>>
-                (frictionEffectReference.SetComponents(GameObject), frictionEffectRunner);
+            frictionEffectRunner = new Optional<EffectRunner<FrictionEffect>>
+                (frictionEffect.AddReference(GameObject), frictionEffectRunner);
         }
 
-        public bool Friction(EffectSettings effectSettings)
+        public bool Friction(float friction, EffectSetting effectSetting)
         {
-            if (frictionEffectRunner.Enabled)
-            {
-                frictionEffectReference.settings = new EffectSettings(effectSettings);
-                ApplyFriction();
-                return true;
-            }
-
-            return false;
+            if (!frictionEffectRunner.Enabled) return false;
+            frictionEffect.Apply(friction, effectSetting);
+            frictionEffectRunner.Value.Add(frictionEffect);
+            return true;
         }
-
-        [Button]
-        private void ApplyFriction() => frictionEffectRunner.Value.Add(frictionEffectReference);
     }
 }

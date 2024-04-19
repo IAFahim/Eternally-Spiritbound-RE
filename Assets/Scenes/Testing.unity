@@ -152,14 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28587118d6744cb397af0053bb575bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4182726141500919062}
+  target: {fileID: 6624701252611969536}
   effectSettings:
     <StartDelay>k__BackingField: 2
     <Duration>k__BackingField: 5
     remainingStartDelay: 0
     remainingDuration: 0
-    <Stackable>k__BackingField: 1
+    <StackLimit>k__BackingField: 5
     <EffectStarted>k__BackingField: 0
+  friction: 2
 --- !u!4 &23202168
 Transform:
   m_ObjectHideFlags: 0
@@ -1235,18 +1236,19 @@ MonoBehaviour:
   frictionEffectRunner:
     enabled: 1
     value: {fileID: 11400000, guid: a67e7bad9192c9043becab7b5e3693ea, type: 2}
-  frictionEffectReference:
-    persistent:
+  frictionEffect:
+    reference:
       <StackCount>k__BackingField: 0
       <EffectDeActiveDuration>k__BackingField: 0
-      <Friction>k__BackingField: 0
-      SpriteRenderer: {fileID: 1700174510}
+      spriteRenderer: {fileID: 1700174510}
+    instance:
+      friction: 0
     settings:
       <StartDelay>k__BackingField: 0
       <Duration>k__BackingField: 0
       remainingStartDelay: 0
       remainingDuration: 0
-      <Stackable>k__BackingField: 0
+      <StackLimit>k__BackingField: 0
       <EffectStarted>k__BackingField: 0
 --- !u!114 &905796088
 MonoBehaviour:
@@ -1313,8 +1315,7 @@ MonoBehaviour:
   <Free>k__BackingField: 1
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: 0
-  <SpeedV2>k__BackingField: {x: 0, y: 0}
+  <Speed>k__BackingField: {x: 1, y: 1}
   <IsMoving>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 905796096}
@@ -1685,6 +1686,14 @@ PrefabInstance:
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: <Speed>k__BackingField.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: <Speed>k__BackingField.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2470,8 +2479,7 @@ MonoBehaviour:
   <Free>k__BackingField: 1
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: 0
-  <SpeedV2>k__BackingField: {x: 0, y: 0}
+  <Speed>k__BackingField: {x: 1, y: 1}
   <IsMoving>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
@@ -2507,18 +2515,19 @@ MonoBehaviour:
   frictionEffectRunner:
     enabled: 1
     value: {fileID: 11400000, guid: a67e7bad9192c9043becab7b5e3693ea, type: 2}
-  frictionEffectReference:
-    persistent:
+  frictionEffect:
+    reference:
       <StackCount>k__BackingField: 0
       <EffectDeActiveDuration>k__BackingField: 0
-      <Friction>k__BackingField: 0
-      SpriteRenderer: {fileID: 1663331059003509025}
+      spriteRenderer: {fileID: 1663331059003509025}
+    instance:
+      friction: 2.16
     settings:
-      <StartDelay>k__BackingField: 0
-      <Duration>k__BackingField: 0
+      <StartDelay>k__BackingField: 2
+      <Duration>k__BackingField: 2
       remainingStartDelay: 0
       remainingDuration: 0
-      <Stackable>k__BackingField: 0
+      <StackLimit>k__BackingField: 2
       <EffectStarted>k__BackingField: 0
 --- !u!1 &7939312869857683082
 GameObject:

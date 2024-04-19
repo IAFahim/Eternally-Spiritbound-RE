@@ -2,7 +2,7 @@
 {
     public interface IEffectSettings 
     {
-        public EffectSettings Settings { get; set; }
+        public EffectSetting Setting { get;}
         
     }
 }

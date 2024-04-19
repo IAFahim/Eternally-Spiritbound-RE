@@ -12,8 +12,7 @@ namespace _Root.Scripts.Datas.Runtime.Movements
         [field: SerializeReference] public bool Free { get; set; } = true;
         [field: SerializeReference] public float Friction { get; set; } = 1f;
         [field: SerializeReference] public Vector2 Direction { get; set; }
-        [field: SerializeReference] public float Speed { get; set; }
-        [field: SerializeReference] public Vector2 SpeedV2 { get; set; }
+        [field: SerializeReference] public Vector2 Speed { get; set; } = Vector2.one;
         [field: SerializeReference] public bool IsMoving { get; set; }
 
         protected Vector2 impact;

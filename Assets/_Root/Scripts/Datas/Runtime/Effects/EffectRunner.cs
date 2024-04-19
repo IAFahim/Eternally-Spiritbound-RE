@@ -5,7 +5,7 @@ using UnityEngine;
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
     public abstract class EffectRunner<T> : ScriptableList<T>
-        where T : IEffectReference, IEffectSettings
+        where T : IEffectReference, IEffectParameter, IEffectSettings
     {
         public bool updateEnabled;
         protected abstract void OnStart(T frictionEffectRef);
@@ -17,8 +17,8 @@ namespace _Root.Scripts.Datas.Runtime.Effects
             for (int i = list.Count - 1; i >= 0; i--)
             {
                 T data = list[i];
-                if (!data.Settings.EffectStarted && data.Settings.TickBeforeStart(Time.deltaTime)) OnApply(data);
-                if (data.Settings.EffectStarted && !data.Settings.TickOnUpdate(Time.deltaTime)) Remove(data);
+                if (!data.Setting.EffectStarted && data.Setting.TickBeforeStart(Time.deltaTime)) OnApply(data);
+                if (data.Setting.EffectStarted && !data.Setting.TickOnUpdate(Time.deltaTime)) Remove(data);
             }
         }
 
@@ -31,22 +31,22 @@ namespace _Root.Scripts.Datas.Runtime.Effects
             base.Clear();
         }
 
-        public new void Add(T data)
+        public new void Add(T effect)
         {
-            if (data.Reference.AllowMultiple(data.Settings.Stackable) == false) return;
-            OnStart(data);
+            if (effect.Reference.AllowMultiple(effect.Setting.StackLimit) == false) return;
+            OnStart(effect);
             if (Count == 0)
             {
                 App.AddListener(UpdateMode.Update, Update);
                 updateEnabled = true;
             }
 
-            base.Add(data);
+            base.Add(effect);
         }
 
-        public new bool Remove(T data)
+        public new bool Remove(T effect)
         {
-            var isPresent = base.Remove(data);
+            var isPresent = base.Remove(effect);
             if (isPresent)
             {
                 if (Count == 0)
@@ -55,7 +55,7 @@ namespace _Root.Scripts.Datas.Runtime.Effects
                     updateEnabled = false;
                 }
 
-                OnRemove(data);
+                OnRemove(effect);
             }
 
             return isPresent;
