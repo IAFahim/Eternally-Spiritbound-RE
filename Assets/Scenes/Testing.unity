@@ -153,13 +153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6624701252611969536}
-  effectSettings:
-    <StartDelay>k__BackingField: 2
-    <Duration>k__BackingField: 5
-    remainingStartDelay: 0
-    remainingDuration: 0
-    <StackLimit>k__BackingField: 5
-    <EffectStarted>k__BackingField: 0
+  effectSetting:
+    <Duration>k__BackingField: 2
+    <StackLimit>k__BackingField: 1
+    <Cycle>k__BackingField: 1
+    remainingDuration: 1
+    currentCycle: 1
   friction: 2
 --- !u!4 &23202168
 Transform:
@@ -1239,17 +1238,15 @@ MonoBehaviour:
   frictionEffect:
     reference:
       <StackCount>k__BackingField: 0
-      <EffectDeActiveDuration>k__BackingField: 0
       spriteRenderer: {fileID: 1700174510}
-    instance:
+    parameter:
       friction: 0
-    settings:
-      <StartDelay>k__BackingField: 0
-      <Duration>k__BackingField: 0
-      remainingStartDelay: 0
+    setting:
+      <Duration>k__BackingField: 1
+      <StackLimit>k__BackingField: 1
+      <Cycle>k__BackingField: 1
       remainingDuration: 0
-      <StackLimit>k__BackingField: 0
-      <EffectStarted>k__BackingField: 0
+      currentCycle: 1
 --- !u!114 &905796088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2518,17 +2515,15 @@ MonoBehaviour:
   frictionEffect:
     reference:
       <StackCount>k__BackingField: 0
-      <EffectDeActiveDuration>k__BackingField: 0
       spriteRenderer: {fileID: 1663331059003509025}
-    instance:
+    parameter:
       friction: 2.16
-    settings:
-      <StartDelay>k__BackingField: 2
-      <Duration>k__BackingField: 2
-      remainingStartDelay: 0
+    setting:
+      <Duration>k__BackingField: 1
+      <StackLimit>k__BackingField: 1
+      <Cycle>k__BackingField: 1
       remainingDuration: 0
-      <StackLimit>k__BackingField: 2
-      <EffectStarted>k__BackingField: 0
+      currentCycle: 1
 --- !u!1 &7939312869857683082
 GameObject:
   m_ObjectHideFlags: 0

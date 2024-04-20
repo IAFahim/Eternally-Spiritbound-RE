@@ -7,6 +7,6 @@ namespace _Root.Scripts.Datas.Runtime.Effects
     public class EffectReference
     {
         [field: SerializeReference] public int StackCount { get; set; }
-        public bool AllowMultiple(int stackable) => StackCount < stackable;
+        public bool AllowMultiple(int limit) => StackCount < limit;
     }
 }

@@ -1,31 +1,27 @@
-﻿using UnityEngine;
+﻿using Pancake;
+using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Effects.Frictions
 {
     public class FrictionEffectRunner : EffectRunner<FrictionEffect>
     {
         public Color effectTint = Color.yellow;
-        public float maxStackCount = 10;
+        public float maxFriction = 10;
 
-        protected override void OnStart(FrictionEffect frictionEffect)
+        protected override void OnAdd(FrictionEffect effect)
         {
-            frictionEffect.reference.StackCount++;
-            frictionEffect.reference.spriteRenderer.color = Color.red;
+            var currentFriction = effect.reference.FrictionInterface.Friction += effect.parameter.friction;
+            effect.reference.spriteRenderer.color = Color.Lerp(Color.white,effectTint, (currentFriction - 1) / maxFriction);
         }
 
-        protected override void OnApply(FrictionEffect frictionEffect)
+        protected override void OnCycle(FrictionEffect effect)
         {
-            var currentStack = frictionEffect.reference.StackCount;
-            frictionEffect.reference.FrictionInterface.Friction += frictionEffect.parameter.friction;
-            frictionEffect.reference.spriteRenderer.color =
-                Color.Lerp(Color.white, effectTint, currentStack / maxStackCount);
         }
 
-        protected override void OnRemove(FrictionEffect reference)
+        protected override void OnRemove(FrictionEffect effect)
         {
-            var currentStack = reference.reference.StackCount--;
-            reference.reference.FrictionInterface.Friction -= reference.parameter.friction;
-            reference.reference.spriteRenderer.color = Color.Lerp(Color.white, effectTint, currentStack / maxStackCount);
+            var currentFriction = effect.reference.FrictionInterface.Friction -= effect.parameter.friction;
+            effect.reference.spriteRenderer.color = Color.Lerp(Color.white,effectTint, (currentFriction - 1) / maxFriction);
         }
     }
 }
