@@ -3,14 +3,14 @@ using Pancake.Apex;
 using QuickEye.Utility;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Linkers
+namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
     [UseDefaultEditor]
     [Serializable]
-    public class Linker<T, TV> : ScriptableObject
+    public class LookUpTable<T, TV> : ScriptableObject
     {
         [SerializeField] protected UnityDictionary<T, TV> dictionary;
-        // create me an indexer for the list
+        
         public TV this[T key] => dictionary[key];
 
         private void Awake()
