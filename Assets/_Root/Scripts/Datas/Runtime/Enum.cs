@@ -30,13 +30,15 @@ namespace _Root.Scripts.Datas.Runtime
     [Flags]
     public enum CharacterType
     {
-        Enemy = 0,
-        Player = 1,
-        Ally = 2,
-        Boss = 4,
-        Summon = 8,
-        Partner = 16,
-        Pet = 32,
+        Enemy = 1<<0,
+        Player = 1<<1,
+        Boss = 1<<3,
+        Summon = 1<<4,
+        Pet = 1<<5,
+        Npc = 1<<6,
+        UniqueNpc = 1<<7,
+        Male = 1<<8,
+        Female = 1<<9,
     }
 
     public enum FacingDirections

@@ -1,4 +1,5 @@
 ﻿using System;
+using _Root.Scripts.Datas.Runtime.Variables;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics

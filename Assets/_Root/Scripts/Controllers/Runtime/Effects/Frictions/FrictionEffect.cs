@@ -1,16 +1,16 @@
 ﻿using System;
+using _Root.Scripts.Datas.Runtime.Effects;
 using _Root.Scripts.Datas.Runtime.Movements;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _Root.Scripts.Datas.Runtime.Effects.Frictions
+namespace _Root.Scripts.Controllers.Runtime.Effects.Frictions
 {
     [Serializable]
     public struct FrictionEffect : IEffectReference, IEffectParameter, IEffectSettings
     {
         [SerializeField] internal FrictionReference reference;
-        [FormerlySerializedAs("instance")] [SerializeField] internal FrictionParameter parameter;
-        [FormerlySerializedAs("settings")] [SerializeField] private EffectSetting setting;
+        [SerializeField] internal FrictionParameter parameter;
+        [SerializeField] private EffectSetting setting;
 
         public bool AddReference(GameObject target)
         {

@@ -17,8 +17,9 @@ MonoBehaviour:
     - key: Tester
       value:
         happiness: 20
-        health: {x: 0, y: 0}
+        health: {x: 2, y: 5}
         mana: {x: 0, y: 0}
         speed: {x: 0, y: 0}
         level: 0
       duplicatedKey: 0
+  guid: b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b1

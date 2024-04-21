@@ -1,8 +1,9 @@
-﻿using _Root.Scripts.Datas.Runtime.Effects;
+﻿using _Root.Scripts.Controllers.Runtime.Effects;
+using _Root.Scripts.Datas.Runtime.Effects;
 using Pancake.Apex;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Tests.Effects
+namespace _Root.Scripts.Controllers.Tests.Effects
 {
     public class FrictionEffectApply : MonoBehaviour
     {

@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dummyHealth: {x: 0, y: 0}
   health:
     useLocal: 1
     localValue: {x: 1, y: 1}
@@ -1362,14 +1363,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  characterName:
+  nameOfCharacter:
     useLocal: 1
-    localValue: Sara
+    localValue: Character
     variable: {fileID: 0}
-  characterType: 1
-  stats: {fileID: 905796092}
-  spawnPoint: {fileID: 11400000, guid: d9f1f75539684854685b1cbd5d32afa4, type: 2}
+  spawnPoint:
+    useLocal: 1
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  type:
+    value: 0
+    enabled: 0
+  statsLookUpTable:
+    enabled: 0
+    value: {fileID: 0}
+  statsData:
+    happiness: 0.5
+    health: {x: 5, y: 5}
+    mana: {x: 3, y: 3}
+    speed: {x: 1, y: 1}
+    level: 1
   movement2D: {fileID: 905796091}
   healthAuthoring: {fileID: 905796090}
   model: {fileID: 1700174509}
@@ -2142,9 +2155,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1953190920}
-  - component: {fileID: 1953190919}
   - component: {fileID: 1953190918}
-  - component: {fileID: 1953190917}
+  - component: {fileID: 1953190921}
+  - component: {fileID: 1953190922}
+  - component: {fileID: 1953190924}
+  - component: {fileID: 1953190923}
   m_Layer: 0
   m_Name: GameObject.1
   m_TagString: Untagged
@@ -2152,26 +2167,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1953190917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953190916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bafb231e6dd460095db7089bd5d0456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 1953190918}
-  statsLookUpTable: {fileID: 11400000, guid: 703415f0bc9fdca4c8aa6994e7da1f48, type: 2}
-  statsData:
-    happiness: 0.5
-    health: {x: 5, y: 5}
-    mana: {x: 3, y: 3}
-    speed: {x: 1, y: 1}
-    level: 1
 --- !u!114 &1953190918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,38 +2179,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  characterName:
+  nameOfCharacter:
     useLocal: 1
-    localValue: Tester
+    localValue: Character
     variable: {fileID: 0}
-  characterType: 1
-  stats: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  movement2D: {fileID: 1953190919}
-  healthAuthoring: {fileID: 0}
+  spawnPoint:
+    useLocal: 1
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  type:
+    value: 258
+    enabled: 0
+  statsLookUpTable:
+    enabled: 0
+    value: {fileID: 0}
+  statsData:
+    happiness: 0.5
+    health: {x: 5, y: 5}
+    mana: {x: 3, y: 3}
+    speed: {x: 1, y: 1}
+    level: 1
+  movement2D: {fileID: 0}
+  healthAuthoring: {fileID: 1953190921}
   model: {fileID: 0}
   mainCharacterAuthoring: {fileID: 0}
---- !u!114 &1953190919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953190916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f94db5e57ca41e29f700c24df0efd6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <GravityActive>k__BackingField: 1
-  <Gravity>k__BackingField: 40
-  <Free>k__BackingField: 1
-  <Friction>k__BackingField: 1
-  <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 1, y: 1}
-  <IsMoving>k__BackingField: 0
-  AddedForce: {x: 0, y: 0}
 --- !u!4 &1953190920
 Transform:
   m_ObjectHideFlags: 0
@@ -2231,6 +2218,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1953190921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953190916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dummyHealth: {x: 0, y: 0}
+  health:
+    useLocal: 1
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  <DamageAble>k__BackingField: 0
+  <IsDead>k__BackingField: 0
+  resistanceVariable: {fileID: 0}
+--- !u!114 &1953190922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953190916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bafb231e6dd460095db7089bd5d0456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1953190918}
+  statsLookUpTable:
+    enabled: 1
+    value: {fileID: 11400000, guid: 703415f0bc9fdca4c8aa6994e7da1f48, type: 2}
+  statsData:
+    happiness: 0.5
+    health: {x: 5, y: 5}
+    mana: {x: 3.78, y: 3}
+    speed: {x: 1, y: 1}
+    level: 1
+--- !u!114 &1953190923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953190916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GravityActive>k__BackingField: 1
+  <Gravity>k__BackingField: 40
+  <Free>k__BackingField: 1
+  <Friction>k__BackingField: 1
+  <Direction>k__BackingField: {x: 0, y: 0}
+  <Speed>k__BackingField: {x: 1, y: 1}
+  <IsMoving>k__BackingField: 0
+  AddedForce: {x: 0, y: 0}
+  rigidBody: {fileID: 1953190924}
+  modelTransform: {fileID: 0}
+--- !u!50 &1953190924
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953190916}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2006546224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,14 +2531,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  characterName:
+  nameOfCharacter:
     useLocal: 1
-    localValue: Sara
+    localValue: Character
     variable: {fileID: 0}
-  characterType: 1
-  stats: {fileID: 4797956028183388333}
-  spawnPoint: {fileID: 11400000, guid: d9f1f75539684854685b1cbd5d32afa4, type: 2}
+  spawnPoint:
+    useLocal: 1
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  type:
+    value: 0
+    enabled: 0
+  statsLookUpTable:
+    enabled: 0
+    value: {fileID: 0}
+  statsData:
+    happiness: 0.5
+    health: {x: 5, y: 5}
+    mana: {x: 3, y: 3}
+    speed: {x: 1, y: 1}
+    level: 1
   movement2D: {fileID: 6624701252611969533}
   healthAuthoring: {fileID: 5755289734432893466}
   model: {fileID: 7939312869857683082}
@@ -2510,6 +2600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dummyHealth: {x: 0, y: 0}
   health:
     useLocal: 1
     localValue: {x: 1, y: 1}

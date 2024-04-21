@@ -9,6 +9,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
     [Serializable]
     public class HealthAuthoring : GameComponent, IOnlyOneVector2ReferenceR
     {
+        public Vector2 dummyHealth;
         [SerializeField] private Vector2ReferenceR health;
 
         [Tooltip("If this is true, this object can't take damage at this time")]

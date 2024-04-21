@@ -1,8 +1,9 @@
-﻿using _Root.Scripts.Datas.Runtime.Effects.Frictions;
+﻿using _Root.Scripts.Controllers.Runtime.Effects.Frictions;
+using _Root.Scripts.Datas.Runtime.Effects;
 using Pancake;
 using Pancake.Apex;
 
-namespace _Root.Scripts.Datas.Runtime.Effects
+namespace _Root.Scripts.Controllers.Runtime.Effects
 {
     public class Effect : GameComponent
     {

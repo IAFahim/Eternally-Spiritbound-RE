@@ -1,22 +1,25 @@
-﻿using _Root.Scripts.Datas.Runtime.Characters;
+﻿using _Root.Scripts.Controllers.Runtime.Characters;
+using _Root.Scripts.Datas.Runtime.LookUpTables;
 using _Root.Scripts.Datas.Runtime.Statistics;
+using Pancake;
 using Pancake.Apex;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Tests.Stats
+namespace _Root.Scripts.Controllers.Tests.Stats
 {
     [RequireComponent(typeof(Character))]
-    public class MyStats: MonoBehaviour
+    public class MyStats : MonoBehaviour
     {
         public Character character;
-        public StatsLookUpTable statsLookUpTable;
+        public Optional<StatsLookUpTable> statsLookUpTable;
         public StatsData statsData;
+
         private void OnEnable()
         {
-            statsLookUpTable.Get(character.characterName.Value, out statsData);
+            if (statsLookUpTable.Enabled) statsLookUpTable.Value.Get(character.nameOfCharacter, out statsData);
             statsData.OnValueChange += UpdateStats;
         }
-        
+
         private void OnDisable()
         {
             statsData.OnValueChange -= UpdateStats;
@@ -31,7 +34,7 @@ namespace _Root.Scripts.Datas.Tests.Stats
         {
             statsData.OnValueChange?.Invoke(statsData);
         }
-    
+
         [Button]
         public void ChangeStats()
         {

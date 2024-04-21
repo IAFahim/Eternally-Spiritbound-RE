@@ -3,7 +3,7 @@ using Pancake.Scriptable;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace _Root.Scripts.Datas.Runtime.Characters
+namespace _Root.Scripts.Controllers.Runtime.Characters
 {
     public class MainCharacterAuthoring : ScriptableEvent<Character>
     { 

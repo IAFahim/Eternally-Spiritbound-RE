@@ -1,7 +1,7 @@
-﻿using Pancake;
+﻿using _Root.Scripts.Datas.Runtime.Effects;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Effects.Frictions
+namespace _Root.Scripts.Controllers.Runtime.Effects.Frictions
 {
     public class FrictionEffectRunner : EffectRunner<FrictionEffect>
     {
