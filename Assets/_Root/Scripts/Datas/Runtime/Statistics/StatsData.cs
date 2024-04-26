@@ -1,5 +1,4 @@
 ﻿using System;
-using _Root.Scripts.Datas.Runtime.Variables;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics
@@ -12,8 +11,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         [SerializeField] private Vector2 mana = new(3, 3);
         [SerializeField] private Vector2 speed = new(1, 1);
         [SerializeField] private float level = 1;
-
-        public Action<StatsData> OnValueChange;
+        public event Action<StatsData> OnValueChange;
 
         public float Happiness
         {
@@ -63,6 +61,11 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
                 level = value;
                 OnValueChange?.Invoke(this);
             }
+        }
+        
+        public void ForceNotifyChange()
+        {
+            OnValueChange?.Invoke(this);
         }
     }
 }

@@ -1373,16 +1373,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 0
-    enabled: 0
-  statsLookUpTable:
-    enabled: 0
-    value: {fileID: 0}
-  statsData:
-    happiness: 0.5
-    health: {x: 5, y: 5}
-    mana: {x: 3, y: 3}
-    speed: {x: 1, y: 1}
-    level: 1
   movement2D: {fileID: 905796091}
   healthAuthoring: {fileID: 905796090}
   model: {fileID: 1700174509}
@@ -2189,16 +2179,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 258
-    enabled: 0
-  statsLookUpTable:
-    enabled: 0
-    value: {fileID: 0}
-  statsData:
-    happiness: 0.5
-    health: {x: 5, y: 5}
-    mana: {x: 3, y: 3}
-    speed: {x: 1, y: 1}
-    level: 1
   movement2D: {fileID: 0}
   healthAuthoring: {fileID: 1953190921}
   model: {fileID: 0}
@@ -2541,16 +2521,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 0
-    enabled: 0
-  statsLookUpTable:
-    enabled: 0
-    value: {fileID: 0}
-  statsData:
-    happiness: 0.5
-    health: {x: 5, y: 5}
-    mana: {x: 3, y: 3}
-    speed: {x: 1, y: 1}
-    level: 1
   movement2D: {fileID: 6624701252611969533}
   healthAuthoring: {fileID: 5755289734432893466}
   model: {fileID: 7939312869857683082}

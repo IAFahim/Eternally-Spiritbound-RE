@@ -5,6 +5,10 @@ using Pancake;
 using QuickEye.Utility;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
     public class SaveAbleLookUpTable<T, TV> : LookUpTable<T, TV>
@@ -26,6 +30,7 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
         
         public virtual void Load()
         {
+            Debug.Log("Load");
             var array = Data.Load<(T, TV)[]>(guid).AsSpan();
             KeyValuePair<T, TV>[] pairs = new KeyValuePair<T, TV>[array.Length];
             for (var i = 0; i < array.Length; i++)
@@ -36,5 +41,35 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
 
             dictionary = new UnityDictionary<T, TV>(pairs);
         }
+
+        private void OnValidate()
+        {
+            Debug.Log("Save");
+            Save();
+        }
+
+        private void OnEnable()
+        {
+            Load();
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
+        }
+
+#if UNITY_EDITOR
+        private void OnPlayModeStateChanged(PlayModeStateChange obj)
+        {
+            Load();
+        }
+#endif
+        
+
+        private void OnDisable()
+        {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+#endif
+        }
+
     }
 }

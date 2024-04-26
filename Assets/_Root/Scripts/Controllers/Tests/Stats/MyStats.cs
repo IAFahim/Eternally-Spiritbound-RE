@@ -1,4 +1,5 @@
-﻿using _Root.Scripts.Controllers.Runtime.Characters;
+﻿using System;
+using _Root.Scripts.Controllers.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.LookUpTables;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
@@ -32,7 +33,7 @@ namespace _Root.Scripts.Controllers.Tests.Stats
 
         private void OnValidate()
         {
-            statsData.OnValueChange?.Invoke(statsData);
+            statsData.ForceNotifyChange();
         }
 
         [Button]
