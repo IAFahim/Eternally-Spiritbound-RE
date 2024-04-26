@@ -1,5 +1,4 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Characters;
-using _Root.Scripts.Datas.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.Movements;
 using UnityEngine;
 
@@ -41,8 +40,8 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             {
                 return;
             }
-
-            if (IsMoving) FlipModel(Direction);
+            
+            if (IsReceivingMoveInput) FlipModel(Direction);
 
             if (Friction > 1)
             {

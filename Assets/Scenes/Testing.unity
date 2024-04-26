@@ -1134,17 +1134,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &701632458 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-  m_PrefabInstance: {fileID: 1436150571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &864851921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca61f5d3a7ed46ceadd747d5a6ccbbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAuthoring: {fileID: 1611691768}
+  healthAuthoring: {fileID: 0}
   heal: 0.1
   damage: 0.1
   invincibilityDuration: 0
@@ -1260,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DebugEnabled>k__BackingField: 1
-  target: {fileID: 1436150572}
+  target: {fileID: 0}
   direction: {x: 0, y: 0}
   range: 3
 --- !u!114 &905796089
@@ -1314,7 +1303,7 @@ MonoBehaviour:
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
   <Speed>k__BackingField: {x: 1, y: 1}
-  <IsMoving>k__BackingField: 0
+  <IsReceivingMoveInput>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 905796096}
   modelTransform: {fileID: 1700174511}
@@ -1376,7 +1365,6 @@ MonoBehaviour:
   movement2D: {fileID: 905796091}
   healthAuthoring: {fileID: 905796090}
   model: {fileID: 1700174509}
-  mainCharacterAuthoring: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!61 &905796094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1635,97 +1623,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!1001 &1436150571
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: <Speed>k__BackingField.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: <Speed>k__BackingField.y
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
---- !u!114 &1436150572 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182726141986956125, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-  m_PrefabInstance: {fileID: 1436150571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1611691768 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5755289734652576849, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-  m_PrefabInstance: {fileID: 1436150571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1630231316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3ba01c732d494c85e48c692eced81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 1611691768}
+  script: {fileID: 0}
   reference:
     useLocal: 1
     localValue: {x: 0, y: 0}
@@ -2156,7 +2053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1953190918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,7 +2079,6 @@ MonoBehaviour:
   movement2D: {fileID: 0}
   healthAuthoring: {fileID: 1953190921}
   model: {fileID: 0}
-  mainCharacterAuthoring: {fileID: 0}
 --- !u!4 &1953190920
 Transform:
   m_ObjectHideFlags: 0
@@ -2258,7 +2154,7 @@ MonoBehaviour:
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
   <Speed>k__BackingField: {x: 1, y: 1}
-  <IsMoving>k__BackingField: 0
+  <IsReceivingMoveInput>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 1953190924}
   modelTransform: {fileID: 0}
@@ -2299,13 +2195,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2006546226}
   - component: {fileID: 2006546225}
+  - component: {fileID: 2006546227}
   m_Layer: 0
   m_Name: InputProvider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2006546225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,10 +2215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCharacterAuthoring: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
-  provideInput: 1
+  mainCharacterSetEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
   move: {x: 0, y: 0}
-  movement2DData: {fileID: 701632458}
+  movement2DData: {fileID: 0}
 --- !u!4 &2006546226
 Transform:
   m_ObjectHideFlags: 0
@@ -2337,6 +2233,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2006546227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006546224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd806528434f4a1fa000a0feccef489a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetReferenceGameObject:
+    m_AssetGUID: 9dfbd7fdc2c29284a92b2bea722dde39
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  spawnedMainCharacter: {fileID: 0}
+  mainCharacterSetEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!210 &151818101236722131
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2524,7 +2439,6 @@ MonoBehaviour:
   movement2D: {fileID: 6624701252611969533}
   healthAuthoring: {fileID: 5755289734432893466}
   model: {fileID: 7939312869857683082}
-  mainCharacterAuthoring: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!114 &4797956028183388333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2640,7 +2554,7 @@ MonoBehaviour:
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
   <Speed>k__BackingField: {x: 1, y: 1}
-  <IsMoving>k__BackingField: 0
+  <IsReceivingMoveInput>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
   modelTransform: {fileID: 6163146070723011235}
@@ -2657,7 +2571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DebugEnabled>k__BackingField: 1
-  target: {fileID: 1436150572}
+  target: {fileID: 0}
   direction: {x: 0, y: 0}
   range: 3
 --- !u!114 &6624701252611969536
@@ -2710,7 +2624,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1436150571}
   - {fileID: 864851923}
   - {fileID: 2006546226}
   - {fileID: 124889416}

@@ -220,18 +220,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  characterName:
+  nameOfCharacter:
     useLocal: 1
     localValue: Character
     variable: {fileID: 0}
-  characterType: 1
-  stats: {fileID: 4797956028637957862}
-  spawnPoint: {fileID: 11400000, guid: d9f1f75539684854685b1cbd5d32afa4, type: 2}
+  spawnPoint:
+    useLocal: 1
+    localValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  type:
+    value: 0
   movement2D: {fileID: 6624701252800217014}
   healthAuthoring: {fileID: 5755289734652576849}
   model: {fileID: 7939312870078384321}
-  mainCharacterAuthoring: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
 --- !u!114 &4797956028637957862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +283,8 @@ MonoBehaviour:
   <Free>k__BackingField: 1
   <Friction>k__BackingField: 1
   <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 0, y: 0}
-  <IsMoving>k__BackingField: 0
+  <Speed>k__BackingField: {x: 3, y: 2}
+  <IsReceivingMoveInput>k__BackingField: 0
   AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111863468305}
   modelTransform: {fileID: 6163146070541094120}
@@ -299,6 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dummyHealth: {x: 0, y: 0}
   health:
     useLocal: 1
     localValue: {x: 1, y: 1}

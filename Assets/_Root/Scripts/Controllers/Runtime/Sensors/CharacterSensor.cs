@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using _Root.Scripts.Controllers.Runtime.Characters;
-using _Root.Scripts.Datas.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.Sensors;
 using UnityEngine;
 

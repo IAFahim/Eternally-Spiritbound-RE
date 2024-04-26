@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Activities
 {
-    public abstract class FollowComponent : GameComponent, IDebug, IUpdate
+    public abstract class FollowComponent : AIBrain, IDebug, IUpdate
     {
         [field: SerializeReference] public bool DebugEnabled { get; set; } = true;
-
+        protected bool HasAllReference { get; set; }
         [SerializeField] protected GameComponent target;
-
+        [SerializeField] private Vector2 direction;
+        
+        private IDirection directionRef;
 
         public GameComponent Target
         {
@@ -22,11 +24,6 @@ namespace _Root.Scripts.Datas.Runtime.Activities
                 if (directionRef != null) Direction = Vector2.zero;
             }
         }
-
-        protected bool HasAllReference { get; set; }
-        
-        private IDirection directionRef;
-        [SerializeField] private Vector2 direction;
 
         protected Vector2 Direction
         {

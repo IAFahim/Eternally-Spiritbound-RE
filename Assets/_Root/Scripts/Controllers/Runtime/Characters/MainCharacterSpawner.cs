@@ -1,16 +1,29 @@
-﻿using _Root.Scripts.Datas.Runtime.Characters;
+﻿using _Root.Scripts.Controllers.Runtime.Events;
 using Pancake;
-using UnityEngine.Serialization;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace _Root.Scripts.Controllers.Runtime.Characters
 {
     public class MainCharacterSpawner : GameComponent
     {
-        public MainCharacterAuthoring mainCharacterAuthoring;
+        [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
+        public Character spawnedMainCharacter;
 
-        private void OnEnable()
+        private void OnEnable() => SpawnAndSet();
+
+        private void SpawnAndSet()
         {
-            mainCharacterAuthoring.Spawn();
+            if (!spawnedMainCharacter)
+            {
+                assetReferenceGameObject.InstantiateAsync().Completed += handle =>
+                {
+                    spawnedMainCharacter = handle.Result.GetComponent<Character>();
+                    spawnedMainCharacter!.Transform.SetPositionAndRotation(spawnedMainCharacter.spawnPoint.Value,
+                        Quaternion.identity);
+                    EventBus<SwapCharacterEvent>.Raise(new() { Character = spawnedMainCharacter });
+                };
+            }
         }
     }
 }

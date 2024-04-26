@@ -1,81 +1,33 @@
-using _Root.Scripts.Controllers.Runtime.Characters;
-using _Root.Scripts.Datas.Runtime.Characters;
-using _Root.Scripts.Datas.Runtime.Movements;
-using Game.Controllers;
+﻿using _Root.Scripts.Controllers.Runtime.Characters;
+using _Root.Scripts.Controllers.Runtime.Events;
+using Pancake;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Root.Scripts.Controllers.Runtime.Input
 {
-    public class InputProvider : MonoBehaviour
+    public abstract class InputProvider: MonoBehaviour
     {
-        public MainCharacterAuthoring mainCharacterAuthoring;
-        public bool provideInput = true;
-        [SerializeField] private Vector2 move;
-
-        private InputActionCollection _inputActionCollection;
-        private InputAction _moveAction;
-        [SerializeField] private Movement2DData movement2DData;
-
-        private void Awake()
+        private EventBinding<SwapCharacterEvent> _swapCharacterBinding;
+        protected virtual void Awake()
         {
-            _inputActionCollection = new InputActionCollection();
-            _moveAction = _inputActionCollection.Player.Move;
-        }
-
-        private void OnEnable()
-        {
-            mainCharacterAuthoring.OnRaised += SetCharacter;
-            EnableMove();
-        }
-
-        private void OnDisable()
-        {
-            mainCharacterAuthoring.OnRaised -= SetCharacter;
-            DisableMove();
+            _swapCharacterBinding = new (OnSpawnCharacterEventCallBack);       
         }
         
-        private void SetCharacter(Character character)
+        protected virtual void OnEnable()
         {
-            movement2DData = character.movement2D;
-            provideInput = true;
+            _swapCharacterBinding.Listen = true;
         }
         
-        public Vector2 Move
+        protected virtual void OnDisable()
         {
-            get => move;
-            set
-            {
-                move = value;
-                if (!provideInput) return;
-                movement2DData.Direction = value;
-            }
+            _swapCharacterBinding.Listen = false;
         }
 
-        private void EnableMove()
+        private void OnSpawnCharacterEventCallBack(SwapCharacterEvent characterEvent)
         {
-            _moveAction.Enable();
-            _moveAction.performed += OnMove;
-            _moveAction.canceled += OnMoveStop;
+            SetCharacter(characterEvent.Character);
         }
 
-        private void DisableMove()
-        {
-            _moveAction.Disable();
-            _moveAction.performed -= OnMove;
-            _moveAction.canceled -= OnMoveStop;
-        }
-
-        private void OnMove(InputAction.CallbackContext input)
-        {
-            Move = input.ReadValue<Vector2>();
-            movement2DData.IsMoving = true;
-        }
-
-        private void OnMoveStop(InputAction.CallbackContext input)
-        {
-            Move = Vector2.zero;
-            movement2DData.IsMoving = false;
-        }
+        public abstract void SetCharacter(Character character);
     }
 }
