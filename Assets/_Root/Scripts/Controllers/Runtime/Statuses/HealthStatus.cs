@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
+using _Root.Scripts.Controllers.Runtime.Statistics;
+using _Root.Scripts.Controllers.Runtime.Variables;
+using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Variables;
-using Pancake;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Statistics
+namespace _Root.Scripts.Controllers.Runtime.Statuses
 {
     [Serializable]
-    public class HealthAuthoring : GameComponent, IOnlyOneVector2ReferenceR
+    public class HealthStatus : MonoBehaviour
     {
-        public Vector2 dummyHealth;
-        [SerializeField] private Vector2ReferenceR health;
+        [SerializeField] private Reactive<Vector2> health;
 
         [Tooltip("If this is true, this object can't take damage at this time")]
         [field: SerializeReference]
@@ -19,12 +20,6 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         [Tooltip("if this is true, the character is dead")]
         [field: SerializeReference]
         public bool IsDead { get; private set; }
-
-        public Vector2ReferenceR Health
-        {
-            get => health;
-            set => health = value;
-        }
 
         [SerializeField] private ResistanceVariable resistanceVariable;
 
@@ -44,27 +39,21 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             var stats = GetComponent<Stats>();
             if (stats != null)
             {
-                Health = stats.health;
-                resistanceVariable = stats.resistanceVariable;
+                health = stats.health;
             }
-        }
-
-        public void SetHealth(float newHealth, float maxHealth)
-        {
-            Health.Value = new Vector2(newHealth, maxHealth);
         }
 
 
         public void AddMaxHealth(float max)
         {
-            var maxHealth = Mathf.Min(Health.Value.y + max, 1);
-            var current = Mathf.Clamp(Health.Value.x + max, 1, maxHealth);
-            Health.Value += new Vector2(current, max);
+            var maxHealth = Mathf.Min(health.Value.y + max, 1);
+            var current = Mathf.Clamp(health.Value.x + max, 1, maxHealth);
+            health.Value += new Vector2(current, max);
         }
 
         public virtual void RestoreHealthToMax()
         {
-            Health.Value = new Vector2(Health.Value.y, Health.Value.y);
+            health.Value = new Vector2(health.Value.y, health.Value.y);
         }
 
         public bool CanTakeDamageThisFrame()
@@ -79,7 +68,7 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             if (!CanTakeDamageThisFrame()) return 0;
             damage = resistanceVariable.CalculateDamage(this, damage, damageDirection, damageType);
             // var damageDealt = Mathf.Min(current.Value, damage);
-            var damageDealt = Mathf.Min(Health.Value.x, damage);
+            var damageDealt = Mathf.Min(health.Value.x, damage);
             return damageDealt;
         }
 
@@ -87,9 +76,9 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
             float invincibilityDuration = .1f)
         {
             var damageDealt = WillDamage(damage, damageDirection, damageType);
-            Health.Value -= new Vector2(damageDealt, 0);
+            health.Value -= new Vector2(damageDealt, 0);
             OnDamage?.Invoke();
-            if (Health.Value.x <= 0)
+            if (health.Value.x <= 0)
             {
                 Die();
                 return damageDealt;
@@ -107,13 +96,13 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         public float WillHeal(float heal)
         {
             if (IsDead) return 0;
-            return Mathf.Clamp(Health.Value.y - Health.Value.x, 0, heal);
+            return Mathf.Clamp(health.Value.y - health.Value.x, 0, heal);
         }
 
         public float Heal(float heal, Vector3 damageDirection, float afterInvincibilityDuration)
         {
             var healReceived = WillHeal(heal);
-            Health.Value += new Vector2(healReceived, 0);
+            health.Value += new Vector2(healReceived, 0);
             OnHealReceived?.Invoke();
             return healReceived;
         }
@@ -135,10 +124,8 @@ namespace _Root.Scripts.Datas.Runtime.Statistics
         {
             IsDead = false;
             DamageAble = true;
-            Health.Value = new Vector2(newHealth, Health.Value.y);
+            health.Value = new Vector2(newHealth, health.Value.y);
             OnRevive?.Invoke();
         }
-
-        public Vector2ReferenceR ReferenceR => Health;
     }
 }

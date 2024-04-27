@@ -123,6 +123,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &18264247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 2142875870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &18264248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18264247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bafb231e6dd460095db7089bd5d0456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 18264252}
+  statsLookUpTable:
+    enabled: 1
+    value: {fileID: 11400000, guid: 703415f0bc9fdca4c8aa6994e7da1f48, type: 2}
+  happiness:
+    value: 0
+  health:
+    value: {x: 0, y: 0}
+  mana:
+    value: {x: 0, y: 0}
+  speed:
+    value: {x: 0, y: 0}
+  level:
+    value: 0
+--- !u!114 &18264252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4182726141986956125, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 2142875870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18264247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede43c5637e44d7ca0da8b700445e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &23202166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,11 +1319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyHealth: {x: 0, y: 0}
   health:
-    useLocal: 1
-    localValue: {x: 1, y: 1}
-    variable: {fileID: 0}
+    value: {x: 0, y: 0}
   <DamageAble>k__BackingField: 1
   <IsDead>k__BackingField: 0
   resistanceVariable: {fileID: 11400000, guid: e2b925a8b80be1e4780b0ae748ea8e77, type: 2}
@@ -1362,8 +1401,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 0
-  movement2D: {fileID: 905796091}
-  healthAuthoring: {fileID: 905796090}
   model: {fileID: 1700174509}
 --- !u!61 &905796094
 BoxCollider2D:
@@ -2033,6 +2070,7 @@ MonoBehaviour:
     variable: {fileID: 0}
   title: {fileID: 519297323}
   value: {fileID: 413179622}
+  _valueFormat: '{0}/{1}'
 --- !u!1 &1953190916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,8 +2114,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 258
-  movement2D: {fileID: 0}
-  healthAuthoring: {fileID: 1953190921}
   model: {fileID: 0}
 --- !u!4 &1953190920
 Transform:
@@ -2106,11 +2142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyHealth: {x: 0, y: 0}
   health:
-    useLocal: 1
-    localValue: {x: 0, y: 0}
-    variable: {fileID: 0}
+    value: {x: 0, y: 0}
   <DamageAble>k__BackingField: 0
   <IsDead>k__BackingField: 0
   resistanceVariable: {fileID: 0}
@@ -2130,12 +2163,16 @@ MonoBehaviour:
   statsLookUpTable:
     enabled: 1
     value: {fileID: 11400000, guid: 703415f0bc9fdca4c8aa6994e7da1f48, type: 2}
-  statsData:
-    happiness: 0.5
-    health: {x: 5, y: 5}
-    mana: {x: 3.78, y: 3}
-    speed: {x: 1, y: 1}
-    level: 1
+  happiness:
+    value: 0
+  health:
+    value: {x: 0, y: 0}
+  mana:
+    value: {x: 0, y: 0}
+  speed:
+    value: {x: 0, y: 0}
+  level:
+    value: 0
 --- !u!114 &1953190923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,7 +2253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {x: 0, y: 0}
-  movement2DData: {fileID: 0}
 --- !u!4 &2006546226
 Transform:
   m_ObjectHideFlags: 0
@@ -2250,6 +2286,73 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   spawnedMainCharacter: {fileID: 0}
+--- !u!1001 &2142875870
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4797956028637957862, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 18264248}
+    - targetCorrespondingSourceObject: {fileID: 5778187897087179818, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3171316281280532999, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
 --- !u!210 &151818101236722131
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2434,8 +2537,6 @@ MonoBehaviour:
     variable: {fileID: 0}
   type:
     value: 0
-  movement2D: {fileID: 6624701252611969533}
-  healthAuthoring: {fileID: 5755289734432893466}
   model: {fileID: 7939312869857683082}
 --- !u!114 &4797956028183388333
 MonoBehaviour:
@@ -2482,11 +2583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5930a5e254a34de78d7411395dc7c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyHealth: {x: 0, y: 0}
   health:
-    useLocal: 1
-    localValue: {x: 1, y: 1}
-    variable: {fileID: 0}
+    value: {x: 0, y: 0}
   <DamageAble>k__BackingField: 1
   <IsDead>k__BackingField: 0
   resistanceVariable: {fileID: 11400000, guid: e2b925a8b80be1e4780b0ae748ea8e77, type: 2}
@@ -2634,3 +2732,4 @@ SceneRoots:
   - {fileID: 1825022905}
   - {fileID: 23202168}
   - {fileID: 1953190920}
+  - {fileID: 2142875870}

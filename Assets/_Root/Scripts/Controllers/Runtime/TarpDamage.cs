@@ -1,4 +1,5 @@
-﻿using _Root.Scripts.Datas.Runtime;
+﻿using _Root.Scripts.Controllers.Runtime.Statuses;
+using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
 using PrimeTween;
@@ -55,7 +56,7 @@ namespace _Root.Scripts.Controllers.Runtime
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out HealthAuthoring healthAuthoring))
+            if (other.TryGetComponent(out HealthStatus healthAuthoring))
             {
                 healthAuthoring.Damage(damage, Transform.position, damageType, invincibilityDuration);
             }

@@ -1,4 +1,5 @@
 using _Root.Scripts.Controllers.Runtime.Characters;
+using _Root.Scripts.Datas.Runtime.Interfaces;
 using _Root.Scripts.Datas.Runtime.Movements;
 using Game.Controllers;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace _Root.Scripts.Controllers.Runtime.Input
 
         private InputActionCollection _inputActionCollection;
         private InputAction _moveAction;
-        [SerializeField] private Movement2DData movement2DData;
+        private IDirection direction;
 
         protected override void Awake()
         {
@@ -29,7 +30,7 @@ namespace _Root.Scripts.Controllers.Runtime.Input
         public override void SetCharacter(Character character)
         {
             DisableMove();
-            movement2DData = character.movement2D;
+            direction = character.GetComponent<IDirection>();
             EnableMove();
         }
 
@@ -39,7 +40,7 @@ namespace _Root.Scripts.Controllers.Runtime.Input
             set
             {
                 move = value;
-                movement2DData.Direction = value;
+                direction.Direction = value;
             }
         }
 
@@ -60,13 +61,13 @@ namespace _Root.Scripts.Controllers.Runtime.Input
         private void OnMove(InputAction.CallbackContext input)
         {
             Move = input.ReadValue<Vector2>();
-            movement2DData.IsReceivingMoveInput = true;
+            direction.IsReceivingMoveInput = true;
         }
 
         private void OnMoveStop(InputAction.CallbackContext input)
         {
             Move = Vector2.zero;
-            movement2DData.IsReceivingMoveInput = false;
+            direction.IsReceivingMoveInput = false;
         }
     }
 }

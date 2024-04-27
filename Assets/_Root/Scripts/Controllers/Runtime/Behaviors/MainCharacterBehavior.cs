@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using _Root.Scripts.Datas.Runtime.Behaviors;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Behaviors
+namespace _Root.Scripts.Controllers.Runtime.Behaviors
 {
     public class MainCharacterBehavior: CharacterBehavior
     {
@@ -12,7 +12,7 @@ namespace _Root.Scripts.Datas.Runtime.Behaviors
         {
             behaviorTree = new BehaviorTreeBuilder(gameObject)
                 .Sequence()
-                .Condition("IsDead", () => character.healthAuthoring.IsDead)
+                .Condition("IsDead", () => !character.enabled)
                 .Do("Death", () =>
                 {
                     Debug.Log("Death");

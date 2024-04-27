@@ -13,6 +13,7 @@ namespace _Root.Scripts.Datas.Runtime.Variables
             get => value;
             set
             {
+                if (Equals(this.value, value)) return;
                 this.value = value;
                 OnValueChanged?.Invoke(value);
             }
