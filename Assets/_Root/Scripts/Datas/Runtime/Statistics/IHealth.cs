@@ -1,11 +1,10 @@
-﻿namespace _Root.Scripts.Datas.Runtime.Statistics
+﻿using _Root.Scripts.Datas.Runtime.Variables;
+using UnityEngine;
+
+namespace _Root.Scripts.Datas.Runtime.Statistics
 {
     public interface IHealth
     {
-        public float Current { get; set; }
-        public float Max { get; set; }
-
-        public float SetHealth(float value);
-        public void SetMaxHealth(float value);
+        Reactive<Vector2> Health { get; }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections;
-using _Root.Scripts.Controllers.Runtime.Statistics;
 using _Root.Scripts.Controllers.Runtime.Variables;
 using _Root.Scripts.Datas.Runtime;
+using _Root.Scripts.Datas.Runtime.Statistics;
 using _Root.Scripts.Datas.Runtime.Variables;
+using Pancake.Apex;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Statuses
 {
     [Serializable]
-    public class HealthStatus : MonoBehaviour
+    public class HealthComponent : MonoBehaviour
     {
-        [SerializeField] private Reactive<Vector2> health;
+        [DisableInEditorMode] [SerializeField] private Reactive<Vector2> health;
 
         [Tooltip("If this is true, this object can't take damage at this time")]
         [field: SerializeReference]
@@ -39,7 +40,7 @@ namespace _Root.Scripts.Controllers.Runtime.Statuses
             var stats = GetComponent<Stats>();
             if (stats != null)
             {
-                health = stats.health;
+                health = stats.Health;
             }
         }
 

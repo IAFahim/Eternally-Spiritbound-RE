@@ -17,6 +17,7 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
         
         public virtual void Save()
         {
+            Debug.Log("Save");
             (T, TV)[] array = new (T, TV)[dictionary.Count];
             var span = dictionary.ToArray().AsSpan();
             for (int i = 0; i < span.Length; i++)
@@ -44,7 +45,6 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
 
         private void OnValidate()
         {
-            Debug.Log("Save");
             Save();
         }
 
@@ -66,6 +66,7 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
 
         private void OnDisable()
         {
+            Save();
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 #endif

@@ -56,7 +56,7 @@ namespace _Root.Scripts.Controllers.Runtime
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out HealthStatus healthAuthoring))
+            if (other.TryGetComponent(out HealthComponent healthAuthoring))
             {
                 healthAuthoring.Damage(damage, Transform.position, damageType, invincibilityDuration);
             }

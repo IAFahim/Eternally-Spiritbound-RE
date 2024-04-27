@@ -10,7 +10,7 @@ namespace _Root.Scripts.Controllers.Runtime.Variables
     [Serializable]
     public class ResistanceVariable : ScriptableVariable<ResistanceDatas>
     {
-        public virtual float CalculateDamage(HealthStatus healthStatus, float damage, Vector3 damageDirection, DamageType damageType)
+        public virtual float CalculateDamage(HealthComponent healthComponent, float damage, Vector3 damageDirection, DamageType damageType)
         {
             return damage;
         }
