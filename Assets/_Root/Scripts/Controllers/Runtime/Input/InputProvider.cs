@@ -2,12 +2,15 @@
 using _Root.Scripts.Controllers.Runtime.Events;
 using Pancake;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Root.Scripts.Controllers.Runtime.Input
 {
     public abstract class InputProvider: MonoBehaviour
     {
+        [SerializeField] protected InputActionReference inputActionReference;
         private EventBinding<SwapCharacterEvent> _swapCharacterBinding;
+        
         protected virtual void Awake()
         {
             _swapCharacterBinding = new (OnSpawnCharacterEventCallBack);       

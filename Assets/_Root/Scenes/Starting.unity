@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 264642612}
   - component: {fileID: 264642611}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: Init
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,8 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCharacterSelectEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
-  provideInput: 0
+  inputActionReference: {fileID: -1680190386980627800, guid: 18166285ea06f334f8fe1ef1c8cb1cbc, type: 3}
   move: {x: 0, y: 0}
 --- !u!114 &264642612
 MonoBehaviour:
@@ -336,7 +335,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd806528434f4a1fa000a0feccef489a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCharacterSelectEvent: {fileID: 11400000, guid: 9ca9a1e4755b2474c97ca601c453983d, type: 2}
+  assetReferenceGameObject:
+    m_AssetGUID: 9dfbd7fdc2c29284a92b2bea722dde39
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  spawnedMainCharacter: {fileID: 0}
 --- !u!1 &321510326
 GameObject:
   m_ObjectHideFlags: 0

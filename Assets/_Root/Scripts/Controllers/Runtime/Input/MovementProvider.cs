@@ -1,7 +1,5 @@
 using _Root.Scripts.Controllers.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.Interfaces;
-using _Root.Scripts.Datas.Runtime.Movements;
-using Game.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,15 +9,13 @@ namespace _Root.Scripts.Controllers.Runtime.Input
     {
         [SerializeField] private Vector2 move;
 
-        private InputActionCollection _inputActionCollection;
         private InputAction _moveAction;
         private IDirection direction;
 
         protected override void Awake()
         {
             base.Awake();
-            _inputActionCollection = new InputActionCollection();
-            _moveAction = _inputActionCollection.Player.Move;
+            _moveAction = inputActionReference.action;
         }
 
         protected override void OnDisable()

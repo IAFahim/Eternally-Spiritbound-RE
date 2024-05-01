@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categoryIndex: 0
   description: 
-  initialValue: {x: 0, y: 0}
-  value: {x: 0, y: 0}
+  initialValue: {x: 0, y: 2}
+  value: {x: 0, y: 2}
   debugLogEnabled: 0
   saved: 0
   guidCreateMode: 0

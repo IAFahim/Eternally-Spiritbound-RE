@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240724127d144ad78b6b272c8e616a35, type: 3}
   m_Name: MainSceneAutoLoadingSettings
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   _mainSceneProvider:
     rid: 7728203513306808320
   _mainSceneLoadedHandler:

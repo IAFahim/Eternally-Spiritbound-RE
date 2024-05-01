@@ -5,12 +5,15 @@ using UnityEngine.AddressableAssets;
 
 namespace _Root.Scripts.Controllers.Runtime.Characters
 {
-    public class MainCharacterSpawner : GameComponent
+    public sealed class MainCharacterSpawner : MonoBehaviour
     {
         [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
         public Character spawnedMainCharacter;
 
-        private void OnEnable() => SpawnAndSet();
+        private void OnEnable()
+        {
+            SpawnAndSet();
+        }
 
         private void SpawnAndSet()
         {
