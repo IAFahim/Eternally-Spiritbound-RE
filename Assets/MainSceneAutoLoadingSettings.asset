@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240724127d144ad78b6b272c8e616a35, type: 3}
   m_Name: MainSceneAutoLoadingSettings
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   _mainSceneProvider:
-    rid: 4720782915634987008
+    rid: 3230327857484660736
   _mainSceneLoadedHandler:
-    rid: 4720782915634987009
+    rid: 3230327857484660737
   _playmodeExitedHandler:
-    rid: 4720782915634987010
+    rid: 3230327857484660738
   references:
     version: 2
     RefIds:
-    - rid: 4720782915634987008
+    - rid: 3230327857484660736
       type: {class: FirstSceneInBuildSettings, ns: SaG.MainSceneAutoLoading.MainSceneProviders, asm: SaG.MainSceneAutoLoading.Editor}
       data: 
-    - rid: 4720782915634987009
+    - rid: 3230327857484660737
       type: {class: LoadAllLoadedScenes, ns: SaG.MainSceneAutoLoading.MainSceneLoadedHandlers, asm: SaG.MainSceneAutoLoading.Editor}
       data: 
-    - rid: 4720782915634987010
+    - rid: 3230327857484660738
       type: {class: RestoreSceneManagerSetup, ns: SaG.MainSceneAutoLoading.PlaymodeExitedHandlers, asm: SaG.MainSceneAutoLoading.Editor}
       data: 

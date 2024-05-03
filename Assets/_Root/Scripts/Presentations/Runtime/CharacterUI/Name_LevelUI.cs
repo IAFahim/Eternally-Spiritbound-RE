@@ -1,6 +1,6 @@
 ﻿using _Root.Scripts.Datas.Runtime.Interfaces;
 using _Root.Scripts.Datas.Runtime.Statistics;
-using _Root.Scripts.Utilities;
+using PrimeTween;
 using TMPro;
 using static System.String;
 
@@ -9,24 +9,61 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
     public class NameLevelUI : StatusUI
     {
         public TextMeshPro textMeshPro;
-        private string format = "{0} <alpha=#{2}>{1}";
+        private string format = "{0} {1}";
         private string knownName;
         public bool isTeamMember;
+        public int offset = 100;
+        private ILevel iLevel;
+
+        public TweenSettings<float> tweenSettings;
+        private Tween _tween;
+        private int _level, _alpha;
+        private float _size;
+        private bool _enableCall;
 
         private void OnEnable()
         {
+            _enableCall = true;
             format = textMeshPro.text;
             var iName = GetComponentInParent<IName>();
             knownName = iName.Title;
-            var iLevel = GetComponentInParent<ILevel>();
+            _size = textMeshPro.fontSize;
+            iLevel = GetComponentInParent<ILevel>();
             iLevel.Level.OnValueChanged += OnLevelChanged;
             OnLevelChanged(iLevel.Level);
+            _enableCall = false;
+        }
+
+        private void OnDisable()
+        {
+            iLevel.Level.OnValueChanged -= OnLevelChanged;
         }
 
         private void OnLevelChanged(float levelProgress)
         {
-            var (level, alpha) = GetLevelProgress(levelProgress);
-            textMeshPro.text = Format(format, IsTeamMemberName(), level, alpha.ToString("X"));
+            _level = (int)iLevel.Level.Value;
+            if (_level > 0)
+            {
+                _alpha = GetLevelAlpha(levelProgress);
+                if (_enableCall)
+                {
+                    UpdateText(textMeshPro, 0);
+                    return;
+                }
+
+                if (_tween.isAlive) _tween.Complete();
+                _tween = Tween.Custom(textMeshPro, tweenSettings, UpdateText);
+            }
+            else
+            {
+                textMeshPro.text = IsTeamMemberName();
+            }
+        }
+
+        private void UpdateText(TextMeshPro target, float progressSize)
+        {
+            string levelText = $"<size={_size + progressSize + _alpha / 256f}> {IsTeamMemberName()} <alpha=#{_alpha:X}>{_level}</size>";
+            target.text = levelText;
         }
 
         private string IsTeamMemberName()
@@ -34,12 +71,9 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
             return isTeamMember ? "<u>" + knownName + "</u>" : knownName;
         }
 
-        private (int level, int alpha) GetLevelProgress(float levelProgress)
+        private int GetLevelAlpha(float levelProgress)
         {
-            int level = (int)levelProgress;
-            int progress = (int)((levelProgress - level) * 100);
-            int alpha = (int)MathU.Remap(progress, 0, 100, 50, 100);
-            return (level, alpha);
+            return (int)((levelProgress - (int)levelProgress) * 100) + offset;;
         }
 
         private void Reset()
