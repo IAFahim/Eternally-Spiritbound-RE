@@ -1,10 +1,9 @@
 ﻿using _Root.Scripts.Datas.Runtime.Variables;
-using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Statistics
 {
-    public interface IHealth
+    public interface ILevel
     {
-        Reactive<Vector2> Health { get; set; }
+        Reactive<float> Level { get; set; }
     }
 }

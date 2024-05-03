@@ -1,14 +1,11 @@
-﻿using System.Globalization;
-using _Root.Scripts.Datas.Runtime.Statistics;
+﻿using _Root.Scripts.Datas.Runtime.Statistics;
 using _Root.Scripts.Utilities;
-using TMPro;
 using UnityEngine;
 
 namespace _Root.Scripts.Presentations.Runtime.CharacterUI
 {
     public class HealthUI : StatusUI
     {
-        [SerializeField] private TextMeshPro textMeshPro;
         [SerializeField] private MeshRenderer meshRenderer;
 
         private IHealth health;
@@ -29,7 +26,6 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
 
         private void OnHealthChanged(Vector2 obj)
         {
-            textMeshPro.text = obj.Current().ToString(CultureInfo.InvariantCulture);
             UpdateHealthBarFill(obj);
         }
 
@@ -48,7 +44,6 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
         private void Reset()
         {
             meshRenderer = GetComponent<MeshRenderer>();
-            textMeshPro = GetComponentInChildren<TextMeshPro>();
         }
     }
 }

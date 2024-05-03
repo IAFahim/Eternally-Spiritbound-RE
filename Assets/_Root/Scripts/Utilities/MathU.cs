@@ -2,10 +2,9 @@
 {
     public static class MathU
     {
-        public static float Remap(float x, float A, float B, float C, float D)
+        public static double Remap(double value, double fromMin, double fromMax, double toMin, double toMax)
         {
-            float remappedValue = C + (x-A)/(B-A) * (D - C);
-            return remappedValue;
+            return (value - fromMin) / (fromMax - fromMin) * (toMax - toMin) + toMin;
         }
     }
 }

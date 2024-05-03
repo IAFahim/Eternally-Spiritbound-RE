@@ -11,9 +11,9 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
     [SelectionBase]
     [RequireComponent(typeof(Movement2D))]
     [DefaultExecutionOrder(-10)]
-    public class Character : GameComponent, INameStr
+    public class Character : GameComponent, IName
     {
-        [field: SerializeReference] public string NameStr { get; private set; } = "Character";
+        [field: SerializeReference] public string Title { get; private set; } = "Character";
         public Vector2Reference spawnPoint = new() { useLocal = true };
         public Reactive<CharacterType> type;
         public GameObject model;

@@ -12,9 +12,6 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
 
         private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
         private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
-        private MovingPlatform2D _movingPlatform;
-
-        public bool OnAMovingPlatform => _movingPlatform;
 
         private void OnValidate()
         {
@@ -55,11 +52,6 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             }
 
             Vector2 newMovement = rigidBody.position + (Direction * Speed + AddedForce) * Time.fixedDeltaTime;
-
-            if (OnAMovingPlatform)
-            {
-                newMovement += (Vector2)(_movingPlatform.CurrentSpeed * Time.fixedDeltaTime);
-            }
 
             rigidBody.MovePosition(newMovement);
         }

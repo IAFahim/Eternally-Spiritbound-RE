@@ -7,20 +7,20 @@ using UnityEngine;
 namespace _Root.Scripts.Datas.Runtime.Statistics
 {
     [DefaultExecutionOrder(100)]
-    public class Stats : MonoBehaviour, IHealth
+    public class Stats : MonoBehaviour, IHealth, ILevel
     {
         public Optional<StatsLookUpTable> statsLookUpTable;
-        [field: SerializeField] public Reactive<Vector2> Health { get; private set; }
+        [field: SerializeField] public Reactive<Vector2> Health { get; set; }
         [field: SerializeField] public Reactive<Vector2> Mana { get; private set; }
         [field: SerializeField] public Reactive<float> Mood { get; private set; }
         [field: SerializeField] public Reactive<Vector2> Speed { get; private set; }
-        [field: SerializeField] public Reactive<float> Level { get; private set; }
+        [field: SerializeField] public Reactive<float> Level { get; set; }
         
         private void OnEnable()
         {
             if (statsLookUpTable.Enabled)
             {
-                statsLookUpTable.Value.Get(GetComponent<INameStr>().NameStr, out StatsData data);
+                statsLookUpTable.Value.Get(GetComponent<IName>().Title, out StatsData data);
                 Set(data);
             }
         }

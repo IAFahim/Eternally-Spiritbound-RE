@@ -8,6 +8,7 @@ namespace _Root.Scripts.Datas.Runtime.Variables
     {
         [SerializeField] private T value;
         public event Action<T> OnValueChanged;
+        
 
         public T Value
         {
@@ -22,6 +23,8 @@ namespace _Root.Scripts.Datas.Runtime.Variables
                 OnValueChanged?.Invoke(value);
             }
         }
+        
+        public static implicit operator T(Reactive<T> reactive) => reactive.Value;
 
 #if UNITY_EDITOR
         private T previousValue;
