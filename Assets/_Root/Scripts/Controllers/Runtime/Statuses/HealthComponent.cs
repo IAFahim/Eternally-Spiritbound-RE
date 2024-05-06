@@ -73,10 +73,9 @@ namespace _Root.Scripts.Controllers.Runtime.Statuses
             return damageDealt;
         }
 
-        public float Damage(float damage, Vector3 damageDirection, DamageType damageType,
-            float invincibilityDuration = .1f)
+        public float Damage(float damage, Vector3 direction, DamageType type, float invincibility = .1f)
         {
-            var damageDealt = WillDamage(damage, damageDirection, damageType);
+            var damageDealt = WillDamage(damage, direction, type);
             health.Value -= new Vector2(damageDealt, 0);
             OnDamage?.Invoke();
             if (health.Value.x <= 0)
@@ -85,10 +84,10 @@ namespace _Root.Scripts.Controllers.Runtime.Statuses
                 return damageDealt;
             }
 
-            if (invincibilityDuration > 0)
+            if (invincibility > 0)
             {
                 DamageAble = false;
-                StartCoroutine(EnableDamageAfter(invincibilityDuration));
+                StartCoroutine(EnableDamageAfter(invincibility));
             }
 
             return damageDealt;

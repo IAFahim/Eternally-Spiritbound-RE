@@ -8,12 +8,20 @@ namespace _Root.Scripts.Datas.Runtime.Activities
     public abstract class FollowComponent : AIBrain, IDebug, IUpdate
     {
         [field: SerializeReference] public bool DebugEnabled { get; set; } = true;
-        protected bool HasAllReference { get; set; }
+
+        [SerializeField] private bool haasAllReference;
+
         [SerializeField] protected GameComponent target;
         [SerializeField] private Vector2 direction;
-        
+
         private IDirection directionRef;
 
+        protected bool HasAllReference
+        {
+            get => haasAllReference;
+            set => haasAllReference = value;
+        }
+        
         public GameComponent Target
         {
             get => target;

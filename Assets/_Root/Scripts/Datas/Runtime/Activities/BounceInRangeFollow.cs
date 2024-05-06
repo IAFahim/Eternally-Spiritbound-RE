@@ -4,7 +4,6 @@ namespace _Root.Scripts.Datas.Runtime.Activities
 {
     public class BounceInRangeFollow : RangeFollowComponent
     {
-
         public override void OnEnable()
         {
             base.OnEnable();
