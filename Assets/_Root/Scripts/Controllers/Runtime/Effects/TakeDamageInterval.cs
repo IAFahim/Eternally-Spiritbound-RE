@@ -13,20 +13,9 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
         public float damageInterval = 1f;
         public GameObject owner;
         public Collider2D collider2d;
-
         public bool followOwner;
-        [SerializeField] private float scale = 1;
         private float timer;
-
-        public float Scale
-        {
-            get => scale;
-            set
-            {
-                scale = value;
-                transform.localScale = Constant.WorldScale * scale;
-            }
-        }
+        public Vector2Constant worldScale;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -70,11 +59,6 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
         public void Reset()
         {
             ConnectAndPrepComponent();
-        }
-
-        private void OnValidate()
-        {
-            Scale = scale;
         }
     }
 }

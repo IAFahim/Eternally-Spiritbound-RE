@@ -1,32 +1,54 @@
+using System;
+using _Root.Scripts.Datas.Runtime;
+using _Root.Scripts.Datas.Runtime.Interfaces;
 using Pancake;
+using Pancake.Apex;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime
 {
-    public class EllipticalPathRotation : GameComponent
+    public class EllipticalPathRotation : GameComponent, IRange, IAngularSpeed, ILoop
     {
-        public Vector2 center;
-        public Vector2 radius;
+        [field: SerializeField] public float Speed { get; set; } = 5;
+        [field: SerializeField] public float Radius { get; set; } = 1;
+        [field: SerializeField] public int LoopCount { get; set; } = 1;
+
         public float startAngle;
-        public float angularSpeed;
         public bool rotate;
 
-        [SerializeField] private float angle;
+        public Transform children;
+        public Vector2Constant worldScale;
+
+        private float _angle;
+        public Vector2 Range => worldScale.Value * Radius;
+        private float StartAngleRad => Mathf.Deg2Rad * startAngle;
 
         void Start()
         {
-            angle = startAngle;
-            center = Transform.position;
+            _angle = StartAngleRad;
         }
 
         void Update()
         {
-            angle += angularSpeed * Time.deltaTime;
-            if (angle > Mathf.PI * 2f) angle -= Mathf.PI * 2f;
-            var (sinAngle, cosAngle) = GetSinCos(angle);
-            if (rotate) Rotate(sinAngle, cosAngle);
-            transform.localPosition = new Vector3(center.x + radius.x * cosAngle, center.y + radius.y * sinAngle, 0f);
+            if (LoopCount < 0 && Mathf.Abs(_angle - StartAngleRad) < .5f) return;
+
+            _angle += Speed * Time.deltaTime;
+
+            if (_angle > Mathf.PI * 2f)
+            {
+                _angle -= Mathf.PI * 2f;
+                LoopCount--;
+            }
+            Modify();
         }
+
+        private void Modify()
+        {
+            var (sinAngle, cosAngle) = GetSinCos(_angle);
+            if (rotate) Rotate(sinAngle, cosAngle);
+            children.localPosition = new Vector3(Range.x * cosAngle, Range.y * sinAngle, 0f);
+        }
+        
 
         private (float sinAngle, float cosAngle) GetSinCos(float theta)
         {
@@ -35,7 +57,14 @@ namespace _Root.Scripts.Controllers.Runtime
 
         private void Rotate(float sinAngle, float cosAngle)
         {
-            Transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(sinAngle, cosAngle) * Mathf.Rad2Deg, Vector3.forward);
+            children.rotation = Quaternion.AngleAxis(Mathf.Atan2(sinAngle, cosAngle) * Mathf.Rad2Deg, Vector3.forward);
+        }
+
+        [Button]
+        private void Reset()
+        {
+            Start();
+            Modify();
         }
     }
 }

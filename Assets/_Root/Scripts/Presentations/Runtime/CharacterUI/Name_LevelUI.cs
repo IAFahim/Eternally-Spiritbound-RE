@@ -62,7 +62,7 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
 
         private void UpdateText(TextMeshPro target, float progressSize)
         {
-            string levelText = $"<size={_size + progressSize + _alpha / 256f}> {IsTeamMemberName()} <alpha=#{_alpha:X}>{_level}</size>";
+            string levelText = $"<size={_size + progressSize + _alpha / 256f}>{IsTeamMemberName()} <alpha=#{_alpha:X}>{_level}</size>";
             target.text = levelText;
         }
 
