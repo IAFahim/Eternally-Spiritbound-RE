@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 1079623238}
   - component: {fileID: 1079623237}
   m_Layer: 18
-  m_Name: GameObject.2
+  m_Name: Spning Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1574,9 +1574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 5
   <Radius>k__BackingField: 1.27
-  <LoopCount>k__BackingField: -1
+  <AngleToRotate>k__BackingField: 1000
   startAngle: 0
-  selfRotate: 0
   children: {fileID: 2035369829}
   worldScale: {fileID: 11400000, guid: 383006d69b0c6514db69f86f827e2863, type: 2}
 --- !u!4 &1079623238
@@ -1758,6 +1757,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
   m_PrefabInstance: {fileID: 2142875870}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1540718012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 2142875870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630231316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,9 +1855,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636761955}
-  - component: {fileID: 1636761954}
   - component: {fileID: 1636761953}
   - component: {fileID: 1636761952}
+  - component: {fileID: 1636761956}
+  - component: {fileID: 1636761957}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1948,33 +1953,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &1636761954
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636761951}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!4 &1636761955
 Transform:
   m_ObjectHideFlags: 0
@@ -1990,6 +1968,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1636761956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636761951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3828172cd3b29479c9c303ba7ceca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 5
+  <Radius>k__BackingField: 2
+  <AngleToRotate>k__BackingField: 1000
+  startAngle: 0
+  rigidbody: {fileID: 1636761957}
+  worldScale: {fileID: 11400000, guid: 383006d69b0c6514db69f86f827e2863, type: 2}
+  model: {fileID: 1540718012}
+--- !u!50 &1636761957
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636761951}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1700174509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,12 +2845,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f6724ec2f05c545b0e7288250247fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   damageType: 0
   damageInterval: 1
   owner: {fileID: 1540718003}
   collider2d: {fileID: 2037914861}
   followOwner: 1
   worldScale: {fileID: 0}
+  healthComponents: []
 --- !u!1001 &2142875870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2838,6 +2864,10 @@ PrefabInstance:
     - target: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986176111863468305, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: m_Mass
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalPosition.x

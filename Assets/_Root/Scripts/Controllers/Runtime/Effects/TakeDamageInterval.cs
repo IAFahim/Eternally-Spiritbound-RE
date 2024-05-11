@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using _Root.Scripts.Controllers.Runtime.Statuses;
 using _Root.Scripts.Datas.Runtime;
 using Pancake;
@@ -9,6 +9,7 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
 {
     public class TakeDamageInterval : GameComponent, IUpdate
     {
+        public float damage = 1;
         public DamageType damageType;
         public float damageInterval = 1f;
         public GameObject owner;
@@ -16,13 +17,24 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
         public bool followOwner;
         private float timer;
         public Vector2Constant worldScale;
+        public List<HealthComponent> healthComponents;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject == owner) return;
             if (other.TryGetComponent(out HealthComponent healthComponent))
             {
-                healthComponent.Damage(1, new Vector3(0, 0, 0), damageType, 0);
+                healthComponent.Damage(damage, Transform.position, damageType, 0);
+                healthComponents.Add(healthComponent);
+            }
+        }
+        
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject == owner) return;
+            if (other.TryGetComponent(out HealthComponent healthComponent))
+            {
+                healthComponents.Remove(healthComponent);
             }
         }
 
@@ -44,7 +56,10 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
             if (timer >= damageInterval)
             {
                 timer -= damageInterval;
-                collider2d.enabled = !collider2d.enabled;
+                foreach (var healthComponent in healthComponents)
+                {
+                    healthComponent.Damage(damage, transform.position, damageType, 0);
+                }
             }
         }
 

@@ -1,12 +1,13 @@
-using _Root.Scripts.Datas.Runtime;
+﻿using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Interfaces;
 using Pancake;
 using Pancake.Apex;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace _Root.Scripts.Controllers.Runtime.Movements
+namespace _Root.Scripts.Controllers.Runtime.Movements.Physics
 {
-    public class Orbit2D : GameComponent, IRange, IAngularSpeed, IAngleToRotate
+    public sealed class Orbit2Drb : GameComponent, IRange, IAngularSpeed, IAngleToRotate
     {
         [field: SerializeField] public float Speed { get; set; } = 5;
         [field: SerializeField] public float Radius { get; set; } = 1;
@@ -14,11 +15,12 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
 
         public float startAngle;
 
-        public Transform children;
+        [FormerlySerializedAs("rigidbody")] public Rigidbody2D rb;
         public Vector2Constant worldScale;
 
         private float _rad, _radRemaining;
         public Vector2 Range => worldScale.Value * Radius;
+        public Transform model;
 
         void Start()
         {
@@ -26,10 +28,10 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             _radRemaining = AngleToRotate * Mathf.Deg2Rad;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (_radRemaining <= 0) return;
-            var thisFrameAngle = Speed * Time.deltaTime;
+            var thisFrameAngle = Speed * Time.fixedDeltaTime;
             _radRemaining -= thisFrameAngle;
             _rad += thisFrameAngle;
 
@@ -52,9 +54,10 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             Move(Range, sinValue, cosValue);
         }
 
-        protected virtual void Move(Vector2 range, float cosAngle, float sinAngle)
+        private void Move(Vector2 range, float cosAngle, float sinAngle)
         {
-            children.localPosition = new Vector3(range.x * cosAngle, range.y * sinAngle, 0f);
+            var ellipticPos = new Vector2(range.x * cosAngle, range.y * sinAngle) + (Vector2)model.position;
+            rb.MovePosition(ellipticPos);
         }
 
         [Button]
