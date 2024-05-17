@@ -9,6 +9,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
     {
         [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
         public Character spawnedMainCharacter;
+      
 
         private void OnEnable()
         {
