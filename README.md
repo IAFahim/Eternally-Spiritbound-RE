@@ -1,5 +1,9 @@
 # Eternally-Spiritbound-RE
- 
+
+2D RPG game
+A Game about teaming up with people around you
+and saving the village
+
 In Prototype Phase 
 
 ## Stats save system
