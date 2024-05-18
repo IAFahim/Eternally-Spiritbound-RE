@@ -11,6 +11,9 @@ In Prototype Phase
 ## Basic sensor, Basic world Physic system, Basic effect system
 ![image](https://github.com/IAFahim/Eternally-Spiritbound-RE/assets/63500913/db8efc03-c731-4e0d-a4d6-a8f4cf11baaf)
 
+## Map Plan
+![image](https://github.com/IAFahim/Eternally-Spiritbound-RE/assets/63500913/7a4045df-fabc-4b2c-99b0-f163c2a8707a)
+
 
 
 Result 1
