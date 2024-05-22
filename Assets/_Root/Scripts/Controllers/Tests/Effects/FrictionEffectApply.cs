@@ -1,6 +1,6 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Effects;
 using _Root.Scripts.Datas.Runtime.Effects;
-using Pancake.Apex;
+using Alchemy.Inspector;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Tests.Effects
@@ -18,5 +18,6 @@ namespace _Root.Scripts.Controllers.Tests.Effects
             var allowed = effect.Friction(friction, effectSetting);
             Debug.Log($"Friction effect enabled: {allowed}");
         }
+        
     }
 }

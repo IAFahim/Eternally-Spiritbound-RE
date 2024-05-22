@@ -1,8 +1,6 @@
 ﻿using _Root.Scripts.Datas.Runtime.Interfaces;
 using _Root.Scripts.Datas.Runtime.Statistics;
-using PrimeTween;
 using TMPro;
-using static System.String;
 
 namespace _Root.Scripts.Presentations.Runtime.CharacterUI
 {
@@ -15,8 +13,7 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
         public int offset = 100;
         private ILevel iLevel;
 
-        public TweenSettings<float> tweenSettings;
-        private Tween _tween;
+        
         private int _level, _alpha;
         private float _size;
         private bool _enableCall;
@@ -50,9 +47,6 @@ namespace _Root.Scripts.Presentations.Runtime.CharacterUI
                     UpdateText(textMeshPro, 0);
                     return;
                 }
-
-                if (_tween.isAlive) _tween.Complete();
-                _tween = Tween.Custom(textMeshPro, tweenSettings, UpdateText);
             }
             else
             {

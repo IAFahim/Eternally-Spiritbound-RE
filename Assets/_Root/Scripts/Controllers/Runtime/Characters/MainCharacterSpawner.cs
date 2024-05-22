@@ -25,7 +25,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
                     spawnedMainCharacter = handle.Result.GetComponent<Character>();
                     spawnedMainCharacter!.Transform.SetPositionAndRotation(spawnedMainCharacter.spawnPoint.Value,
                         Quaternion.identity);
-                    EventBus<SwapCharacterEvent>.Raise(new() { Character = spawnedMainCharacter });
+                    // EventBus<SwapCharacterEvent>.Raise(new() { Character = spawnedMainCharacter });
                 };
             }
         }

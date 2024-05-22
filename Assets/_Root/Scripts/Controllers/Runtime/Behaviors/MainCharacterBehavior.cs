@@ -2,6 +2,7 @@
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using Pancake;
+using Pancake.Common;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Behaviors
@@ -20,7 +21,7 @@ namespace _Root.Scripts.Controllers.Runtime.Behaviors
                 })
                 .End()
                 .Build();
-            App.AddListener(UpdateMode.Update, () => behaviorTree.Tick());
+            App.AddListener(EUpdateMode.Update, () => behaviorTree.Tick());
         }
     }
 }
