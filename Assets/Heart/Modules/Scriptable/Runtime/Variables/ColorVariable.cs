@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Pancake.Common;
 
 namespace Pancake.Scriptable
 {
     [CreateAssetMenu(fileName = "variable_color.asset", menuName = "Pancake/Scriptable/Variables/color")]
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public class ColorVariable : ScriptableVariable<Color>
     {
         public override void Save()

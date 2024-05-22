@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
+using _Root.Scripts.Controllers.Runtime.Variables;
 using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using _Root.Scripts.Datas.Runtime.Variables;
-using Pancake.Apex;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Statuses
@@ -11,7 +11,7 @@ namespace _Root.Scripts.Controllers.Runtime.Statuses
     [Serializable]
     public class HealthComponent : MonoBehaviour
     {
-        [DisableInEditorMode] [SerializeField] private Reactive<Vector2> health;
+        [SerializeField] private Reactive<Vector2> health;
 
         [Tooltip("If this is true, this object can't take damage at this time")]
         [field: SerializeReference]

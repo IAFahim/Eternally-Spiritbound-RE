@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pancake.Common;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Pancake.Scriptable
@@ -7,7 +8,7 @@ namespace Pancake.Scriptable
     /// A listener for a ScriptableEventBool
     /// </summary>
     [AddComponentMenu("Scriptable/EventListeners/EventListenerBool")]
-    [EditorIcon("scriptable_event_listener")]
+    [EditorIcon("icon_event_listener")]
     public class EventListenerBool : EventListenerGeneric<bool>
     {
         [SerializeField] private EventResponse[] eventResponses;

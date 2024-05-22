@@ -1,12 +1,13 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
 #endif
+using Pancake.Common;
 using TMPro;
 using UnityEngine;
 
 namespace Pancake.UI
 {
-    [EditorIcon("script_button")]
+    [EditorIcon("icon_button")]
     public sealed class UIButtonText : UIButton, ILabel
     {
         [SerializeField] private TextMeshProUGUI label;

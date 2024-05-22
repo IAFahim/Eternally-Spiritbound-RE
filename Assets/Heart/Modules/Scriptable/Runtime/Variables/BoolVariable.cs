@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using Pancake.Common;
 
 namespace Pancake.Scriptable
 {
     [CreateAssetMenu(fileName = "variable_bool.asset", menuName = "Pancake/Scriptable/Variables/bool")]
     [System.Serializable]
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public class BoolVariable : ScriptableVariable<bool>
     {
         public override void Save()
@@ -23,7 +24,7 @@ namespace Pancake.Scriptable
         /// Use this to toggle the value of the variable.
         /// </summary>
         public void Toggle() { Value = !Value; }
-        
+
 #if UNITY_EDITOR
         protected override void OnValidate()
         {

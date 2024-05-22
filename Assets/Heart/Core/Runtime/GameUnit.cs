@@ -1,4 +1,5 @@
-﻿using Pancake.PlayerLoop;
+﻿using Pancake.Common;
+using Pancake.PlayerLoop;
 using UnityEngine;
 
 namespace Pancake
@@ -34,11 +35,8 @@ namespace Pancake
         }
 
         public virtual void OnUpdate() { }
-
         public virtual void OnFixedUpdate() { }
-
         public virtual void OnLateUpdate() { }
-
         protected virtual void OnEnabled() { }
         protected virtual void OnDisabled() { }
     }

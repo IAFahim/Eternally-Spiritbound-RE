@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     [CustomEditor(typeof(ScriptableEventNoParam))]
     public class ScriptableEventNoParamDrawer : UnityEditor.Editor

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Pancake.Common;
 
 namespace Pancake.Scriptable
 {
     [CreateAssetMenu(fileName = "variable_string.asset", menuName = "Pancake/Scriptable/Variables/string")]
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public class StringVariable : ScriptableVariable<string>
     {
         public override void Save()
@@ -17,7 +18,7 @@ namespace Pancake.Scriptable
             base.Load();
             Value = Data.Load(Guid, InitialValue);
         }
-        
+
 #if UNITY_EDITOR
         protected override void OnValidate()
         {

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Pancake.Common;
 
 namespace Pancake.Scriptable
 {
     [CreateAssetMenu(fileName = "variable_vector2int.asset", menuName = "Pancake/Scriptable/Variables/vector2int")]
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public class Vector2IntVariable : ScriptableVariable<Vector2Int>
     {
         public override void Save()
@@ -17,7 +18,7 @@ namespace Pancake.Scriptable
             base.Load();
             Value = Data.Load(Guid, InitialValue);
         }
-        
+
 #if UNITY_EDITOR
         protected override void OnValidate()
         {

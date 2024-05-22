@@ -1,5 +1,4 @@
-﻿using Pancake.Apex;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
@@ -10,8 +9,8 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         [field: SerializeReference] public int StackLimit { get; protected set; }
         [field: SerializeReference] public int Cycle { get; protected set; }
         
-        [DisableInEditorMode] public float remainingDuration;
-        [DisableInEditorMode] public int currentCycle;
+        public float remainingDuration;
+        public int currentCycle;
         
         public float TotalRemainingDuration => remainingDuration ;
 

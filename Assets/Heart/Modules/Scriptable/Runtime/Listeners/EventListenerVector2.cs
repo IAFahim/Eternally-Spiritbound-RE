@@ -7,7 +7,7 @@ namespace Pancake.Scriptable
     /// A listener for a ScriptableEventVector2.
     /// </summary>
     [AddComponentMenu("Scriptable/EventListeners/EventListenerVector2")]
-    [EditorIcon("scriptable_event_listener")]
+    [EditorIcon("icon_event_listener")]
     public class EventListenerVector2 : EventListenerGeneric<Vector2>
     {
         [SerializeField] private EventResponse[] eventResponses;
@@ -19,7 +19,7 @@ namespace Pancake.Scriptable
             [SerializeField] private ScriptableEventVector2 scriptableEvent;
             public override ScriptableEvent<Vector2> ScriptableEvent => scriptableEvent;
 
-            [SerializeField] private Pancake.Vector2UnityEvent response;
+            [SerializeField] private Pancake.Common.Vector2UnityEvent response;
             public override UnityEvent<Vector2> Response => response;
         }
     }

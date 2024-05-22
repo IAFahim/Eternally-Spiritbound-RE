@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Pancake.Localization
 {
     [CreateAssetMenu(menuName = "Pancake/Localization/GameObject", fileName = "gameobject_localizevalue", order = 2)]
-    [EditorIcon("scriptable_yellow_gameobject")]
+    [EditorIcon("so_yellow_gameobject")]
     public class LocalePrefab : LocaleVariable<GameObject>
     {
         [Serializable]
@@ -14,7 +14,7 @@ namespace Pancake.Localization
         };
 
         [SerializeField] private PrefabLocaleItem[] items = new PrefabLocaleItem[1];
-        
+
         // ReSharper disable once CoVariantArrayConversion
         public override LocaleItemBase[] LocaleItems => items;
     }

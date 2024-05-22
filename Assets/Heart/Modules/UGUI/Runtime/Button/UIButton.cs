@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Threading;
+using LitMotion.Extensions;
+using Pancake.Common;
 using Pancake.Sound;
-using Pancake.Threading.Tasks;
 using Pancake.Tracking;
-using PrimeTween;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+#if PANCAKE_UNITASK
+using Cysharp.Threading.Tasks;
+#endif
+#if PANCAKE_LITMOTION
+using LitMotion;
+#endif
 
 
 namespace Pancake.UI
 {
-    [EditorIcon("script_button")]
+    [EditorIcon("icon_button")]
     public class UIButton : Button, IButton, IButtonAffect
     {
         private const float DOUBLE_CLICK_TIME_INTERVAL = 0.2f;
@@ -32,7 +38,9 @@ namespace Pancake.UI
             public Vector2 scale;
             public EButtonMotion motion = EButtonMotion.Normal;
             public float duration = 0.1f;
-            public Ease ease = Ease.Default;
+#if PANCAKE_LITMOTION
+            public Ease ease = Ease.Linear;
+#endif
         }
 
         #region Property
@@ -52,16 +60,15 @@ namespace Pancake.UI
         [SerializeField] private bool ignoreTimeScale;
         [SerializeField] private bool isMotionUnableInteract;
         [SerializeField] private bool isAffectToSelf = true;
-        [SerializeField, HierarchyNullable] private Transform affectObject;
+        [SerializeField] private Transform affectObject;
         [SerializeField] private bool enabledSound;
         [SerializeField] private Audio audioClick;
-        [SerializeField] private ScriptableEventAudio audioPlayEvent;
         [SerializeField] private bool enabledTracking;
         [SerializeField] private ScriptableTrackingNoParam trackingEvent;
-        [SerializeField] private bool useVariableListener;
-        [SerializeField] private ScriptableButtonCallbackVariable callbackVariable;
-        [SerializeField] private MotionData motionData = new MotionData {scale = new Vector2(0.92f, 0.92f), motion = EButtonMotion.Uniform};
-        [SerializeField] private MotionData motionDataUnableInteract = new MotionData {scale = new Vector2(1.15f, 1.15f), motion = EButtonMotion.Late};
+        [SerializeField] private bool bindCustomListener;
+        [SerializeField] private ScriptableButtonCallback listenerCallback;
+        [SerializeField] private MotionData motionData = new() {scale = new Vector2(0.92f, 0.92f), motion = EButtonMotion.Uniform};
+        [SerializeField] private MotionData motionDataUnableInteract = new() {scale = new Vector2(1.15f, 1.15f), motion = EButtonMotion.Late};
 
         private Coroutine _routineLongClick;
         private Coroutine _routineHold;
@@ -73,11 +80,13 @@ namespace Pancake.UI
         private float _doubleClickTimer; // calculate the time interval between two sequential clicks. (use for double click)
         private float _longClickTimer; // calculate how long was the button pressed
         private float _holdTimer; // calculate how long was the button pressed
-        private Vector2 _endValue;
+        private Vector3 _endValue;
         private bool _isCompletePhaseDown;
         private readonly WaitForEndOfFrame _waitForEndOfFrame = new WaitForEndOfFrame();
-        private Tween _tweenUp;
-        private Tween _tweenDown;
+#if PANCAKE_LITMOTION
+        private MotionHandle _handleUp;
+        private MotionHandle _handleDown;
+#endif
         private CancellationTokenSource _tokenSource;
 
         #endregion
@@ -122,19 +131,13 @@ namespace Pancake.UI
             DefaultScale = AffectObject.localScale;
             onClick.AddListener(PlaySound);
 
-            if (!useVariableListener) return;
-            if (callbackVariable == null)
-            {
-                Debug.LogError(name + ": missing variable listener");
-                return;
-            }
-
-            callbackVariable.Value = new ButtonCallbackData();
+            if (!bindCustomListener) return;
+            if (listenerCallback == null) Debug.LogError(name + ": missing variable listener");
         }
 
         private void PlaySound()
         {
-            if (enabledSound) audioPlayEvent.Raise(audioClick);
+            if (enabledSound && audioClick != null) audioClick.PlaySfx();
         }
 
 #if UNITY_EDITOR
@@ -156,19 +159,19 @@ namespace Pancake.UI
         {
             base.OnDisable();
             if (!Application.isPlaying) return; // not execute awake when not playing
-            if (useVariableListener)
+            if (bindCustomListener)
             {
-                onPointerUp.RemoveListener(callbackVariable.Value.InvokePointerUp);
-                onPointerDown.RemoveListener(callbackVariable.Value.InvokePointerDown);
-                onClick.RemoveListener(callbackVariable.Value.InvokeClick);
-                onDoubleClick.RemoveListener(callbackVariable.Value.InvokeDoubleClick);
-                onLongClick.RemoveListener(callbackVariable.Value.InvokeLongClick);
-                onHold.RemoveListener(callbackVariable.Value.InvokeHold);
+                onPointerUp.RemoveListener(listenerCallback.InvokePointerUp);
+                onPointerDown.RemoveListener(listenerCallback.InvokePointerDown);
+                onClick.RemoveListener(listenerCallback.InvokeClick);
+                onDoubleClick.RemoveListener(listenerCallback.InvokeDoubleClick);
+                onLongClick.RemoveListener(listenerCallback.InvokeLongClick);
+                onHold.RemoveListener(listenerCallback.InvokeHold);
             }
 
             if (_handleMultipleClick is {IsTerminated: false})
             {
-                // avoid case app be destroy soon than other component
+                // avoid case app be destroyed sooner than other component
                 try
                 {
                     App.StopCoroutine(_handleMultipleClick);
@@ -194,22 +197,24 @@ namespace Pancake.UI
         {
             base.OnEnable();
             if (!Application.isPlaying) return; // not execute awake when not playing
-            if (useVariableListener)
+            if (bindCustomListener)
             {
-                onPointerUp.AddListener(callbackVariable.Value.InvokePointerUp);
-                onPointerDown.AddListener(callbackVariable.Value.InvokePointerDown);
-                onClick.AddListener(callbackVariable.Value.InvokeClick);
-                onDoubleClick.AddListener(callbackVariable.Value.InvokeDoubleClick);
-                onLongClick.AddListener(callbackVariable.Value.InvokeLongClick);
-                onHold.AddListener(callbackVariable.Value.InvokeHold);
+                onPointerUp.AddListener(listenerCallback.InvokePointerUp);
+                onPointerDown.AddListener(listenerCallback.InvokePointerDown);
+                onClick.AddListener(listenerCallback.InvokeClick);
+                onDoubleClick.AddListener(listenerCallback.InvokeDoubleClick);
+                onLongClick.AddListener(listenerCallback.InvokeLongClick);
+                onHold.AddListener(listenerCallback.InvokeHold);
             }
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            if (_tweenUp.isAlive) _tweenUp.Stop();
-            if (_tweenDown.isAlive) _tweenDown.Stop();
+#if PANCAKE_LITMOTION
+            if (_handleUp.IsActive()) _handleUp.Cancel();
+            if (_handleDown.IsActive()) _handleDown.Cancel();
+#endif
             _tokenSource?.Cancel();
         }
 
@@ -555,6 +560,7 @@ namespace Pancake.UI
                     AffectObject.localScale = DefaultScale;
                     break;
                 case EButtonMotion.Normal:
+#if PANCAKE_UNITASK
                     try
                     {
                         await UniTask.WaitUntil(() => _isCompletePhaseDown, cancellationToken: _tokenSource.Token);
@@ -563,25 +569,31 @@ namespace Pancake.UI
                     {
                         break;
                     }
+#endif
 
-                    _tweenUp = Tween.Scale(AffectObject,
-                        DefaultScale,
-                        motionData.duration,
-                        motionData.ease,
-                        useUnscaledTime: ignoreTimeScale);
+#if PANCAKE_LITMOTION
+                    _handleUp = LMotion.Create(AffectObject.localScale, DefaultScale, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
                     break;
                 case EButtonMotion.Uniform:
                     break;
                 case EButtonMotion.Late:
                     _isCompletePhaseDown = false;
                     _endValue = new Vector3(DefaultScale.x * motionData.scale.x, DefaultScale.y * motionData.scale.y);
-                    _tweenDown = Tween.Scale(AffectObject,
-                            _endValue,
-                            motionData.duration,
-                            motionData.ease,
-                            useUnscaledTime: ignoreTimeScale)
-                        .OnComplete(() => _isCompletePhaseDown = true);
+#if PANCAKE_LITMOTION
+                    _handleDown = LMotion.Create(AffectObject.localScale, _endValue, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .WithOnComplete(() => _isCompletePhaseDown = true)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
 
+#if PANCAKE_UNITASK
                     try
                     {
                         await UniTask.WaitUntil(() => _isCompletePhaseDown, cancellationToken: _tokenSource.Token);
@@ -590,12 +602,15 @@ namespace Pancake.UI
                     {
                         break;
                     }
+#endif
 
-                    _tweenUp = Tween.Scale(AffectObject,
-                        DefaultScale,
-                        motionData.duration,
-                        motionData.ease,
-                        useUnscaledTime: ignoreTimeScale);
+#if PANCAKE_LITMOTION
+                    _handleUp = LMotion.Create(AffectObject.localScale, DefaultScale, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
 
                     break;
             }
@@ -615,21 +630,29 @@ namespace Pancake.UI
                     break;
                 case EButtonMotion.Normal:
                     _isCompletePhaseDown = false;
-                    _tweenDown = Tween.Scale(AffectObject,
-                            _endValue,
-                            motionData.duration,
-                            motionData.ease,
-                            useUnscaledTime: ignoreTimeScale)
-                        .OnComplete(() => _isCompletePhaseDown = true);
+
+#if PANCAKE_LITMOTION
+                    _handleDown = LMotion.Create(AffectObject.localScale, _endValue, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .WithOnComplete(() => _isCompletePhaseDown = true)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
                     break;
                 case EButtonMotion.Uniform:
                     _isCompletePhaseDown = false;
-                    _tweenDown = Tween.Scale(AffectObject,
-                            _endValue,
-                            motionData.duration,
-                            motionData.ease,
-                            useUnscaledTime: ignoreTimeScale)
-                        .OnComplete(() => _isCompletePhaseDown = true);
+
+#if PANCAKE_LITMOTION
+                    _handleDown = LMotion.Create(AffectObject.localScale, _endValue, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .WithOnComplete(() => _isCompletePhaseDown = true)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
+
+#if PANCAKE_UNITASK
                     try
                     {
                         await UniTask.WaitUntil(() => _isCompletePhaseDown, cancellationToken: _tokenSource.Token);
@@ -638,12 +661,15 @@ namespace Pancake.UI
                     {
                         break;
                     }
+#endif
 
-                    _tweenUp = Tween.Scale(AffectObject,
-                        DefaultScale,
-                        motionData.duration,
-                        motionData.ease,
-                        useUnscaledTime: ignoreTimeScale);
+#if PANCAKE_LITMOTION
+                    _handleUp = LMotion.Create(AffectObject.localScale, DefaultScale, motionData.duration)
+                        .WithEase(motionData.ease)
+                        .WithScheduler(ignoreTimeScale ? MotionScheduler.UpdateRealtime : MotionScheduler.DefaultScheduler)
+                        .BindToLocalScale(AffectObject)
+                        .AddTo(gameObject);
+#endif
                     break;
                 case EButtonMotion.Late:
                     break;

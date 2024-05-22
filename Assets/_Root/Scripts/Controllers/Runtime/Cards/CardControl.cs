@@ -1,6 +1,4 @@
 using _Root.Scripts.Datas.Runtime.Card;
-using Pancake;
-using Pancake.Apex;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,9 +6,8 @@ using UnityEngine.UI;
 namespace _Root.Scripts.Controllers.Runtime.Cards
 {
     public class CardControl : CardData, IDragHandler, IBeginDragHandler, IEndDragHandler
-    {
-        
-        [DisableInEditorMode] public bool dragging;
+    { 
+        public bool dragging;
         [SerializeField] private float moveSpeedLimit = 50;
         [SerializeField] private Canvas canvas;
         [SerializeField] private GraphicRaycaster graphicRayCaster;

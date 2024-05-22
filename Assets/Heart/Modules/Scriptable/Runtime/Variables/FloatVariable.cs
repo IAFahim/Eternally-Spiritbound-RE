@@ -1,10 +1,11 @@
-﻿using Pancake.Apex;
+﻿using Alchemy.Inspector;
+using Pancake.Common;
 using UnityEngine;
 
 namespace Pancake.Scriptable
 {
     [CreateAssetMenu(fileName = "variable_float.asset", menuName = "Pancake/Scriptable/Variables/float")]
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public class FloatVariable : ScriptableVariable<float>
     {
         [Tooltip("Clamps the value of this variable to a minimum and maximum.")] [SerializeField]

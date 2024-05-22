@@ -1,9 +1,7 @@
 #if PANCAKE_IAP
 using System.Collections.Generic;
-using Pancake.Apex;
 using UnityEngine;
 using System;
-
 using UnityEngine.Purchasing;
 
 
@@ -17,8 +15,8 @@ namespace Pancake.IAP
         public ProductType productType;
     }
 
-    [HideMonoScript]
-    [EditorIcon("scriptable_iap")]
+
+    [EditorIcon("so_blue_setting")]
     public class IAPSettings : ScriptableObject
     {
         [SerializeField] private List<IAPData> skusData = new();

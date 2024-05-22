@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using Pancake.IAP;
 using UnityEditor;
 using UnityEditorInternal;
@@ -14,7 +14,7 @@ using UnityEngine.Purchasing;
 namespace Pancake.IAPEditor
 {
     [CustomEditor(typeof(IAPSettings))]
-    public class IAPSettingsDrawer : Editor
+    public class IAPSettingsDrawer : UnityEditor.Editor
     {
         private SerializedProperty _skusDataProperty;
         private SerializedProperty _productsProperty;
@@ -30,7 +30,7 @@ namespace Pancake.IAPEditor
             EditorGUI.indentLevel++;
             if (index > _skusDataProperty.arraySize - 1) return;
             var element = _skusDataProperty.GetArrayElementAtIndex(index);
-            if (GUI.Button(new Rect(rect.x + rect.width - 20, rect.y, 20, EditorGUIUtility.singleLineHeight), "X"))
+            if (GUI.Button(new Rect(rect.x + rect.width - 20, rect.y, 20, EditorGUIUtility.singleLineHeight), Uniform.IconContent("Toolbar Minus", "Remove")))
             {
                 _reorderableList.serializedProperty.DeleteArrayElementAtIndex(index);
                 serializedObject.ApplyModifiedProperties();
@@ -39,7 +39,6 @@ namespace Pancake.IAPEditor
 
             EditorGUI.PropertyField(rect, element, new GUIContent(element.FindPropertyRelative("id").stringValue.Split('.').Last().ToCamelCase()), true);
             EditorGUI.indentLevel--;
-
         }
 
         public override void OnInspectorGUI()
@@ -55,7 +54,7 @@ namespace Pancake.IAPEditor
                 true,
                 false) {drawElementCallback = DrawElementCallback, drawHeaderCallback = DrawHeaderCallback};
             _reorderableList.elementHeightCallback += ElementHeightCallback;
-            GUI.backgroundColor = Uniform.FieryRose;
+            GUI.backgroundColor = Uniform.SunsetOrange;
             EditorGUILayout.HelpBox(
                 "\nProduct id should look like : com.appname.itemid\n Ex: com.eldenring.doublesoul\n\nConsumable         : purchase multiple time\nNon Consumable : purchase once time\n",
                 MessageType.Info);

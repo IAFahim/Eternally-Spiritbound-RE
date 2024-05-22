@@ -1,4 +1,5 @@
-﻿#if PANCAKE_ADVERTISING && PANCAKE_ADMOB
+﻿using Pancake.Common;
+#if PANCAKE_ADVERTISING && PANCAKE_ADMOB
 using GoogleMobileAds.Api;
 using Pancake.Tracking;
 #endif

@@ -3,7 +3,7 @@ using Pancake;
 
 namespace _Root.Scripts.Controllers.Runtime.Events
 {
-    public struct SwapCharacterEvent: IEvent
+    public struct SwapCharacterEvent
     {
         public Character Character;
     }

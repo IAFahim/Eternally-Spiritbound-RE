@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEngine.SceneManagement;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
-    public class EventsDebugWindow : ScriptableWindowBase
+    public class EventsDebugWindow : WindowBase
     {
-        protected override string HeaderTitle => "Event Debug Window";
-
         private string _methodName = string.Empty;
         private bool _hasClicked;
         private bool _wasFound;
@@ -48,7 +46,7 @@ namespace Pancake.ScriptableEditor
         {
             var feedbackText = _methodName;
             var guiStyle = new GUIStyle(EditorStyles.label);
-            guiStyle.normal.textColor = _wasFound ? Color.white : Uniform.FieryRose;
+            guiStyle.normal.textColor = _wasFound ? Color.white : Uniform.SunsetOrange;
             guiStyle.fontStyle = FontStyle.Bold;
             feedbackText += _wasFound ? " was found!" : " was not found!";
             EditorGUILayout.LabelField(feedbackText, guiStyle);

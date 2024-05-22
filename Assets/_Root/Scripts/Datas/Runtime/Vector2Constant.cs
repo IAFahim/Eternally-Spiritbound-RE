@@ -13,9 +13,8 @@ namespace _Root.Scripts.Datas.Runtime
             value = vector2;
         }
 
-        public override void Reset()
+        public void Reset()
         {
-            base.Reset();
             value = new Vector2(1, 2 / 3f);
         }
     }

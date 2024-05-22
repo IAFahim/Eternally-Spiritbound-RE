@@ -1,4 +1,5 @@
-using Pancake.ExLibEditor;
+using Pancake.Common;
+using PancakeEditor.Common;
 using Pancake.MobileInput;
 using UnityEditor;
 using UnityEngine;
@@ -285,14 +286,14 @@ namespace Pancake.MobileInputEditor
             bool isBoundaryYValid = boundaryMax.y >= boundaryMin.y;
             bool isBoundaryXValid = boundaryMax.x >= boundaryMin.x;
 
-            if (!isBoundaryYValid) GUI.color = Uniform.FieryRose;
+            if (!isBoundaryYValid) GUI.color = Uniform.SunsetOrange;
             boundaryMax.y = EditorGUILayout.FloatField(boundaryMax.y, GUILayout.Width(70));
             GUI.color = Color.white;
 
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
 
-            if (!isBoundaryXValid) GUI.color = Uniform.FieryRose;
+            if (!isBoundaryXValid) GUI.color = Uniform.SunsetOrange;
             Draw2FloatFields("Left/Right", ref boundaryMin.x, ref boundaryMax.x);
             GUI.color = Color.white;
 
@@ -301,7 +302,7 @@ namespace Pancake.MobileInputEditor
             GUILayout.Label("Bottom", GUILayout.Width(SIZE_LABEL));
             GUILayout.FlexibleSpace();
             GUILayout.FlexibleSpace();
-            if (!isBoundaryYValid) GUI.color = Uniform.FieryRose;
+            if (!isBoundaryYValid) GUI.color = Uniform.SunsetOrange;
             boundaryMin.y = EditorGUILayout.FloatField(boundaryMin.y, GUILayout.Width(70));
             GUI.color = Color.white;
             GUILayout.FlexibleSpace();
@@ -451,7 +452,7 @@ namespace Pancake.MobileInputEditor
 
             Uniform.DrawGroupFoldout("touch_camera_callback", "Callback", DrawCallback);
             Uniform.DrawGroupFoldout("touch_camera_touch_input_ref", "TouchInput Reference", DrawInputSetting);
-            
+
 
             if (GUI.changed)
             {
@@ -483,7 +484,7 @@ namespace Pancake.MobileInputEditor
             EditorGUILayout.PropertyField(_onUpdateExtendPinchProperty, true);
             EditorGUILayout.PropertyField(_onStopPinchProperty, true);
         }
-        
+
         private void OnScrollDampModeChanged(AutoScrollDampMode dampMode)
         {
             var serializedScrollDamp = serializedObject.FindProperty("autoScrollDamp");

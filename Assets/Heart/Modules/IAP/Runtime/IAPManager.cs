@@ -1,9 +1,11 @@
 #if PANCAKE_IAP
 using System;
 using System.Collections.Generic;
-using Pancake.Apex;
-using Pancake.Scriptable;
-using Pancake.Threading.Tasks;
+using Pancake.Common;
+#if PANCAKE_UNITASK
+using Cysharp.Threading.Tasks;
+using Pancake.Monetization;
+#endif
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -12,29 +14,24 @@ using UnityEngine.Purchasing.Extension;
 
 namespace Pancake.IAP
 {
-    [HideMonoScript]
     public class IAPManager : GameComponent, IDetailedStoreListener
     {
-        [SerializeField] private BoolVariable isServiceInitialized;
         [SerializeField] private IAPSettings iapSettings;
-        [SerializeField] private ScriptableEventIAPProduct purchaseEvent;
-        [SerializeField] private ScriptableEventIAPFuncProduct productOnwershipCheckEvent;
-        [SerializeField] private ScriptableEventBool changePreventDisplayAppOpenEvent;
-#if UNITY_IOS
-        [SerializeField] private ScriptableEventIAPNoParam restoreEvent;
-#endif
-
+        
         private IStoreController _controller;
         private IExtensionProvider _extensions;
+        private static event Action<IAPDataVariable> PurchaseProductEvent;
+        private static event Func<IAPDataVariable, bool> CheckOwnProductEvent;
+        private static event Action RestoreProductEvent;
 
         public bool IsInitialized { get; set; }
 
         protected void OnEnable()
         {
-            purchaseEvent.OnRaised += PurchaseProduct;
-            productOnwershipCheckEvent.OnRaised += IsPurchasedProduct;
+            PurchaseProductEvent += PurchaseProduct;
+            CheckOwnProductEvent += IsPurchasedProduct;
 #if UNITY_IOS
-            restoreEvent.OnRaised += RestorePurchase;
+            RestoreProductEvent += RestorePurchase;
 #endif
         }
 
@@ -46,17 +43,16 @@ namespace Pancake.IAP
 
         private void PurchaseProduct(IAPDataVariable product)
         {
-            // call when IAPDataVariable raise event
-            if (changePreventDisplayAppOpenEvent != null) changePreventDisplayAppOpenEvent.Raise(true);
+            Advertising.ChangePreventDisplayAppOpen(true);
             PurchaseProductInternal(product);
         }
 
         protected void OnDisable()
         {
-            purchaseEvent.OnRaised -= PurchaseProduct;
-            productOnwershipCheckEvent.OnRaised -= IsPurchasedProduct;
+            PurchaseProductEvent -= PurchaseProduct;
+            CheckOwnProductEvent -= IsPurchasedProduct;
 #if UNITY_IOS
-            restoreEvent.OnRaised -= RestorePurchase;
+            RestoreProductEvent -= RestorePurchase;
 #endif
         }
 
@@ -65,8 +61,10 @@ namespace Pancake.IAP
         private async void Init()
         {
             if (IsInitialized) return;
-            
-            await UniTask.WaitUntil(() => isServiceInitialized.Value);
+
+#if PANCAKE_UNITASK
+            await UniTask.WaitUntil(() => Static.IsUnitySeriveReady);
+#endif
 
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             RequestProductData(builder);
@@ -137,7 +135,7 @@ namespace Pancake.IAP
 
         private void InternalPurchaseFailed(string id)
         {
-            if (changePreventDisplayAppOpenEvent != null) changePreventDisplayAppOpenEvent.Raise(false);
+            Advertising.ChangePreventDisplayAppOpen(false);
             foreach (var p in iapSettings.Products)
             {
                 if (!p.id.Equals(id)) continue;
@@ -148,7 +146,7 @@ namespace Pancake.IAP
 
         private void PurchaseVerified(PurchaseEventArgs e)
         {
-            if (changePreventDisplayAppOpenEvent != null) changePreventDisplayAppOpenEvent.Raise(false);
+            Advertising.ChangePreventDisplayAppOpen(false);
             InternalPurchaseDone(e.purchasedProduct.definition.id);
         }
 
@@ -212,6 +210,12 @@ namespace Pancake.IAP
             }
         }
 #endif
+
+        internal static void Purchase(IAPDataVariable product) { PurchaseProductEvent?.Invoke(product); }
+
+        internal static bool IsPurchased(IAPDataVariable product) { return CheckOwnProductEvent != null && CheckOwnProductEvent.Invoke(product); }
+
+        public static void Restore() { RestoreProductEvent?.Invoke(); }
     }
 }
 #endif

@@ -1,11 +1,12 @@
 ﻿using System;
 using _Root.Scripts.Controllers.Runtime.Statuses;
+using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
-using Pancake;
+using Pancake.Common;
 using Pancake.Scriptable;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Variables
+namespace _Root.Scripts.Controllers.Runtime.Variables
 {
     [Serializable]
     public class ResistanceVariable : ScriptableVariable<ResistanceDatas>

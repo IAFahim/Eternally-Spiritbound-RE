@@ -1,5 +1,6 @@
 ﻿using _Root.Scripts.Datas.Runtime.Interfaces;
 using Pancake;
+using Pancake.Common;
 using Pancake.PlayerLoop;
 using UnityEngine;
 
@@ -43,13 +44,13 @@ namespace _Root.Scripts.Datas.Runtime.Activities
         {
             directionRef ??= GetComponent<IDirection>();
             HasAllReference = directionRef != null && target != null;
-            App.AddListener(UpdateMode.Update, OnUpdate);
+            App.AddListener(EUpdateMode.Update, OnUpdate);
         }
 
         public virtual void OnDisable()
         {
             enabled = false;
-            App.RemoveListener(UpdateMode.Update, OnUpdate);
+            App.RemoveListener(EUpdateMode.Update, OnUpdate);
         }
 
         public void OnUpdate()

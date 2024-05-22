@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Pancake.Apex;
+using Pancake.Common;
 using UnityEngine;
 
 namespace Pancake.UI
@@ -10,11 +10,9 @@ namespace Pancake.UI
     [DisallowMultipleComponent]
     public class Sheet : MonoBehaviour, ISheetLifecycleEvent
     {
-        [field: SerializeField] private string Id { get; set; }
-
+        [SerializeField] private string id;
         [SerializeField] private int order;
-
-        [SerializeField, InlineEditor] private SheetTransitionContainer animationContainer = new SheetTransitionContainer();
+        public SheetTransitionContainer animationContainer = new();
 
         private CanvasGroup _canvasGroup;
         private RectTransform _parentTransform;
@@ -31,8 +29,6 @@ namespace Pancake.UI
         }
 
         private readonly CompositeLifecycleEvent<ISheetLifecycleEvent> _lifecycleEvents = new();
-
-        public SheetTransitionContainer AnimationContainer => animationContainer;
 
         public bool IsTransitioning { get; private set; }
 
@@ -125,7 +121,7 @@ namespace Pancake.UI
 
             if (playAnimation)
             {
-                var anim = animationContainer.GetAnimation(true, partnerSheet?.Id);
+                var anim = animationContainer.GetAnimation(true, partnerSheet?.id);
                 if (anim == null) anim = DefaultTransitionSetting.GetDefaultSheetTransition(true);
 
                 if (anim.Duration > 0.0f)
@@ -170,7 +166,7 @@ namespace Pancake.UI
         {
             if (playAnimation)
             {
-                var anim = animationContainer.GetAnimation(false, partnerSheet?.Id);
+                var anim = animationContainer.GetAnimation(false, partnerSheet?.id);
                 if (anim == null) anim = DefaultTransitionSetting.GetDefaultSheetTransition(false);
 
                 if (anim.Duration > 0.0f)

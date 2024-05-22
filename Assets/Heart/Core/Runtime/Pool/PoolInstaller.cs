@@ -1,13 +1,12 @@
-using Pancake.Apex;
 using UnityEngine;
 
 namespace Pancake
 {
     [DefaultExecutionOrder(-9999), DisallowMultipleComponent]
-    [EditorIcon("cs")]
+    [EditorIcon("icon_default")]
     internal sealed class PoolInstaller : MonoBehaviour
     {
-        [SerializeField, Array] private PoolContainer[] pools;
+        [SerializeField] private PoolContainer[] pools;
 
         private void Awake()
         {

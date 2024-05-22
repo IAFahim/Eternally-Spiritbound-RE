@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using _Root.Scripts.Controllers.Runtime.Statuses;
 using _Root.Scripts.Datas.Runtime;
 using Pancake;
+using Pancake.Common;
 using Pancake.PlayerLoop;
 using UnityEngine;
 
@@ -41,12 +42,12 @@ namespace _Root.Scripts.Controllers.Runtime.Effects
         private void OnEnable()
         {
             timer = 0;
-            App.AddListener(UpdateMode.Update, OnUpdate);
+            App.AddListener(EUpdateMode.Update, OnUpdate);
         }
 
         private void OnDisable()
         {
-            App.RemoveListener(UpdateMode.Update, OnUpdate);
+            App.RemoveListener(EUpdateMode.Update, OnUpdate);
         }
 
         public void OnUpdate()

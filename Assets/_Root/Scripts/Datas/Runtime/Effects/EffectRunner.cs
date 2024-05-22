@@ -1,6 +1,7 @@
-﻿using Pancake;
+﻿using Pancake.Common;
 using Pancake.Scriptable;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Root.Scripts.Datas.Runtime.Effects
 {
@@ -20,7 +21,7 @@ namespace _Root.Scripts.Datas.Runtime.Effects
             base.Add(effect);
             if (Count == 1)
             {
-                App.AddListener(UpdateMode.Update, Update);
+                App.AddListener(EUpdateMode.Update, Update);
                 updateEnabled = true;
             }
         }
@@ -53,7 +54,7 @@ namespace _Root.Scripts.Datas.Runtime.Effects
             {
                 if (Count == 0)
                 {
-                    App.RemoveListener(UpdateMode.Update, Update);
+                    App.RemoveListener(EUpdateMode.Update, Update);
                     updateEnabled = false;
                 }
 
@@ -64,7 +65,7 @@ namespace _Root.Scripts.Datas.Runtime.Effects
         public new virtual void Clear()
         {
             updateEnabled = false;
-            App.RemoveListener(UpdateMode.Update, Update);
+            App.RemoveListener(EUpdateMode.Update, Update);
             base.Clear();
         }
     }

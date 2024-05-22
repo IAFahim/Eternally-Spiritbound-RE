@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     [CustomEditor(typeof(ScriptableListBase), true)]
     public class ScriptableListDrawer : UnityEditor.Editor
@@ -32,10 +32,10 @@ namespace Pancake.ScriptableEditor
 
                 //Check for Serializable
                 var genericType = _scriptableListBase.GetGenericType;
-                bool canBeSerialized = EditorExtend.IsUnityType(genericType) || EditorExtend.IsSerializable(genericType);
+                bool canBeSerialized = PancakeEditor.Common.Editor.IsUnityType(genericType) || PancakeEditor.Common.Editor.IsSerializable(genericType);
                 if (!canBeSerialized)
                 {
-                    EditorExtend.DrawSerializationError(genericType);
+                    PancakeEditor.Common.Editor.DrawSerializationError(genericType);
                     return;
                 }
             }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pancake.Common;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Pancake.Scriptable
@@ -7,7 +8,7 @@ namespace Pancake.Scriptable
     /// A listener for a ScriptableEventVector3.
     /// </summary>
     [AddComponentMenu("Scriptable/EventListeners/EventListenerVector3")]
-    [EditorIcon("scriptable_event_listener")]
+    [EditorIcon("icon_event_listener")]
     public class EventListenerVector3 : EventListenerGeneric<Vector3>
     {
         [SerializeField] private EventResponse[] eventResponses;
@@ -19,7 +20,7 @@ namespace Pancake.Scriptable
             [SerializeField] private ScriptableEventVector3 scriptableEvent;
             public override ScriptableEvent<Vector3> ScriptableEvent => scriptableEvent;
 
-            [SerializeField] private Pancake.Vector3UnityEvent response;
+            [SerializeField] private Vector3UnityEvent response;
             public override UnityEvent<Vector3> Response => response;
         }
     }

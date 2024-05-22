@@ -1,9 +1,10 @@
-﻿using Pancake.ExLibEditor;
+﻿using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEditor;
 using UnityEngine;
+using Editor = UnityEditor.Editor;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     [InitializeOnLoad]
     internal class ScriptableAssetInspectorGUI
@@ -115,7 +116,7 @@ namespace Pancake.ScriptableEditor
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("See In Wizard", EditorStyles.miniButton, GUILayout.Width(100)))
             {
-                var window = ScriptableWizardWindow.Show();
+                var window = WizardWindow.Show();
                 window.SelectAndScrollTo(scriptableBase);
             }
 

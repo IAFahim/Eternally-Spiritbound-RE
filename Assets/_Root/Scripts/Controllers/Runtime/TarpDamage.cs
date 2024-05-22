@@ -2,7 +2,6 @@
 using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
-using PrimeTween;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime
@@ -18,11 +17,7 @@ namespace _Root.Scripts.Controllers.Runtime
         public float cooldownDuration = 0.5f;
         public int cycles = 1;
         public Collider2D anyCollider2D;
-
-        private Sequence _sequence;
-        public TweenSettings<Color> tweenSettingsWindUp;
-        public TweenSettings<Vector3> tweenSettingsPositionActive;
-        public TweenSettings<Color> tweenSettingsCooldown;
+        
 
         public SpriteRenderer cross;
 
@@ -30,27 +25,23 @@ namespace _Root.Scripts.Controllers.Runtime
         {
             anyCollider2D ??= GetComponent<Collider2D>();
             cross ??= GetComponentInChildren<SpriteRenderer>();
-            windUpDuration = tweenSettingsWindUp.settings.duration * tweenSettingsWindUp.settings.cycles;
-            activeDuration = tweenSettingsPositionActive.settings.duration * tweenSettingsPositionActive.settings.cycles;
-            cooldownDuration = tweenSettingsCooldown.settings.duration * tweenSettingsCooldown.settings.cycles;
         }
 
         private void OnEnable()
         {
             anyCollider2D.enabled = false;
-            if (_sequence.isAlive) _sequence.Complete();
-            _sequence = Sequence.Create(cycles)
-                    .Chain(Tween.Color(cross, tweenSettingsWindUp))
-                    .ChainCallback(() =>
-                    {
-                        anyCollider2D.enabled = true;
-                        cross.color = Color.red;
-                        var _ = Tween.LocalPosition(cross.transform, tweenSettingsPositionActive);
-                    })
-                    .ChainDelay(tweenSettingsPositionActive.settings.duration * tweenSettingsPositionActive.settings.cycles)
-                    .ChainCallback(() => { anyCollider2D.enabled = false; })
-                    .Chain(Tween.Color(cross, tweenSettingsCooldown))
-                ;
+            // _sequence = Sequence.Create(cycles)
+            //         .Chain(Tween.Color(cross, tweenSettingsWindUp))
+            //         .ChainCallback(() =>
+            //         {
+            //             anyCollider2D.enabled = true;
+            //             cross.color = Color.red;
+            //             var _ = Tween.LocalPosition(cross.transform, tweenSettingsPositionActive);
+            //         })
+            //         .ChainDelay(tweenSettingsPositionActive.settings.duration * tweenSettingsPositionActive.settings.cycles)
+            //         .ChainCallback(() => { anyCollider2D.enabled = false; })
+            //         .Chain(Tween.Color(cross, tweenSettingsCooldown))
+            //     ;
         }
         
 

@@ -1,17 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using Pancake.Common;
 
 namespace Pancake.MobileInput
 {
     [RequireComponent(typeof(Camera))]
-    [EditorIcon("script_game_state")]
+    [EditorIcon("icon_game_state")]
     public class TouchCamera : CacheGameComponent<TouchCamera>
     {
         #region inspector
 
         [SerializeField] private Camera cam;
-        
+
         [SerializeField]
         [Tooltip(
             "You need to define whether your camera is a side-view camera (which is the default when using the 2D mode of unity) or if you chose a top-down looking camera. This parameter tells the system whether to scroll in XY direction, or in XZ direction.")]
@@ -144,15 +146,15 @@ namespace Pancake.MobileInput
 
         #endregion
 
-        [SerializeField] private InputEventStartDrag onStartDrag;
-        [SerializeField] private InputEventUpdateDrag onUpdateDrag;
-        [SerializeField] private InputEventStopDrag onStopDrag;
-        [SerializeField] private InputEventFingerDown onFingerDown;
-        [SerializeField] private InputEventFingerUp onFingerUp;
-        [SerializeField] private InputEventClick onClick;
-        [SerializeField] private InputEventStartPinch onStartPinch;
-        [SerializeField] private InputEventUpdateExtendPinch onUpdateExtendPinch;
-        [SerializeField] private InputEventStopPinch onStopPinch;
+        [SerializeField] private Action<Vector3, bool> onStartDrag;
+        [SerializeField] private Action<Vector3, Vector3, Vector3, Vector3> onUpdateDrag;
+        [SerializeField] private Action<Vector3, Vector3> onStopDrag;
+        [SerializeField] private Action<Vector3> onFingerDown;
+        [SerializeField] private Action onFingerUp;
+        [SerializeField] private Action<Vector3, bool, bool> onClick;
+        [SerializeField] private Action<Vector3, float> onStartPinch;
+        [SerializeField] private Action<PinchData> onUpdateExtendPinch;
+        [SerializeField] private Action onStopPinch;
 
 
         public CameraPlaneAxes CameraAxes { get => cameraAxes; set => cameraAxes = value; }
@@ -463,15 +465,15 @@ namespace Pancake.MobileInput
 
         public void Start()
         {
-            onClick.OnRaised += OnClick;
-            onStartDrag.OnRaised += InputOnDragStart;
-            onUpdateDrag.OnRaised += InputOnDragUpdate;
-            onStopDrag.OnRaised += InputOnDragStop;
-            onFingerDown.OnRaised += InputOnFingerDown;
-            onFingerUp.OnRaised += InputOnFingerUp;
-            onStartPinch.OnRaised += InputOnPinchStart;
-            onUpdateExtendPinch.OnRaised += InputOnPinchUpdate;
-            onStopPinch.OnRaised += InputOnPinchStop;
+            onClick += OnClick;
+            onStartDrag += InputOnDragStart;
+            onUpdateDrag += InputOnDragUpdate;
+            onStopDrag += InputOnDragStop;
+            onFingerDown += InputOnFingerDown;
+            onFingerUp += InputOnFingerUp;
+            onStartPinch += InputOnPinchStart;
+            onUpdateExtendPinch += InputOnPinchUpdate;
+            onStopPinch += InputOnPinchStop;
             _isStarted = true;
             StartCoroutine(InitCamBoundariesDelayed());
         }
@@ -480,15 +482,15 @@ namespace Pancake.MobileInput
         {
             if (_isStarted)
             {
-                onClick.OnRaised -= OnClick;
-                onStartDrag.OnRaised -= InputOnDragStart;
-                onUpdateDrag.OnRaised -= InputOnDragUpdate;
-                onStopDrag.OnRaised -= InputOnDragStop;
-                onFingerDown.OnRaised -= InputOnFingerDown;
-                onFingerUp.OnRaised -= InputOnFingerUp;
-                onStartPinch.OnRaised -= InputOnPinchStart;
-                onUpdateExtendPinch.OnRaised -= InputOnPinchUpdate;
-                onStopPinch.OnRaised -= InputOnPinchStop;
+                onClick -= OnClick;
+                onStartDrag -= InputOnDragStart;
+                onUpdateDrag -= InputOnDragUpdate;
+                onStopDrag -= InputOnDragStop;
+                onFingerDown -= InputOnFingerDown;
+                onFingerUp -= InputOnFingerUp;
+                onStartPinch -= InputOnPinchStart;
+                onUpdateExtendPinch -= InputOnPinchUpdate;
+                onStopPinch -= InputOnPinchStop;
             }
         }
 

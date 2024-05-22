@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     public class CreateTypePopUpWindow : PopupWindowContent
     {
@@ -31,7 +31,7 @@ namespace Pancake.ScriptableEditor
         {
             editorWindow.position = Uniform.CenterInWindow(editorWindow.position, _position);
 
-            Uniform.DrawHeader("Create new Type");
+            //Uniform.DrawHeader("Create new Type");
             DrawTextField();
             DrawTypeToggles();
             GUILayout.Space(20);
@@ -69,7 +69,7 @@ namespace Pancake.ScriptableEditor
             _typeText = EditorGUILayout.TextField(_typeText, EditorStyles.textField);
             if (EditorGUI.EndChangeCheck()) _invalidTypeName = !IsTypeNameValid();
 
-            var guiStyle = new GUIStyle(EditorStyles.label) {normal = {textColor = _invalidTypeName ? Uniform.FieryRose : Color.white}, fontStyle = FontStyle.Bold};
+            var guiStyle = new GUIStyle(EditorStyles.label) {normal = {textColor = _invalidTypeName ? Uniform.SunsetOrange : Color.white}, fontStyle = FontStyle.Bold};
             string errorMessage = _invalidTypeName ? "Invalid type name." : "";
             EditorGUILayout.LabelField(errorMessage, guiStyle);
         }
@@ -81,7 +81,7 @@ namespace Pancake.ScriptableEditor
             GUILayout.Space(10);
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginHorizontal();
-            if (!EditorExtend.IsBuiltInType(_typeText))
+            if (!PancakeEditor.Common.Editor.IsBuiltInType(_typeText))
             {
                 DrawToggle(ref _baseClass,
                     nameType,
@@ -98,17 +98,17 @@ namespace Pancake.ScriptableEditor
             DrawToggle(ref _variable,
                 nameType,
                 "Variable",
-                EditorResources.ScriptableVariable,
+                EditorResources.IconVariable,
                 true);
             GUILayout.Space(5);
-            DrawToggle(ref _event, "ScriptableEvent", nameType, EditorResources.ScriptableEvent);
+            DrawToggle(ref _event, "ScriptableEvent", nameType, EditorResources.IconEvent);
             GUILayout.Space(5);
             if (!_event) _eventListener = false;
             GUI.enabled = _event;
-            DrawToggle(ref _eventListener, "EventListener", nameType, EditorResources.ScriptableEventListener);
+            DrawToggle(ref _eventListener, "EventListener", nameType, EditorResources.IconEventListener);
             GUI.enabled = true;
             GUILayout.Space(5);
-            DrawToggle(ref _list, "ScriptableList", nameType, EditorResources.ScriptableList);
+            DrawToggle(ref _list, "ScriptableList", nameType, EditorResources.IconList);
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
         }
@@ -120,10 +120,10 @@ namespace Pancake.ScriptableEditor
             GUILayout.Box(icon, style, GUILayout.Width(18), GUILayout.Height(18));
             toggleValue = GUILayout.Toggle(toggleValue, "", GUILayout.Width(maxWidth));
             var firstStyle = new GUIStyle(GUI.skin.label) {padding = {left = 15 - maxWidth}};
-            if (isFirstRed) firstStyle.normal.textColor = Uniform.FieryRose;
+            if (isFirstRed) firstStyle.normal.textColor = Uniform.SunsetOrange;
             GUILayout.Label(typeName, firstStyle);
             var secondStyle = new GUIStyle(GUI.skin.label) {padding = {left = -6}};
-            if (!isFirstRed) secondStyle.normal.textColor = Uniform.FieryRose;
+            if (!isFirstRed) secondStyle.normal.textColor = Uniform.SunsetOrange;
             GUILayout.Label(second, secondStyle);
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
@@ -140,7 +140,7 @@ namespace Pancake.ScriptableEditor
                 var progress = 0f;
                 EditorUtility.DisplayProgressBar("Progress", "Start", progress);
 
-                if (_baseClass && !EditorExtend.IsBuiltInType(_typeText))
+                if (_baseClass && !PancakeEditor.Common.Editor.IsBuiltInType(_typeText))
                 {
                     string template = _monoBehaviour ? EditorResources.MonoBehaviourTemplate.text : EditorResources.ClassTemplate.text;
                     newFile = CreateNewClass(template, _typeText, $"{_typeText}.cs", _path);

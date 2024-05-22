@@ -1,24 +1,5 @@
 namespace Pancake
 {
-    /// <summary>
-    /// TimeMode
-    /// </summary>
-    public enum TimeMode
-    {
-        Normal = 0,
-        Unscaled = 1,
-    }
-
-    /// <summary>
-    /// UpdateMode
-    /// </summary>
-    public enum UpdateMode
-    {
-        Update = 0,
-        FixedUpdate = 1,
-        LateUpdate = 2,
-    }
-
     public enum ResetType
     {
         /// <summary>
@@ -27,10 +8,10 @@ namespace Pancake
         SceneLoaded = 0,
 
         /// <summary>
-        /// Each scene loaded by LoadSceneMode.Additive.</br>
+        /// Each scene loaded by LoadSceneMode.Additive.<br/>
         /// Use this option for compatibility with the use of LoadSceneMode.Additive instead of LoadSingle Scene introduced in foundation,
-        /// to keep the variable's value reset behavior similar to SceneLoaded. </br>
-        /// If you are not using a flow load scene like in foundation or you are not sure how to reset the value when the load scene is adaptive, do not use this option.
+        /// to keep the variable's value reset behavior similar to SceneLoaded. <br/>
+        /// If you are not using a flow load scene like in foundation, or you are not sure how to reset the value when the load scene is adaptive, do not use this option.
         /// </summary>
         AdditiveSceneLoaded = 2,
         ApplicationStarts = 1,

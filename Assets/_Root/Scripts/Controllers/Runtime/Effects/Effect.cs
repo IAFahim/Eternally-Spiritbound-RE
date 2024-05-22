@@ -1,7 +1,7 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Effects.Frictions;
 using _Root.Scripts.Datas.Runtime.Effects;
+using Alchemy.Inspector;
 using Pancake;
-using Pancake.Apex;
 
 namespace _Root.Scripts.Controllers.Runtime.Effects
 {

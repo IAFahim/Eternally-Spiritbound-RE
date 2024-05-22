@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 namespace Pancake.Scriptable
 {
     [Serializable]
-    [EditorIcon("scriptable_event")]
+    [EditorIcon("so_blue_event")]
     public abstract class ScriptableEventFunc<TResult> : ScriptableEventBase, IDrawObjectsInInspector
     {
         private readonly List<EventListenerFunc<TResult>> _eventListeners = new();
@@ -66,7 +66,7 @@ namespace Pancake.Scriptable
             allObjects.AddRange(_listenerObjects);
             return allObjects;
         }
-        
+
         private void Debug()
         {
             var delegates = _onRaised.GetInvocationList();

@@ -1,11 +1,9 @@
 ﻿using System;
-using Pancake.Apex;
 using QuickEye.Utility;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
-    [UseDefaultEditor]
     [Serializable]
     public class LookUpTable<T, TV> : ScriptableObject
     {

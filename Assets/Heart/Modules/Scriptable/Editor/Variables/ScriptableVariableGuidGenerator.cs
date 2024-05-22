@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using Pancake.ExLibEditor;
+using Pancake;
+using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     internal class ScriptableVariableGuidGenerator : AssetPostprocessor
     {

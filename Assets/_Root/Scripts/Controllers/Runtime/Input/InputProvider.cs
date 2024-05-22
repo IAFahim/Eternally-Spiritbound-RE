@@ -9,21 +9,17 @@ namespace _Root.Scripts.Controllers.Runtime.Input
     public abstract class InputProvider: MonoBehaviour
     {
         [SerializeField] protected InputActionReference inputActionReference;
-        private EventBinding<SwapCharacterEvent> _swapCharacterBinding;
         
         protected virtual void Awake()
-        {
-            _swapCharacterBinding = new (OnSpawnCharacterEventCallBack);       
+        {   
         }
         
         protected virtual void OnEnable()
         {
-            _swapCharacterBinding.Listen = true;
         }
         
         protected virtual void OnDisable()
         {
-            _swapCharacterBinding.Listen = false;
         }
 
         private void OnSpawnCharacterEventCallBack(SwapCharacterEvent characterEvent)

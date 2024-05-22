@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Pancake.Apex;
 #if UNITY_EDITOR
+using Alchemy.Inspector;
 using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
+using Pancake.Common;
 
 namespace Pancake.Scriptable
 {
-    [EditorIcon("scriptable_variable")]
+    [EditorIcon("so_blue_variable")]
     public abstract class ScriptableVariable<T> : ScriptableBase, ISave, IReset, IResetOn, IDrawObjectsInInspector, IGuid
     {
 #if UNITY_EDITOR
@@ -21,7 +22,7 @@ namespace Pancake.Scriptable
         [SerializeField, DisableInPlayMode, HideIf("IgnoreDraw")] protected T initialValue;
 
         [Tooltip("The value of the variable. This will be reset on play mode exit to the value it had before entering play mode.")]
-        [SerializeField, HideInEditorMode, IgnoreTypeMismatch]
+        [SerializeField, HideInEditMode /*, IgnoreTypeMismatch*/]
         protected T value;
 
         [Tooltip("Log in the console whenever this variable is changed, loaded or saved.")] [SerializeField]
@@ -30,10 +31,13 @@ namespace Pancake.Scriptable
         [Tooltip("If true, saves the value to Player Prefs and loads it onEnable.")] [SerializeField, HideIf("IgnoreDraw")]
         private bool saved;
 
-        [SerializeField, ShowIf(nameof(saved)), Label("GUID"), HorizontalGroup("guid"), Indent]
+        [SerializeField, ShowIf(nameof(saved)), LabelText("GUID"), HorizontalGroup("guid"), Indent]
         private ECreationMode guidCreateMode;
 
-        [SerializeField, ShowIf(nameof(saved)), DisableIf(nameof(guidCreateMode), ECreationMode.Auto), HorizontalGroup("guid"), HideLabel, Indent]
+#if UNITY_EDITOR
+        private bool IsAutoCreateId => guidCreateMode == ECreationMode.Auto;
+#endif
+        [SerializeField, ShowIf(nameof(saved)), DisableIf("IsAutoCreateId"), HorizontalGroup("guid"), HideLabel, Indent]
         private string guid;
 
         [Tooltip("Reset to initial value when :" + "\nScene Loaded : when the scene is loaded by LoadSceneMode.Single" +
@@ -238,7 +242,7 @@ namespace Pancake.Scriptable
 
 #if UNITY_EDITOR
         private bool IsInPlayMode => Application.isPlaying;
-        [Button, ButtonHeight(20), Color(1f, 0.47f, 0.78f, 0.66f), ShowIf("IsInPlayMode")]
+        [Button, ShowIf("IsInPlayMode")]
         private void ShowListener()
         {
             VariableListenerWindow.Show();

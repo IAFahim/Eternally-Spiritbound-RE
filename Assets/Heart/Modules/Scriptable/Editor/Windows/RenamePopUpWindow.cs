@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Pancake.ExLibEditor;
+using PancakeEditor.Common;
 using Pancake.Scriptable;
 using UnityEditor;
 using UnityEngine;
 
-namespace Pancake.ScriptableEditor
+namespace PancakeEditor.Scriptable
 {
     public class RenamePopUpWindow : PopupWindowContent
     {
@@ -26,7 +26,7 @@ namespace Pancake.ScriptableEditor
         {
             editorWindow.position = Uniform.CenterInWindow(editorWindow.position, _position);
 
-            Uniform.DrawHeader("Rename");
+            //Uniform.DrawHeader("Rename");
             GUILayout.Space(12);
 
             _newName = EditorGUILayout.TextField(_newName, EditorStyles.textField);

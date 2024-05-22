@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pancake.Common;
+using UnityEngine;
 
 namespace Pancake
 {
@@ -19,7 +20,7 @@ namespace Pancake
 
         private void OnDestroy()
         {
-            if (_handle is { IsCompleted: false }) App.CancelDelay(_handle);
+            if (_handle is {IsCompleted: false}) App.CancelDelay(_handle);
         }
     }
 }
