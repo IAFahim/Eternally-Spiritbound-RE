@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using _Root.Scripts.Controllers.Runtime.Variables;
 using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using _Root.Scripts.Datas.Runtime.Variables;
