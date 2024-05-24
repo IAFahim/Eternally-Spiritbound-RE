@@ -1,6 +1,4 @@
-﻿using _Root.Scripts.Controllers.Runtime.Events;
-using Pancake;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace _Root.Scripts.Controllers.Runtime.Characters
@@ -9,8 +7,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
     {
         [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
         public Character spawnedMainCharacter;
-      
-
+        
         private void OnEnable()
         {
             SpawnAndSet();

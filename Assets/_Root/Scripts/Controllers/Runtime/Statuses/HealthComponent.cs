@@ -4,6 +4,7 @@ using _Root.Scripts.Controllers.Runtime.Variables;
 using _Root.Scripts.Datas.Runtime;
 using _Root.Scripts.Datas.Runtime.Statistics;
 using _Root.Scripts.Datas.Runtime.Variables;
+using Alchemy.Inspector;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Statuses
@@ -31,10 +32,12 @@ namespace _Root.Scripts.Controllers.Runtime.Statuses
 
         private void OnEnable()
         {
-            GetStatus();
+            Fetch();
         }
 
-        public void GetStatus()
+        
+        [Button]
+        private void Fetch()
         {
             var stats = GetComponent<Stats>();
             if (stats != null)

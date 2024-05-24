@@ -1,22 +1,23 @@
-﻿using System;
-using QuickEye.Utility;
+﻿using QuickEye.Utility;
 using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
-    [Serializable]
     public class LookUpTable<T, TV> : ScriptableObject
     {
+        public TV defaultValue;
+        public TV GetOrDefault(T key) => Get(key, out TV sprite) ? sprite : defaultValue;
+
         [SerializeField] protected UnityDictionary<T, TV> dictionary;
-        
-        public TV this[T key] => dictionary[key];
 
         private void Awake()
         {
             hideFlags = HideFlags.DontUnloadUnusedAsset;
         }
+        
+        // public virtual T[] GetKeys() => dictionary.
 
-        public bool Get(T key, out TV value) => dictionary.TryGetValue(key, out value);
+        public virtual bool Get(T key, out TV value) => dictionary.TryGetValue(key, out value);
 
         public virtual bool Add(T key, TV value) => dictionary.TryAdd(key, value);
 
@@ -31,6 +32,8 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
             Add(key, value);
             return false;
         }
+        
+        public virtual bool Contains(T key) => dictionary.ContainsKey(key);
 
         public virtual bool Remove(T key) => dictionary.Remove(key);
     }
