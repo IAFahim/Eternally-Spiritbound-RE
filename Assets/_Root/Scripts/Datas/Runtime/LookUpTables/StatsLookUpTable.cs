@@ -1,5 +1,4 @@
 ﻿using _Root.Scripts.Datas.Runtime.Statistics;
-using _Root.Scripts.Datas.Runtime.Variables;
 using Pancake.Scriptable;
 using UnityEngine;
 

@@ -4,7 +4,7 @@ using Pancake.Scriptable;
 
 namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
-    public class AttackUnlockedLookUpTable: LookUpTable<StringVariable, List<Attack>>
+    public class AttackUnlockedLookUpTable: SaveAbleLookUpTable<StringVariable, List<Attack>>
     {
         
     }

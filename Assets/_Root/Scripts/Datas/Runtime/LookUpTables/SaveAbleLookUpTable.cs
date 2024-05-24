@@ -13,7 +13,7 @@ namespace _Root.Scripts.Datas.Runtime.LookUpTables
 {
     public class SaveAbleLookUpTable<T, TV> : LookUpTable<T, TV>
     {
-        public string guid = "b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b1";
+        public string guid = Guid.NewGuid().ToString();
         
         public virtual void Save()
         {
