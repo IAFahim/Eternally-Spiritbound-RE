@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3254e7d1cc44ae9668fd1bbc57cda8, type: 3}
   m_Name: attack.melee
   m_EditorClassIdentifier: 
-  atc:
-    m_AssetGUID: 42675785f6bb3e44b9c3f8d33546ba0e
-    m_SubObjectName: 
-    m_SubObjectGUID: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  atcG:
-    m_AssetGUID: 42675785f6bb3e44b9c3f8d33546ba0e
+  referenceAttackComponent:
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
@@ -28,7 +22,8 @@ MonoBehaviour:
   damageType: 0
   damage: 0
   range: 0
-  duration: 0
+  delay: 1
+  duration: 1
   nextAttack:
     enabled: 0
     value: {fileID: 0}

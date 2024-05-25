@@ -111,8 +111,8 @@ Transform:
   m_GameObject: {fileID: 1061129645180013117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.475, y: 0.2951, z: 0}
-  m_LocalScale: {x: 0.34625, y: 0.1, z: 1}
+  m_LocalPosition: {x: -0.096, y: 1.301, z: 0}
+  m_LocalScale: {x: 0.05, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5936005402881770741}
@@ -561,16 +561,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GravityActive>k__BackingField: 0
-  <Gravity>k__BackingField: 40
-  <Free>k__BackingField: 1
-  <Friction>k__BackingField: 1
-  <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 3, y: 2}
-  <IsReceivingMoveInput>k__BackingField: 0
-  AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111863468305}
   modelTransform: {fileID: 6163146070541094120}
+  movementDirectionConsumerList: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
+  gravityActive: 1
+  friction: 1
+  gravity: 1
+  speed: 1
+  worldScale: {fileID: 11400000, guid: 216326a32cd06324ebdfd798bcf80ff1, type: 2}
+  impact: {x: 0, y: 0}
+  addedForce: {x: 0, y: 0}
 --- !u!114 &5755289734652576849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,11 +600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93d8ecbe055438f889684968a97d557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 6163146070541094120}
   nameOrTitle: {fileID: 11400000, guid: d8412139947051242b32ebbb4946c57a, type: 2}
-  attackUnlockedLookUpTable:
-    enabled: 0
-    value: {fileID: 0}
-  unlockedAttacks: []
+  attackUnlockedLookUpTable: {fileID: 11400000, guid: dbb372be42e070449a7e926087f72076, type: 2}
+  availableAttacks: []
 --- !u!50 &3986176111863468305
 Rigidbody2D:
   serializedVersion: 4

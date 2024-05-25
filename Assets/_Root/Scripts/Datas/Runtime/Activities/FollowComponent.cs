@@ -15,7 +15,7 @@ namespace _Root.Scripts.Datas.Runtime.Activities
         [SerializeField] protected GameComponent target;
         [SerializeField] private Vector2 direction;
 
-        private IDirection directionRef;
+        private IMovementDirection _movementDirectionRef;
 
         protected bool HasAllReference
         {
@@ -30,20 +30,20 @@ namespace _Root.Scripts.Datas.Runtime.Activities
             {
                 target = value;
                 HasAllReference = target != null;
-                if (directionRef != null) Direction = Vector2.zero;
+                if (_movementDirectionRef != null) Direction = Vector2.zero;
             }
         }
 
         protected Vector2 Direction
         {
             get => direction;
-            set => directionRef.Direction = direction = value;
+            set => _movementDirectionRef.Direction = direction = value;
         }
 
         public virtual void OnEnable()
         {
-            directionRef ??= GetComponent<IDirection>();
-            HasAllReference = directionRef != null && target != null;
+            _movementDirectionRef ??= GetComponent<IMovementDirection>();
+            HasAllReference = _movementDirectionRef != null && target != null;
             App.AddListener(EUpdateMode.Update, OnUpdate);
         }
 

@@ -1,4 +1,5 @@
 ﻿using _Root.Scripts.Datas.Runtime.Attacks;
+using Pancake.Common;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Attacks
@@ -7,7 +8,7 @@ namespace _Root.Scripts.Controllers.Runtime.Attacks
     {
         public override void OnStartup()
         {
-            Debug.Log("DamageOnTouch.OnStartup");
+            
         }
 
         protected override void OnUpdate(float deltaTime)

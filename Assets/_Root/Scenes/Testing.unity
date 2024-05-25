@@ -1458,16 +1458,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GravityActive>k__BackingField: 0
-  <Gravity>k__BackingField: 40
-  <Free>k__BackingField: 1
-  <Friction>k__BackingField: 1
-  <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 1, y: 1}
-  <IsReceivingMoveInput>k__BackingField: 0
-  AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 905796096}
   modelTransform: {fileID: 1700174511}
+  movementDirectionConsumerList: {fileID: 0}
+  isReceivingMoveInput: 0
+  direction: {x: 0, y: 0}
+  gravityActive: 1
+  friction: 1
+  gravity: 1
+  speed: 1
+  worldScale: {fileID: 0}
+  impact: {x: 0, y: 0}
+  addedForce: {x: 0, y: 0}
 --- !u!114 &905796092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2781,16 +2783,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GravityActive>k__BackingField: 1
-  <Gravity>k__BackingField: 40
-  <Free>k__BackingField: 1
-  <Friction>k__BackingField: 1
-  <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 1, y: 1}
-  <IsReceivingMoveInput>k__BackingField: 0
-  AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 1953190924}
   modelTransform: {fileID: 0}
+  movementDirectionConsumerList: {fileID: 0}
+  isReceivingMoveInput: 0
+  direction: {x: 0, y: 0}
+  gravityActive: 1
+  friction: 1
+  gravity: 1
+  speed: 1
+  worldScale: {fileID: 0}
+  impact: {x: 0, y: 0}
+  addedForce: {x: 0, y: 0}
 --- !u!50 &1953190924
 Rigidbody2D:
   serializedVersion: 4
@@ -2835,7 +2839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2006546225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2848,8 +2852,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  provideInput: 1
   inputActionReference: {fileID: -1680190386980627800, guid: 18166285ea06f334f8fe1ef1c8cb1cbc, type: 3}
   move: {x: 0, y: 0}
+  isReceivingMoveInput: 0
+  consumerList: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
 --- !u!4 &2006546226
 Transform:
   m_ObjectHideFlags: 0
@@ -3130,18 +3137,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4283433540593913833, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: attackUnlockedLookUpTable
-      value: 
-      objectReference: {fileID: 11400000, guid: dbb372be42e070449a7e926087f72076, type: 2}
-    - target: {fileID: 4283433540593913833, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: attackUnlockedLookUpTable.value
-      value: 
-      objectReference: {fileID: 11400000, guid: dbb372be42e070449a7e926087f72076, type: 2}
-    - target: {fileID: 4283433540593913833, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: attackUnlockedLookUpTable.enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3181,22 +3176,6 @@ PrefabInstance:
     - target: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978256445397341965, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978256445397341965, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978256445397341965, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.096
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978256445397341965, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.301
       objectReference: {fileID: 0}
     - target: {fileID: 8655606875691399418, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_fontMaterial
@@ -3479,16 +3458,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GravityActive>k__BackingField: 0
-  <Gravity>k__BackingField: 40
-  <Free>k__BackingField: 1
-  <Friction>k__BackingField: 1
-  <Direction>k__BackingField: {x: 0, y: 0}
-  <Speed>k__BackingField: {x: 1, y: 1}
-  <IsReceivingMoveInput>k__BackingField: 0
-  AddedForce: {x: 0, y: 0}
   rigidBody: {fileID: 3986176111649062746}
   modelTransform: {fileID: 6163146070723011235}
+  movementDirectionConsumerList: {fileID: 0}
+  isReceivingMoveInput: 0
+  direction: {x: 0, y: 0}
+  gravityActive: 1
+  friction: 1
+  gravity: 1
+  speed: 1
+  worldScale: {fileID: 0}
+  impact: {x: 0, y: 0}
+  addedForce: {x: 0, y: 0}
 --- !u!114 &6624701252611969535
 MonoBehaviour:
   m_ObjectHideFlags: 0

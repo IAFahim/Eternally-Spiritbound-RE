@@ -8,6 +8,6 @@ namespace _Root.Scripts.Datas.Runtime.Attacks
     {
         public AttackComponent Component { get; }
         public Optional<Attack> NextAttack { get; }
-        public DelayHandle Execute(Transform origin);
+        public DelayHandle Execute(Transform attackerTransform, Vector3 firePosition);
     }
 }

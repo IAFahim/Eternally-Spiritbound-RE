@@ -9,12 +9,6 @@ namespace _Root.Scripts.Controllers.Runtime.Attacks
     [CreateAssetMenu(menuName = "Scriptable/Attacks/Melee", fileName = "attack.melee.asset")]
     public class MeleeAttack : Attack
     {
-        public override DelayHandle Execute(Transform origin)
-        {
-            var attackComponent = Component.gameObject.Request<AttackComponent>(origin);
-            return attackComponent.Set(this);
-        }
-
         public async UniTask<GameObject> ExecuteAsync(Transform origin)
         {
             if (!ReferenceAttackComponent.IsDone)
