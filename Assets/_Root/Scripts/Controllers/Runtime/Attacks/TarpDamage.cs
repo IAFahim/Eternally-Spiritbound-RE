@@ -1,10 +1,9 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Statuses;
 using _Root.Scripts.Datas.Runtime;
-using _Root.Scripts.Datas.Runtime.Statistics;
 using Pancake;
 using UnityEngine;
 
-namespace _Root.Scripts.Controllers.Runtime
+namespace _Root.Scripts.Controllers.Runtime.Attacks
 {
     public class TarpDamage : GameComponent
     {

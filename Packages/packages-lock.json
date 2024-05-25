@@ -57,6 +57,13 @@
       "dependencies": {},
       "hash": "d057074f177b078e29f10dd511b54df48a8806ea"
     },
+    "com.cysharp.zstring": {
+      "version": "https://github.com/Cysharp/ZString.git?path=src/ZString.Unity/Assets/Scripts/ZString",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "434fd232ee1c1bea78d81650eeb872208fe32989"
+    },
     "com.fluid.behavior-tree": {
       "version": "2.2.3",
       "depth": 0,

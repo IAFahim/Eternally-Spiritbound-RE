@@ -2,7 +2,8 @@
 using _Root.Scripts.Datas.Runtime.Attacks;
 using _Root.Scripts.Datas.Runtime.LookUpTables;
 using _Root.Scripts.Datas.Runtime.Variables;
-using Pancake;
+using Alchemy.Inspector;
+using Pancake.Common;
 using Pancake.Scriptable;
 using UnityEngine;
 
@@ -11,14 +12,22 @@ namespace _Root.Scripts.Controllers.Runtime.Attacks
     public class AttackManager : MonoBehaviour
     {
         public StringVariable nameOrTitle;
-        public Optional<AttackUnlockedLookUpTable> attackUnlockedLookUpTable;
-        public List<Attack> unlockedAttacks;
+        public AttackUnlockedLookUpTable attackUnlockedLookUpTable;
+        
+        public List<Attack> availableAttacks;
+        public List<DelayHandle> AttackHandles;
 
-        private void Awake()
+        private void Awake() => availableAttacks = attackUnlockedLookUpTable.GetOrDefault(nameOrTitle);
+        private void Start() => AttackHandles = new List<DelayHandle>();
+
+        [Button]
+        public void AttackRandom()
         {
-            if (attackUnlockedLookUpTable.Enabled) unlockedAttacks = attackUnlockedLookUpTable.Value.GetOrDefault(nameOrTitle);
+            var randomIndex = Random.Range(0, availableAttacks.Count);
+            var attackHandle= availableAttacks[randomIndex].Execute(transform);
+            AttackHandles.Add(attackHandle);
         }
-
+        
         private void Reset()
         {
             var nameOrTitleComponent = GetComponent<NameOrTitleComponent>();

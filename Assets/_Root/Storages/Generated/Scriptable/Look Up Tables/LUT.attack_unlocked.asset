@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: LUT.attack_unlocked
   m_EditorClassIdentifier: 
   defaultValue:
-  - {fileID: 11400000, guid: 2abc2960ce9f2cc4392b1e9b2ea97f42, type: 2}
+  - {fileID: 11400000, guid: 49cab3b3700e77f4a9f1178fafde316c, type: 2}
   dictionary:
     list:
     - key: {fileID: 11400000, guid: d8412139947051242b32ebbb4946c57a, type: 2}
       value:
-      - {fileID: 11400000, guid: 2abc2960ce9f2cc4392b1e9b2ea97f42, type: 2}
+      - {fileID: 11400000, guid: 49cab3b3700e77f4a9f1178fafde316c, type: 2}
       duplicatedKey: 0
+  guid: 4b6fe2d5-d11c-4005-a839-e11190f6a41c

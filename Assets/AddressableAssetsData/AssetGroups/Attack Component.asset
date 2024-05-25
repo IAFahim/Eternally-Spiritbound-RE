@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Attack Component
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
-  m_GUID: 4838d4a43b70cab45bb64a6b90e62a11
-  m_SerializeEntries: []
+  m_GroupName: Attack Component
+  m_GUID: 8bf8a91b8b6b94d4681b3339f89360fc
+  m_SerializeEntries:
+  - m_GUID: 42675785f6bb3e44b9c3f8d33546ba0e
+    m_Address: damage_on_collision.Circle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 440e233c9f12ed44087d655fdcb8399a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 2682a2bf5b654e3498b802305c68a92d, type: 2}
-    - {fileID: 11400000, guid: 9df952bc26543e841a785d46aad34a4d, type: 2}
+    - {fileID: 11400000, guid: 3b81bdc6b5c83444cba906c8ec31b561, type: 2}
+    - {fileID: 11400000, guid: cc5e8c5ad72ee1749bd75ce06fccd6a6, type: 2}

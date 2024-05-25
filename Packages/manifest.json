@@ -16,6 +16,7 @@
     "com.chenpipi.project-pin-board": "https://github.com/ichenpipi/unity-project-pin-board.git",
     "com.cysharp.r3": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity#1.1.11",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.4",
+    "com.cysharp.zstring": "https://github.com/Cysharp/ZString.git?path=src/ZString.Unity/Assets/Scripts/ZString",
     "com.fluid.behavior-tree": "2.2.3",
     "com.pancake.bcl.asyncinterfaces": "https://github.com/pancake-llc/microsoft-bcl-async-interfaces.git#6.0.0",
     "com.pancake.bcl.timeprovider": "https://github.com/pancake-llc/microsoft-bcl-time-provider.git#8.0.0",

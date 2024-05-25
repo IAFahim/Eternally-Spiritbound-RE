@@ -1,5 +1,4 @@
-﻿using _Root.Scripts.Controllers.Runtime.Characters;
-using CleverCrow.Fluid.BTs.Trees;
+﻿using CleverCrow.Fluid.BTs.Trees;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Behaviors
