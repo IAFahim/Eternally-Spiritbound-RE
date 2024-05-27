@@ -1400,7 +1400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0ae5ad9ac142f490ea6ff87e5cc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualInput: {fileID: 0}
   <DebugEnabled>k__BackingField: 1
   haasAllReference: 0
   target: {fileID: 0}
@@ -1937,7 +1936,7 @@ MonoBehaviour:
     Enabled: 1
     m_Value: 10
   OutputChannel: 1
-  StandbyUpdate: 2
+  StandbyUpdate: 1
   m_StreamingVersion: 20230301
   m_LegacyPriority: 0
   m_LookAt: {fileID: 1540718012}
@@ -3447,7 +3446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0ae5ad9ac142f490ea6ff87e5cc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualInput: {fileID: 0}
   <DebugEnabled>k__BackingField: 1
   haasAllReference: 0
   target: {fileID: 0}

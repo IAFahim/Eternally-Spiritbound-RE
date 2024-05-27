@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Root.Scripts.Datas.Runtime.Activities
 {
-    public abstract class FollowComponent : AIBrain, IDebug, IUpdate
+    public abstract class FollowComponent : GameComponent, IDebug, IUpdate
     {
         [field: SerializeReference] public bool DebugEnabled { get; set; } = true;
 
