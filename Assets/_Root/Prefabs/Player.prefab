@@ -567,7 +567,7 @@ MonoBehaviour:
     performed: 0
     value: {x: 0, y: 0}
   worldScale: {fileID: 11400000, guid: 216326a32cd06324ebdfd798bcf80ff1, type: 2}
-  speed: 1
+  speed: 2
   rigidBody: {fileID: 3986176111863468305}
   modelTransform: {fileID: 6163146070541094120}
   friction: 1
@@ -619,7 +619,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 100
-  m_LinearDrag: 1
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

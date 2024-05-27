@@ -16,7 +16,6 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
 
         private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
         private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
-        
 
         public float Friction
         {
@@ -54,21 +53,19 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         {
             ApplyImpact();
 
-            if (Direction) FlipModel(Direction.Value);
-
             if (Friction > 1)
             {
                 Direction = Direction.Value / Friction;
             }
-
+            
             // if we have a low friction (ice, marbles...) we lerp the speed accordingly
             if (Friction is > 0 and < 1)
             {
                 Direction = Vector2.Lerp(SpeedVector, Direction, Time.deltaTime * Friction);
             }
-
+            
             Vector2 newMovement = rigidBody.position + (Direction * SpeedVector + addedForce) * Time.fixedDeltaTime;
-
+            
             rigidBody.MovePosition(newMovement);
         }
 

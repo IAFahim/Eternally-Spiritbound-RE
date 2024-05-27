@@ -10,7 +10,7 @@ namespace _Root.Scripts.Datas.Runtime.Movements
     {
         [SerializeField] private Performing<Vector2> direction;
         [SerializeField] private Vector2Variable worldScale;
-        [Range(0, 10)] [SerializeField] protected float speed = 1f;
+        [Range(0, 15)] [SerializeField] protected float speed = 1f;
 
         public Performing<Vector2> Direction
         {

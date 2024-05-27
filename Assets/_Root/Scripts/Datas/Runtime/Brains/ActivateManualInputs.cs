@@ -1,5 +1,4 @@
-﻿using System;
-using Alchemy.Inspector;
+﻿using Alchemy.Inspector;
 using Pancake;
 using Pancake.Common;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace _Root.Scripts.Datas.Runtime.Brains
         private void Awake() => brains = GetComponents<Brain>();
         private void OnDisable() => Deactivate();
 
-        public void Start()
+        public void OnEnable()
         {
             Activate();
         }
