@@ -1412,6 +1412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0ae5ad9ac142f490ea6ff87e5cc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualInput: {fileID: 0}
   <DebugEnabled>k__BackingField: 1
   haasAllReference: 0
   target: {fileID: 0}
@@ -1915,6 +1916,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
   m_PrefabInstance: {fileID: 2142875870}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540718023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540718003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97ac658bfc74088a1c667d76b7e5158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1540718024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540718003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94eaab4da3534cc7bf260d6d2fad6d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualInput: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
 --- !u!1 &1543300785
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,6 +3193,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540718023}
+    - targetCorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540718024}
     - targetCorrespondingSourceObject: {fileID: 3171316281280532999, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -3462,6 +3494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0ae5ad9ac142f490ea6ff87e5cc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualInput: {fileID: 0}
   <DebugEnabled>k__BackingField: 1
   haasAllReference: 0
   target: {fileID: 0}

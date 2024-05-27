@@ -404,9 +404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 705820817}
   - component: {fileID: 705820816}
-  - component: {fileID: 705820818}
   m_Layer: 0
-  m_Name: GameObject.2
+  m_Name: Input Provider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,9 +438,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 705820818}
-        m_TargetAssemblyTypeName: _Root.Scripts.Controllers.Runtime.Input.MoveInputProvider,
-          Game.Controllers
+      - m_Target: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
+        m_TargetAssemblyTypeName: _Root.Scripts.Datas.Runtime.Lists.MoveInputConsumerScriptableList,
+          Game.Datas
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -522,22 +521,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &705820818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705820815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction:
-    performed: 0
-    value: {x: 0, y: 0}
-  moveInputConsumers: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
 --- !u!114 &838281017
 MonoBehaviour:
   m_ObjectHideFlags: 0

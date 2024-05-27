@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using _Root.Scripts.Datas.Runtime.Inputs;
 using _Root.Scripts.Datas.Runtime.Movements;
 using _Root.Scripts.Datas.Runtime.Variables;
 using UnityEngine;
@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 namespace _Root.Scripts.Datas.Runtime.Lists
 {
-    public class Move2DInputConsumers: ScriptableObject
+    public class Move2DInput : ManualInput
     {
-        public List<Move2D> list;
         [SerializeField] private Performing<Vector2> direction;
+
         public void OnMove(InputAction.CallbackContext context)
         {
             direction = context.ReadValue<Vector2>();
@@ -19,15 +19,23 @@ namespace _Root.Scripts.Datas.Runtime.Lists
                 moveInputConsumer.Direction = direction;
             }
         }
-        
-        public void Add(Move2D move2D)
+
+        public override void Add(GameObject gameObject)
         {
-            list.Add(move2D);
+            var move2D = gameObject.GetComponent<Move2D>();
+            if (move2D != null)
+            {
+                list.Add(move2D);
+            }
         }
-        
-        public void Remove(Move2D move2D)
+
+        public override void Remove(GameObject gameObject)
         {
-            list.Remove(move2D);
+            var move2D = gameObject.GetComponent<Move2D>();
+            if (move2D != null)
+            {
+                list.Remove(move2D);
+            }
         }
     }
 }

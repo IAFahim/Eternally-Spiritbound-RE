@@ -1,8 +1,5 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Characters;
-using _Root.Scripts.Datas.Runtime.Interfaces;
 using _Root.Scripts.Datas.Runtime.Movements;
-using Pancake;
-using Pancake.Scriptable;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Movements
