@@ -9,6 +9,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
     public class Orbit2D : GameComponent, IRange, IAngularSpeed, IAngleToRotate
     {
         [field: SerializeField] public float Speed { get; set; } = 5;
+        public Vector2 SpeedVector => Speed * worldScale.Value;
         [field: SerializeField] public float Radius { get; set; } = 1;
         [field: SerializeField] public float AngleToRotate { get; set; } = 1;
 

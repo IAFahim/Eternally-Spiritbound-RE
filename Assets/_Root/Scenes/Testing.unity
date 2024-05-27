@@ -1458,16 +1458,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction:
+    performed: 0
+    value: {x: 0, y: 0}
+  worldScale: {fileID: 0}
+  speed: 1
   rigidBody: {fileID: 905796096}
   modelTransform: {fileID: 1700174511}
-  movementDirectionConsumerList: {fileID: 0}
-  isReceivingMoveInput: 0
-  direction: {x: 0, y: 0}
-  gravityActive: 1
   friction: 1
-  gravity: 1
-  speed: 1
-  worldScale: {fileID: 0}
   impact: {x: 0, y: 0}
   addedForce: {x: 0, y: 0}
 --- !u!114 &905796092
@@ -2783,16 +2781,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction:
+    performed: 0
+    value: {x: 0, y: 0}
+  worldScale: {fileID: 0}
+  speed: 1
   rigidBody: {fileID: 1953190924}
   modelTransform: {fileID: 0}
-  movementDirectionConsumerList: {fileID: 0}
-  isReceivingMoveInput: 0
-  direction: {x: 0, y: 0}
-  gravityActive: 1
   friction: 1
-  gravity: 1
-  speed: 1
-  worldScale: {fileID: 0}
   impact: {x: 0, y: 0}
   addedForce: {x: 0, y: 0}
 --- !u!50 &1953190924
@@ -2831,7 +2827,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2006546226}
-  - component: {fileID: 2006546225}
   - component: {fileID: 2006546227}
   m_Layer: 0
   m_Name: InputProvider
@@ -2840,23 +2835,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2006546225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006546224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb4edb1e69d76a4c964adaac2c33485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  provideInput: 1
-  inputActionReference: {fileID: -1680190386980627800, guid: 18166285ea06f334f8fe1ef1c8cb1cbc, type: 3}
-  move: {x: 0, y: 0}
-  isReceivingMoveInput: 0
-  consumerList: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
 --- !u!4 &2006546226
 Transform:
   m_ObjectHideFlags: 0
@@ -3177,6 +3155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: direction.performed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8655606875691399418, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_fontMaterial
       value: 
@@ -3458,16 +3440,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction:
+    performed: 0
+    value: {x: 0, y: 0}
+  worldScale: {fileID: 0}
+  speed: 1
   rigidBody: {fileID: 3986176111649062746}
   modelTransform: {fileID: 6163146070723011235}
-  movementDirectionConsumerList: {fileID: 0}
-  isReceivingMoveInput: 0
-  direction: {x: 0, y: 0}
-  gravityActive: 1
   friction: 1
-  gravity: 1
-  speed: 1
-  worldScale: {fileID: 0}
   impact: {x: 0, y: 0}
   addedForce: {x: 0, y: 0}
 --- !u!114 &6624701252611969535

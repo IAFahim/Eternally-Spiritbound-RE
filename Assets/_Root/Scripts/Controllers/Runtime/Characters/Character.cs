@@ -9,7 +9,7 @@ using UnityEngine;
 namespace _Root.Scripts.Controllers.Runtime.Characters
 {
     [SelectionBase]
-    [RequireComponent(typeof(Movement2D))]
+    [RequireComponent(typeof(MovementLookAround2D))]
     [DefaultExecutionOrder(-10)]
     public class Character : GameComponent
     {
