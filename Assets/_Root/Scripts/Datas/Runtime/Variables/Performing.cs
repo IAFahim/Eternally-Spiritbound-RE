@@ -1,11 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Variables
 {
     [Serializable]
-    public struct Performing<T>
+    public class Performing<T>
     {
         [SerializeField] private bool performed;
         [SerializeField] private T value;
@@ -19,7 +18,6 @@ namespace _Root.Scripts.Datas.Runtime.Variables
         public T Value => value;
 
         public Performing(T value)
-            : this()
         {
             performed = true;
             this.value = value;
@@ -48,8 +46,8 @@ namespace _Root.Scripts.Datas.Runtime.Variables
 
         public static bool operator ==(Performing<T> lhs, Performing<T> rhs)
         {
-            if (lhs.Value is null) return rhs.Value is null;
-            return lhs.Value.Equals(rhs.Value);
+            if (lhs != null && lhs.Value is null) return rhs != null && rhs.Value is null;
+            return rhs != null && lhs != null && lhs.Value.Equals(rhs.Value);
         }
 
         public static bool operator !=(Performing<T> lhs, Performing<T> rhs)

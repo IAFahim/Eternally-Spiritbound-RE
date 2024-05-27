@@ -4,7 +4,7 @@ using Pancake;
 using Pancake.Scriptable;
 using UnityEngine;
 
-namespace _Root.Scripts.Datas.Runtime.Movements.InputActions
+namespace _Root.Scripts.Datas.Runtime.Movements
 {
     public abstract class Move2D : GameComponent, IMove, ISpeed
     {

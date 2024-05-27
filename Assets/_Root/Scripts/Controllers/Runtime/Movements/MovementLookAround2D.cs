@@ -1,8 +1,8 @@
 ﻿using _Root.Scripts.Controllers.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.Interfaces;
 using _Root.Scripts.Datas.Runtime.Movements;
-using _Root.Scripts.Datas.Runtime.Movements.InputActions;
 using Pancake;
+using Pancake.Scriptable;
 using UnityEngine;
 
 namespace _Root.Scripts.Controllers.Runtime.Movements
@@ -12,7 +12,6 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
     {
         [SerializeField] private Rigidbody2D rigidBody;
         [SerializeField] private Transform modelTransform;
-        
         [SerializeField] private float friction = 1f;
 
         public Vector2 impact;
