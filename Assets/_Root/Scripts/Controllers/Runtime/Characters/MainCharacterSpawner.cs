@@ -7,7 +7,7 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
     {
         [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
         public Character spawnedMainCharacter;
-        
+
         private void OnEnable()
         {
             SpawnAndSet();
@@ -20,9 +20,9 @@ namespace _Root.Scripts.Controllers.Runtime.Characters
                 assetReferenceGameObject.InstantiateAsync().Completed += handle =>
                 {
                     spawnedMainCharacter = handle.Result.GetComponent<Character>();
-                    spawnedMainCharacter!.Transform.SetPositionAndRotation(spawnedMainCharacter.spawnPoint.Value,
-                        Quaternion.identity);
-                    // EventBus<SwapCharacterEvent>.Raise(new() { Character = spawnedMainCharacter });
+                    spawnedMainCharacter!.Transform.SetPositionAndRotation(
+                        spawnedMainCharacter.spawnPoint.Value, Quaternion.identity
+                    );
                 };
             }
         }

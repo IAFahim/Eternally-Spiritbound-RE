@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05f4ad15bcd48b080b9008deb412f50, type: 3}
   m_Name: Input Move2D
   m_EditorClassIdentifier: 
-  categoryIndex: 0
-  description: 
-  resetOn: 1
+  list: []
+  direction:
+    performed: 0
+    value: {x: 0, y: 0}

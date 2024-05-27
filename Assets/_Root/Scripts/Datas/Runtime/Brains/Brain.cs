@@ -11,5 +11,10 @@ namespace _Root.Scripts.Datas.Runtime.Brains
         {
             manualInput.Add(gameObject);
         }
+        
+        public void DeactivateManualInput()
+        {
+            manualInput.Remove(gameObject);
+        }
     }
 }
