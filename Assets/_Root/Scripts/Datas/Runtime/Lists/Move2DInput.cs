@@ -14,6 +14,7 @@ namespace _Root.Scripts.Datas.Runtime.Lists
         {
             direction = context.ReadValue<Vector2>();
             direction.Perfromed = context.performed;
+            Debug.Log(direction.Value);
             foreach (var moveInputConsumer in list)
             {
                 moveInputConsumer.Direction = direction;
