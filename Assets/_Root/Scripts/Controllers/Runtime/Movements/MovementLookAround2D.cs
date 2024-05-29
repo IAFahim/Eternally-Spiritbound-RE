@@ -17,13 +17,14 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
         private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
 
+        
         public float Friction
         {
             get => friction;
             set => friction = value;
         }
-        
-        
+
+
         private void OnValidate()
         {
             GetComponentReference();
@@ -48,7 +49,8 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         {
             Move();
         }
-        
+
+
         public override void Move()
         {
             ApplyImpact();
@@ -91,7 +93,5 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
             bool isRight = !(flipDirection.x < 0);
             modelTransform.localScale = isRight ? (FlipScaleRight) : FlipScaleLeft;
         }
-
-        
     }
 }

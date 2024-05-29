@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInputProvider: {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
   direction:
     performed: 0
     value: {x: 0, y: 0}
@@ -702,8 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94eaab4da3534cc7bf260d6d2fad6d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualInputs:
-  - {fileID: 11400000, guid: 9cd75e62da990734dbb21e18309ebc12, type: 2}
 --- !u!1 &7939312870078384321
 GameObject:
   m_ObjectHideFlags: 0

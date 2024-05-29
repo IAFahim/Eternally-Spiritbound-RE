@@ -1370,6 +1370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInputProvider: {fileID: 0}
   direction:
     performed: 0
     value: {x: 0, y: 0}
@@ -1524,6 +1525,7 @@ GameObject:
   - component: {fileID: 1066608812}
   - component: {fileID: 1066608811}
   - component: {fileID: 1066608814}
+  - component: {fileID: 1066608815}
   m_Layer: 0
   m_Name: Flask
   m_TagString: Untagged
@@ -1664,6 +1666,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1066608815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066608810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab850b4efd54076ba4c31fed61c7eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1079623236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,6 +2762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInputProvider: {fileID: 0}
   direction:
     performed: 0
     value: {x: 0, y: 0}
@@ -2796,12 +2811,12 @@ GameObject:
   - component: {fileID: 2006546226}
   - component: {fileID: 2006546227}
   m_Layer: 0
-  m_Name: InputProvider
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006546226
 Transform:
   m_ObjectHideFlags: 0
@@ -3403,6 +3418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInputProvider: {fileID: 0}
   direction:
     performed: 0
     value: {x: 0, y: 0}
