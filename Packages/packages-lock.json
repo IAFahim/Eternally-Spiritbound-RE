@@ -34,13 +34,6 @@
       },
       "hash": "43624db3317facbc438d9e0b27504839ae4308f9"
     },
-    "com.chenpipi.project-pin-board": {
-      "version": "https://github.com/ichenpipi/unity-project-pin-board.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "2ecf5f15398dcd085ebf8cb1131b973da3277559"
-    },
     "com.cysharp.r3": {
       "version": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity#1.1.11",
       "depth": 0,
@@ -77,6 +70,20 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.org"
+    },
+    "com.gemserk.selectionhistory": {
+      "version": "https://github.com/acoppes/unity-history-window.git#1.5.5",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "096abf1296a6c4339edfd506bd563a4102e30592"
+    },
+    "com.kevincastejon.missingfeatures": {
+      "version": "https://github.com/kevincastejon/Unity-Missing-Features.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "627d9d9618c9846ad0075bdd65574e9bbf25fece"
     },
     "com.pancake.bcl.asyncinterfaces": {
       "version": "https://github.com/pancake-llc/microsoft-bcl-async-interfaces.git#6.0.0",
