@@ -1,31 +1,32 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Root.Scripts.Datas.Runtime.Variables
 {
     [Serializable]
     public class Performing<T>
     {
-        [SerializeField] private bool performed;
+        [FormerlySerializedAs("performing")] [SerializeField] private bool active;
         [SerializeField] private T value;
 
-        public bool Perfromed
+        public bool Active
         {
-            get => performed;
-            set => performed = value;
+            get => active;
+            set => active = value;
         }
 
         public T Value => value;
 
         public Performing(T value)
         {
-            performed = true;
+            active = true;
             this.value = value;
         }
 
-        public Performing(bool performed, T value)
+        public Performing(bool active, T value)
         {
-            this.performed = performed;
+            this.active = active;
             this.value = value;
         }
 
@@ -41,7 +42,7 @@ namespace _Root.Scripts.Datas.Runtime.Variables
 
         public static implicit operator bool(Performing<T> o)
         {
-            return o.performed;
+            return o.active;
         }
 
         public static bool operator ==(Performing<T> lhs, Performing<T> rhs)

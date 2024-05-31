@@ -1,5 +1,4 @@
-﻿using _Root.Scripts.Datas.Runtime.Brains;
-using _Root.Scripts.Datas.Runtime.Interfaces;
+﻿using _Root.Scripts.Datas.Runtime.Interfaces;
 using Pancake;
 using Pancake.Common;
 using Pancake.PlayerLoop;
@@ -20,7 +19,7 @@ namespace _Root.Scripts.Datas.Runtime.Activities
 
         protected bool HasAllReference
         {
-            get => haasAllReference;
+            get => haasAllReference; 
             set => haasAllReference = value;
         }
         

@@ -1,4 +1,5 @@
-﻿using _Root.Scripts.Controllers.Runtime.Characters;
+﻿using System;
+using _Root.Scripts.Controllers.Runtime.Characters;
 using _Root.Scripts.Datas.Runtime.Movements;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class MovementLookAround2D : Move2D, IFriction
     {
+        
         [SerializeField] private Rigidbody2D rigidBody;
         [SerializeField] private Transform modelTransform;
         [SerializeField] private float friction = 1f;
@@ -17,39 +19,28 @@ namespace _Root.Scripts.Controllers.Runtime.Movements
         private static readonly Vector3 FlipScaleRight = new(1, 1, 1);
         private static readonly Vector3 FlipScaleLeft = new(-1, 1, 1);
 
-        
+
         public float Friction
         {
             get => friction;
             set => friction = value;
         }
-
-
-        private void OnValidate()
-        {
-            GetComponentReference();
-        }
-
-        private void OnEnable()
-        {
-            GetComponentReference();
-        }
         
-        private void OnDisable()
-        {
-        }
-
-        public void GetComponentReference()
+        protected override void AttachPersistentComponent()
         {
             rigidBody ??= GetComponent<Rigidbody2D>();
             modelTransform ??= GetComponent<Character>().model.transform;
+        }
+
+        private void Update()
+        {
+            if(Direction) FlipModel(Direction.Value);
         }
 
         private void FixedUpdate()
         {
             Move();
         }
-
 
         public override void Move()
         {

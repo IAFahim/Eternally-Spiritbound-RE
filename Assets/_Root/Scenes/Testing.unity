@@ -1370,9 +1370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveInputProvider: {fileID: 0}
+  manualInputProvider:
+    active: 0
+    value: {fileID: 0}
+  autoInputProvider: {fileID: 0}
   direction:
-    performed: 0
+    active: 0
     value: {x: 0, y: 0}
   worldScale: {fileID: 0}
   speed: 1
@@ -1831,6 +1834,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!4 &1403858063 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6163146070541094120, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 2142875870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1540718003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
@@ -1839,6 +1847,37 @@ GameObject:
 --- !u!4 &1540718012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5936005402881770741, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+  m_PrefabInstance: {fileID: 2142875870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540718013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540718003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualInputProvider:
+    active: 1
+    value: {fileID: 11400000, guid: 01bc232e25168df4db37489602319c10, type: 2}
+  autoInputProvider: {fileID: 11400000, guid: b1b5d0a8cfc95764f9398c1db9436ff1, type: 2}
+  direction:
+    active: 0
+    value: {x: 0, y: 0}
+  worldScale: {fileID: 11400000, guid: 216326a32cd06324ebdfd798bcf80ff1, type: 2}
+  speed: 1
+  rigidBody: {fileID: 1540718014}
+  modelTransform: {fileID: 1403858063}
+  friction: 1
+  impact: {x: 0, y: 0}
+  addedForce: {x: 0, y: 0}
+--- !u!50 &1540718014 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3986176111863468305, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
   m_PrefabInstance: {fileID: 2142875870}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543300785
@@ -2762,9 +2801,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveInputProvider: {fileID: 0}
+  manualInputProvider:
+    active: 0
+    value: {fileID: 0}
+  autoInputProvider: {fileID: 0}
   direction:
-    performed: 0
+    active: 0
     value: {x: 0, y: 0}
   worldScale: {fileID: 0}
   speed: 1
@@ -3137,14 +3179,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: autoInputProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: b1b5d0a8cfc95764f9398c1db9436ff1, type: 2}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: manualInputProvider.value
+      value: 
+      objectReference: {fileID: 11400000, guid: 01bc232e25168df4db37489602319c10, type: 2}
+    - target: {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      propertyPath: manualInputProvider.performed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8655606875691399418, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       propertyPath: m_fontMaterial
       value: 
       objectReference: {fileID: 743392522}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2033798293597176492, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+    - {fileID: 6624701252800217014, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3649428338614568235, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540718013}
     - targetCorrespondingSourceObject: {fileID: 3171316281280532999, guid: 9dfbd7fdc2c29284a92b2bea722dde39, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -3418,9 +3477,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9df4cf87c845bba70c339da3bc81d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveInputProvider: {fileID: 0}
+  manualInputProvider:
+    active: 0
+    value: {fileID: 0}
+  autoInputProvider: {fileID: 0}
   direction:
-    performed: 0
+    active: 0
     value: {x: 0, y: 0}
   worldScale: {fileID: 0}
   speed: 1

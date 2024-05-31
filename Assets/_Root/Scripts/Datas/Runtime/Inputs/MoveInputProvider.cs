@@ -1,42 +1,24 @@
-﻿using System.Collections.Generic;
-using _Root.Scripts.Datas.Runtime.Movements;
+﻿using _Root.Scripts.Datas.Runtime.Movements;
 using _Root.Scripts.Datas.Runtime.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Root.Scripts.Datas.Runtime.Inputs
 {
-    public class MoveInputProvider : ManualInputProvider
+    public class MoveInputProvider : InputProvider<Move2D>
     {
-        [SerializeField] private Performing<Vector2> direction;
-        public List<Move2D> list;
-        public void OnMove(InputAction.CallbackContext context)
+        public Performing<Vector2> direction;
+        public override void ProvideInput(InputAction.CallbackContext context)
         {
             direction = context.ReadValue<Vector2>();
-            direction.Perfromed = context.performed;
-            Debug.Log(direction.Value);
-            foreach (var moveInputConsumer in list)
-            {
-                moveInputConsumer.Direction = direction;
-            }
+            direction.Active = context.performed;
+            ProvideInput(direction);
         }
 
-        public override void AddManualInputTo(GameObject self)
+        private void ProvideInput(Performing<Vector2> input)
         {
-            var move2D = self.GetComponent<Move2D>();
-            if (move2D != null)
-            {
-                list.Add(move2D);
-            }
-        }
-
-        public override void RemoveManualInputFrom(GameObject self)
-        {
-            var move2D = self.GetComponent<Move2D>();
-            if (move2D != null)
-            {
-                list.Remove(move2D);
-            }
+            if (DebugEnabled) Debug.Log($"MoveInputProvider: {input.Value} {input.Active}");
+            foreach (var moveInputConsumer in consumerList) moveInputConsumer.Direction = input;
         }
     }
 }

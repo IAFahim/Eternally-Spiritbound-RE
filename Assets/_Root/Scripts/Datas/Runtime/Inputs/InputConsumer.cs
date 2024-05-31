@@ -1,20 +1,24 @@
-﻿using Pancake;
-using UnityEngine;
+﻿using _Root.Scripts.Datas.Runtime.Variables;
+using Pancake;
 
 namespace _Root.Scripts.Datas.Runtime.Inputs
 {
-    public abstract class InputConsumer : GameComponent, IInputConsumer
+    public abstract class InputConsumer<T> : GameComponent where T : GameComponent
     {
-        public abstract ManualInputProvider ManualInputProvider { get; }
+        public abstract Performing<InputProvider<T>> ManualInputProvider { get; }
+        public abstract InputProvider<T> AutoInputProvider { get; set; }
 
-        public void EnableManualInput()
+        protected virtual void OnEnable()
         {
-            ManualInputProvider.AddManualInputTo(GameObject);
+            if (ManualInputProvider.Active)
+            {
+                ManualInputProvider.Value.Add(this as T);
+            }
         }
-
-        public void DisableManualInput()
+        
+        protected virtual void OnDisable()
         {
-            ManualInputProvider.RemoveManualInputFrom(GameObject);
+            ManualInputProvider.Value.Remove(this as T);
         }
     }
 }

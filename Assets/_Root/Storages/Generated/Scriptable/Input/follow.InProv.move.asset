@@ -2,17 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 32
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05f4ad15bcd48b080b9008deb412f50, type: 3}
-  m_Name: Input Move2D
+  m_Script: {fileID: 11500000, guid: 42b61780fc9a4b2a8d39b9fcebf6931a, type: 3}
+  m_Name: follow.InProv.move
   m_EditorClassIdentifier: 
-  list: []
+  consumerList: []
+  debugEnabled: 1
   direction:
     performed: 0
     value: {x: 0, y: 0}

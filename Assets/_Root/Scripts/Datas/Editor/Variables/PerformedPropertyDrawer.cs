@@ -16,7 +16,7 @@ namespace _Root.Scripts.Datas.Editor.Variables
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var valueProperty = property.FindPropertyRelative("value");
-            var enabledProperty = property.FindPropertyRelative("performed");
+            var enabledProperty = property.FindPropertyRelative("active");
 
             EditorGUI.BeginProperty(position, label, property);
             position.width -= 24;
