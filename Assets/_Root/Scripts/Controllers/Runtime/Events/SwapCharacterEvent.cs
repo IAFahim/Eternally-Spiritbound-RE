@@ -1,4 +1,4 @@
-﻿using _Root.Scripts.Controllers.Runtime.Characters;
+﻿using _Root.Scripts.Datas.Runtime.Characters;
 using Pancake;
 
 namespace _Root.Scripts.Controllers.Runtime.Events

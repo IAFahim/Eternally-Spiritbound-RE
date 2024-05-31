@@ -15,10 +15,10 @@ namespace _Root.Scripts.Datas.Runtime.Inputs
             ProvideInput(direction);
         }
 
-        private void ProvideInput(Performing<Vector2> input)
+        protected virtual void ProvideInput(Performing<Vector2> input)
         {
-            if (DebugEnabled) Debug.Log($"MoveInputProvider: {input.Value} {input.Active}");
             foreach (var moveInputConsumer in consumerList) moveInputConsumer.Direction = input;
+            if (DebugEnabled) Debug.Log($"MoveInputProvider: {input.Value} {input.Active}");
         }
     }
 }

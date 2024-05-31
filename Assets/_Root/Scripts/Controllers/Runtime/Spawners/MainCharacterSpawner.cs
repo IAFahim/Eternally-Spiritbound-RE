@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using _Root.Scripts.Datas.Runtime.Characters;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace _Root.Scripts.Controllers.Runtime.Characters
+namespace _Root.Scripts.Controllers.Runtime.Spawners
 {
     public sealed class MainCharacterSpawner : MonoBehaviour
     {
