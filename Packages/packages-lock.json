@@ -85,6 +85,13 @@
       "dependencies": {},
       "hash": "627d9d9618c9846ad0075bdd65574e9bbf25fece"
     },
+    "com.nomnom.asset-tabs": {
+      "version": "https://github.com/nomnomab/unity-asset-tabs.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b6a9b13111b8fd6ed14ceccf09d837409a9cce28"
+    },
     "com.pancake.bcl.asyncinterfaces": {
       "version": "https://github.com/pancake-llc/microsoft-bcl-async-interfaces.git#6.0.0",
       "depth": 0,
